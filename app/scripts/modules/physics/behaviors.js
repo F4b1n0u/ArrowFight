@@ -47,36 +47,12 @@ define(function (require) {
         }
     });
 
-    Physics.behavior( 'arrow-gravity', 'constant-acceleration', function( parent ) {
-        return {
-            init: function( options ) {
-                var defaults = {};
-                parent.init.call( this, $.extend( {}, defaults, options ) );
-            },
-            behave: function( data ) {
-                data.bodies.forEach( _.bind( function( body ){
-                    body.applyForce( this._acc, body.movedCentroid());
-
-                    // if ( body.state.vel.norm() != 0 ) {
-                    //     body.state.angular.vel -= body.state.angular.vel * body.state.vel.norm();
-                    // }
-                    //body.applyForce( plumeSupportForce, body.tailCentroid());
-
-                    // if ( body.state.vel.norm() > 1 ) {
-                    //     body.state.vel.normalize();
-                    // }
-                }, this ) );
-            }
-        }
-    });
-
     var Behaviors = {
-        borderWarp:             Physics.behavior('border-warp-behaviour'),
-        gravity:                Physics.behavior('constant-acceleration', { acc: { x : 0, y: 0.003 }}),
-        arrowGravity:           Physics.behavior('arrow-gravity', { acc: { x : 0, y: 0.0004 }}),
-        bodyImpulseResponse:    Physics.behavior('body-impulse-response'),
-        bodyCollisionDetection: Physics.behavior('body-collision-detection'),
-        sweepPrune:             Physics.behavior('sweep-prune')
+        borderWarp: Physics.behavior( 'border-warp-behaviour'),
+        gravity: Physics.behavior( 'constant-acceleration', { acc: { x : 0, y: 0.002 } } ),
+        bodyImpulseResponse:  Physics.behavior( 'body-impulse-response' ),
+        bodyCollisionDetection: Physics.behavior( 'body-collision-detection' ),
+        sweepPrune: Physics.behavior('sweep-prune')
     };
 
     return Behaviors;

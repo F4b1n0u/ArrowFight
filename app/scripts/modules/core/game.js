@@ -5,9 +5,10 @@ define(function (require) {
     var Renderers = require("scripts/modules/physics/renderers");
     var WorldHelper = require("scripts/modules/physics/worldHelper");
     var Elements = require("scripts/modules/core/elements");
-    var Behaviors = require("scripts/modules/physics/behaviors");
 
     var elements = [];
+    elements['item'] = [];
+    elements['mapParts'] = [];
     var world = null;
     var currentStatus = 1;
     
@@ -15,66 +16,41 @@ define(function (require) {
         start: function() {
             Physics.util.ticker.start();
         },
-        initElements: function( amountOfArrows, initalArrowAngle ) {
-            elements['map'] = [];
-            elements['item'] = [];
-            elements['behavior'] = [];
-
-            for (var i = 0; i < amountOfArrows; i++) {
-                elements['item'].push(
-                    new Elements.items.Arrow( {
-                        x: 120 * ( 1 + i ),
-                        y: 500,
-                        angle: initalArrowAngle
-                    } )
-                );
-            };
-
-            elements['map'].push( new Elements.maps.TwilightSpire() );
-
-            var arrowBodies = _.pluck( elements['item'], 'body' );
-            elements['behavior'].push(
-                Behaviors.borderWarp.applyTo( arrowBodies ),
-                //Behaviors.arrowGravity.applyTo( arrowBodies ),
-                Behaviors.gravity,
-                Behaviors.bodyImpulseResponse,
-                Behaviors.bodyCollisionDetection,
-                Behaviors.sweepPrune
-            );
+        initWorld: function() {
+            world = WorldHelper.init();
         },
-        createWorld: function() {
-            world = Physics.world( {
-                timestep: 1000.0 / 600,
-                maxIPF: 60,
-                integrator: 'verlet'
-            },function( world ){
-                elements['item'].forEach( function( element ){
-                    if(element.body) {
-                        world.add( element.body );
-                    }
-                    if(element.view) {
-                        Renderers.pixi.stage.addChild( element.view);
-                    }
-                } );
-
-                elements['map'].forEach( function( element ){
-                    world.add( element.bodies );
-                    if( element.view ) {
-                        Renderers.pixi.stage.addChild( element.view);
-                    }
-                } );
-
-                world.add( elements['behavior'] );
-                world.add( Renderers.pixi );
-
-                world.on('step', function(){
-                    world.render();
-                } );
-
-                Physics.util.ticker.on(function( time, dt ){
-                    world.step( time );
-                } );
+        addArrow: function( initalArrowAngle ) {
+            var element = new Elements.items.Arrow( {
+                x: 480,
+                y: 360,
+                angle: initalArrowAngle
             } );
+            
+            if ( element.hasOwnProperty( 'body' ) ) {
+                world.add( element.body );
+            }
+            if ( element.hasOwnProperty( 'behaviors' ) ) {
+                world.add( element.behaviors );
+            }
+            if ( element.hasOwnProperty( 'view' ) ) {
+                Renderers.pixi.stage.addChild( element.view);
+            }
+
+            elements['item'].push( element );
+        },
+        addMap: function() {
+            var element = new Elements.maps.TwilightSpire();
+            elements['mapParts'].push( element );
+
+            if ( element.hasOwnProperty( 'bodies' ) ) {
+                world.add( element.bodies );
+            }
+            if ( element.hasOwnProperty( 'behaviors' ) ) {
+                world.add( element.behaviors );
+            }
+            if ( element.hasOwnProperty( 'view' ) ) {
+                Renderers.pixi.stage.addChild( element.view);
+            }
         },
         launchArrows: function() {
             elements['item'].forEach( function( element ){
@@ -91,7 +67,7 @@ define(function (require) {
                 }
                 element.body.state.angular.pos += delta;
             } );
-        }
+        },
     };
 
     return game;

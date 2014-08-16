@@ -48,6 +48,16 @@ define(function (require) {
                 this.body.view = new Views.items.Arrow();
 
                 this.view = this.body.view;
+
+                this.behaviors = [];
+
+                this.behaviors.push(
+                    Behaviors.borderWarp,
+                    Behaviors.gravity,
+                    Behaviors.bodyImpulseResponse,
+                    Behaviors.bodyCollisionDetection,
+                    Behaviors.sweepPrune
+                );
             }
         },
         maps: {
@@ -72,6 +82,16 @@ define(function (require) {
                 } , this ) );
 
                 this.view = new Views.maps.TwilightSpire();
+
+                this.behaviors = [];
+
+                this.bodies.forEach( _.bind( function( body ) {
+                    this.behaviors.push(
+                        Behaviors.bodyImpulseResponse,
+                        Behaviors.bodyCollisionDetection,
+                        Behaviors.sweepPrune
+                    );
+                }, this ) );
             }
         }
     };

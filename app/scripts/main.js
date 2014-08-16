@@ -31,7 +31,6 @@ require.config({
 });
 
 var amountOfArrows = 7;
-var initalArrowAngle = - 1 / 2 * Math.PI;
 
 define(function(require) {
     require("jquery");
@@ -40,8 +39,9 @@ define(function(require) {
     var Game = require('scripts/modules/core/game');
     var KeyboardMapping = require('scripts/modules/core/inputs/keyboardMapping');
 
-    Game.initElements( amountOfArrows, initalArrowAngle );
-    Game.createWorld();
+    Game.initWorld();
+    Game.addMap();
+    Game.start();
 
     KeyboardMapping.init();
 });

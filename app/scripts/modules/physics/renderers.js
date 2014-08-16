@@ -10,7 +10,7 @@ define(function (require) {
             styles: {
                 'convex-polygon' : {
                     lineWidth: 1,
-                    alpha: 0,
+                    alpha: 0.5,
                     strokeStyle: 'white',
                     angleIndicator: 'white',
                     fillStyle: 'red'

@@ -16,23 +16,6 @@ define(function (require) {
                 maxIPF: 60,
                 integrator: 'verlet'
             },function( world ){
-                elements['item'].forEach( function( element ){
-                    if(element.body) {
-                        world.add( element.body );
-                    }
-                    if(element.view) {
-                        Renderers.pixi.stage.addChild( element.view);
-                    }
-                } );
-
-                this.elements['map'].forEach( function( element ){
-                    world.add( element.bodies );
-                    if( element.view ) {
-                        Renderers.pixi.stage.addChild( element.view);
-                    }
-                } );
-
-                world.add( this.elements['behavior'] );
                 world.add( Renderers.pixi );
 
                 world.on('step', function(){
@@ -46,22 +29,6 @@ define(function (require) {
 
             return world;
         },
-        launchArrows: function( world ) {
-            elements['item'].forEach( function( element ){
-                var launch = new Physics.vector(1.5, 0);
-                launch.rotate( element.body.state.angular.pos );
-                element.body.applyForce( launch, element.body.movedCentroid() );
-            } );
-        },
-        turnArrows: function( world, direction ) {
-            elements['item'].forEach( function( element ){
-                var delta = 1 / 32 * Math.PI;
-                if ( direction === 'left' ) {
-                    delta *= -1;
-                }
-                element.body.state.angular.pos += delta;
-            } );
-        }
     }
     return worldHelper;
 } );

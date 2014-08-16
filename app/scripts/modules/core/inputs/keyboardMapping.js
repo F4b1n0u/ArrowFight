@@ -4,14 +4,15 @@ define(function (require) {
     var KeyboardJS = require("keyboard");
     var Game = require('scripts/modules/core/game');
 
+    var initalArrowAngle = - 1 / 2 * Math.PI;
+
     var keyboardMapping = {
         init: function() {
             KeyboardJS.on( 'space', function(){}, function(){
-                Game.start();
+                Game.addArrow( initalArrowAngle );
             } );
 
             KeyboardJS.on( 'up', function(){}, function(){
-                KeyboardJS.clear( 'a' );
                 Game.launchArrows();
             } );
 
