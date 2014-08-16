@@ -1,0 +1,15 @@
+{
+  "name": "arrowfight",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.1.0",
+    "modernizr": "~2.6.2",
+    "jquery": "~1.11.0",
+    "requirejs": null,
+    "PhysicsJS": "~0.6.0",
+    "pixi.js": "~1.6.1",
+    "underscore": null,
+    "KeyboardJS": null
+  },
+  "devDependencies": {}
+}

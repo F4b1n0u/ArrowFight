@@ -1,0 +1,9 @@
+
+[4mapp/scripts/main.js[24m
+  [90mline 37[39m  [90mcol 21[39m  [34mStrings must use singlequote.[39m
+  [90mline 38[39m  [90mcol 25[39m  [34mStrings must use singlequote.[39m
+  [90mline 39[39m  [90mcol 19[39m  [34mStrings must use singlequote.[39m
+  [90mline 36[39m  [90mcol 1[39m   [34m'define' is not defined.[39m
+
+[31m✖[39m 4 problems
+
