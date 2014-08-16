@@ -9,7 +9,7 @@ define(function (require) {
     var amountOfArrows = 6;
     var initalArrowAngle = - 1 / 2 * Math.PI;
 
-    var world = {
+    var worldHelper = {
         init: function( elements ) {
             var world = Physics.world( {
                 timestep: 1000.0 / 600,
@@ -21,19 +21,19 @@ define(function (require) {
                         world.add( element.body );
                     }
                     if(element.view) {
-                        Renderers.pixiRenderer.stage.addChild( element.view);
+                        Renderers.pixi.stage.addChild( element.view);
                     }
                 } );
 
                 this.elements['map'].forEach( function( element ){
                     world.add( element.bodies );
                     if( element.view ) {
-                        Renderers.pixiRenderer.stage.addChild( element.view);
+                        Renderers.pixi.stage.addChild( element.view);
                     }
                 } );
 
                 world.add( this.elements['behavior'] );
-                world.add( Renderers.pixiRenderer );
+                world.add( Renderers.pixi );
 
                 world.on('step', function(){
                     world.render();
@@ -63,5 +63,5 @@ define(function (require) {
             } );
         }
     }
-    return world;
+    return worldHelper;
 } );

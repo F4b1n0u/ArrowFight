@@ -45,7 +45,7 @@ define(function (require) {
                 params = $.extend({}, params, options);
 
                 this.body = Physics.body( 'arrow', params );
-                //this.body.view = new Views.items.Arrow();
+                this.body.view = new Views.items.Arrow();
 
                 this.view = this.body.view;
             }

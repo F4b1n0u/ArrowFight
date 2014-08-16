@@ -6,20 +6,20 @@ define(function (require) {
 
     var keyboardMapping = {
         init: function() {
-            KeyboardJS.on( 'a', function(){}, function(){
+            KeyboardJS.on( 'space', function(){}, function(){
                 Game.start();
             } );
 
-            KeyboardJS.on( 'z', function(){}, function(){
+            KeyboardJS.on( 'up', function(){}, function(){
                 KeyboardJS.clear( 'a' );
                 Game.launchArrows();
             } );
 
-            KeyboardJS.on( 'e', function(){}, function(){
+            KeyboardJS.on( 'left', function(){}, function(){
                 Game.turnArrows( 'left' );
             } );
 
-            KeyboardJS.on( 'r', function(){}, function(){
+            KeyboardJS.on( 'right', function(){}, function(){
                 Game.turnArrows( 'right' );
             } );
         }

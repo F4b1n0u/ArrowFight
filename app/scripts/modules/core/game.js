@@ -3,31 +3,17 @@
 define(function (require) {
     var Physics = require("physicsjs");
     var Renderers = require("scripts/modules/physics/renderers");
-    var World = require("scripts/modules/physics/world");
+    var WorldHelper = require("scripts/modules/physics/worldHelper");
     var Elements = require("scripts/modules/core/elements");
     var Behaviors = require("scripts/modules/physics/behaviors");
 
     var elements = [];
     var world = null;
     var currentStatus = 1;
-    var STATUS= ( function() {
-        var status = {
-            'NOT_INIT': 1,
-            'STARTED': 2,
-            'INIT': 3,
-            'WORLD_CREATED': 4
-        };
-        return {
-            get: function( name ) {
-                return status[name];
-            }
-        };
-    } )();
-
+    
     var game = {
         start: function() {
             Physics.util.ticker.start();
-            currentStatus = STATUS.get( 'STARTED' );
         },
         initElements: function( amountOfArrows, initalArrowAngle ) {
             elements['map'] = [];
@@ -55,7 +41,6 @@ define(function (require) {
                 Behaviors.bodyCollisionDetection,
                 Behaviors.sweepPrune
             );
-            STATUS.get( 'INIT' );
         },
         createWorld: function() {
             world = Physics.world( {
@@ -68,19 +53,19 @@ define(function (require) {
                         world.add( element.body );
                     }
                     if(element.view) {
-                        //Renderers.pixiRenderer.stage.addChild( element.view);
+                        Renderers.pixi.stage.addChild( element.view);
                     }
                 } );
 
                 elements['map'].forEach( function( element ){
                     world.add( element.bodies );
                     if( element.view ) {
-                        //Renderers.pixiRenderer.stage.addChild( element.view);
+                        Renderers.pixi.stage.addChild( element.view);
                     }
                 } );
 
                 world.add( elements['behavior'] );
-                world.add( Renderers.pixiRenderer );
+                world.add( Renderers.pixi );
 
                 world.on('step', function(){
                     world.render();
@@ -90,7 +75,6 @@ define(function (require) {
                     world.step( time );
                 } );
             } );
-            STATUS.get( 'WORLD_CREATED' );
         },
         launchArrows: function() {
             elements['item'].forEach( function( element ){

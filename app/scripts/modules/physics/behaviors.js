@@ -34,12 +34,12 @@ define(function (require) {
                     var elementMoving = (collision.bodyA.view) ? collision.bodyA : collision.bodyB;
 
                     if (collision.norm.x) {
-                        var newX = (collision.norm.x * 70) + (Renderers.pixiRenderer.el.width / 2 ) * ( 1 - collision.norm.x );
+                        var newX = (collision.norm.x * 70) + (Renderers.pixi.el.width / 2 ) * ( 1 - collision.norm.x );
                         elementMoving.state.pos.x = newX;
                     }
 
                     if (collision.norm.y) {
-                        var newY = (collision.norm.y * 70) + (Renderers.pixiRenderer.el.width / 2 ) * ( 1 - collision.norm.y );
+                        var newY = (collision.norm.y * 70) + (Renderers.pixi.el.width / 2 ) * ( 1 - collision.norm.y );
                         elementMoving.state.pos.y = newY;
                     }
                 });

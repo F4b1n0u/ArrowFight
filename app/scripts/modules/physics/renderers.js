@@ -9,19 +9,11 @@ define(function (require) {
             height: 720,
             styles: {
                 'convex-polygon' : {
-                    lineWidth: 3,
-                    alpha: 0.3
-                }
-            }
-        } ),
-        canvas: Physics.renderer( 'canvas', {
-            el: 'viewport',
-            width: 960,
-            height: 720,
-            styles: {
-                'convex-polygon' : {
-                    lineWidth: 3,
-                    alpha: 0.3
+                    lineWidth: 1,
+                    alpha: 0,
+                    strokeStyle: 'white',
+                    angleIndicator: 'white',
+                    fillStyle: 'red'
                 }
             }
         } )
