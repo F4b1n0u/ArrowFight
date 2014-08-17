@@ -5,6 +5,19 @@ define(function (require) {
     var Views = require("scripts/modules/physics/views");
     var Behaviors = require("scripts/modules/physics/behaviors");
 
+    Physics.body( 'archer', 'convex-polygon', function ( parent ) {
+        return {
+            init: function (options) {
+                var defaults = {
+                    restitution: 1,
+                    cof: 1,
+                    mass: 10
+                };
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+        }
+    });
+
     Physics.body( 'arrow', 'convex-polygon', function ( parent ) {
         return {
             init: function (options) {

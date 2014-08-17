@@ -24,6 +24,17 @@ define(function (require) {
                 return view;
             }
         },
+        archers: {
+            ArcherA: function( options ){
+                var params = $.extend( {}, defaults, options )
+
+                var view = new Sprites.archers.ArcherA();
+                view.anchor.x = params.anchor.x;
+                view.anchor.y = params.anchor.y;
+
+                return view;
+            }
+        },
         maps: {
             TwilightSpire: function( options ) {
                 var mapDefault = {

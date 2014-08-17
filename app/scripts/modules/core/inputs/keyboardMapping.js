@@ -8,21 +8,51 @@ define(function (require) {
 
     var keyboardMapping = {
         init: function() {
-            KeyboardJS.on( 'space', function(){}, function(){
+            KeyboardJS.on( 'a', function(){}, function(){
+                Game.addArcher( 'archerA' );
+                KeyboardJS.clear( 'a' );
+            } );
+
+            KeyboardJS.on( 'z', function(){}, function(){
                 Game.addArrow( initalArrowAngle );
             } );
 
-            KeyboardJS.on( 'up', function(){}, function(){
+            KeyboardJS.on( 'space', function(){}, function(){
                 Game.launchArrows();
             } );
 
-            KeyboardJS.on( 'left', function(){}, function(){
-                Game.turnArrows( 'left' );
-            } );
+            KeyboardJS.on( 'up',
+                function(){
+                    if ( Game.archers['archerA'] ) {
+                        Game.archers['archerA'].jump( 1 );
+                    }
+                },
+                function(){
+                    
+                }
+            );
 
-            KeyboardJS.on( 'right', function(){}, function(){
-                Game.turnArrows( 'right' );
-            } );
+            KeyboardJS.on( 'left',
+                function(){
+                    if ( Game.archers['archerA'] ) {
+                        Game.archers['archerA'].walk( 'left' );
+                    }
+                },
+                function(){
+                    
+                }
+            );
+
+            KeyboardJS.on( 'right',
+                function(){
+                    if ( Game.archers['archerA'] ) {
+                        Game.archers['archerA'].walk( 'right' );
+                    }
+                },
+                function(){
+                    
+                }
+            );
         }
     };
 

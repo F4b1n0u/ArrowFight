@@ -3,7 +3,8 @@ ArrowFight
 
 tiny web game where player fight which bow
 
-press 'space' to add an arrow to the game
-press 'right' to impulse all arrows to right
-press 'left' to impulse all arrows to left
-press 'up' to throw all arrows
+press 'a' to add an archer to the game
+press 'z' to add an arrow to the game
+press 'right' to walk on the right
+press 'left' to walk on the left
+press 'space' to throw all arrows

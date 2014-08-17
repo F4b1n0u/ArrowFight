@@ -2,11 +2,14 @@
 
 define(function (require) {
     var Sprites = {
+        archers: {
+            ArcherA: function() {
+                return PIXI.Sprite.fromImage( 'images/archers/archer_A_stand.png' );
+            }
+        },
         items : {
             Arrow: function(){
-                var sprite = PIXI.Sprite.fromImage( 'images/items/arrow.png' );
-                sprite.scale = new PIXI.Point( 0.056, 0.056 );
-                return sprite;
+                return PIXI.Sprite.fromImage( 'images/items/arrow.png' );;
             }
         },
         maps: {

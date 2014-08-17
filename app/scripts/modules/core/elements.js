@@ -6,7 +6,7 @@ define(function (require) {
     var Views = require("scripts/modules/physics/views");
     var Behaviors = require("scripts/modules/physics/behaviors");
     var Renderers = require("scripts/modules/core/renderers");
-    var Maps = require("scripts/modules/core/models/maps");
+    var Models = require("scripts/modules/core/models");
     require("scripts/modules/physics/bodies");
 
     var defaults = {
@@ -18,10 +18,64 @@ define(function (require) {
     }
 
     var Elements = {
+        archers: {
+            ArcherA: function( options ) {
+                var width = 52;
+                var height = 57;
+
+                var centroidX = options.x + ( width / 2 );
+                var centroidY = options.y + ( height / 2 );
+                var halfHeigth = height / 2;
+                var halfWidth = width / 2;
+
+                var params = {
+                    vertices: [
+                        { x: centroidX - halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY + halfHeigth},
+                        { x: centroidX - halfWidth, y: centroidY + halfHeigth}
+                    ]
+                }
+                params = $.extend({}, params, options);
+
+                this.model = new Models.archers.ArcherA();
+
+                this.body = Physics.body( 'archer', params );
+                this.body.view = new Views.archers.ArcherA();
+
+                this.view = this.body.view;
+
+                this.behaviors = [];
+
+                this.behaviors.push(
+                    Behaviors.gravity,
+                    Behaviors.bodyImpulseResponse,
+                    Behaviors.bodyCollisionDetection,
+                    Behaviors.sweepPrune
+                );
+
+                this.walk = function( direction ) {
+                    var strength = 0.2;
+                    if( direction === 'left' ) {
+                        strength *= -1;
+                    }
+                    var launch = new Physics.vector( strength, 0 );
+                    this.body.applyForce( launch );
+                };
+                this.stop = function(  ) {
+
+                };
+                this.jump = function( level ) {
+                    var strength = 2 * level;
+                    var launch = new Physics.vector( 0 , - strength );
+                    this.body.applyForce( launch );
+                };
+            }
+        },
         items: {
             Arrow: function( options ) {
-                var width = 39;
-                var height = 9;
+                var width = 43;
+                var height = 17;
 
                 var centroidX = options.x + ( width / 2 );
                 var centroidY = options.y + ( height / 2 );
@@ -35,9 +89,6 @@ define(function (require) {
                         { x: centroidX + halfWidth, y: centroidY + halfHeigth},
                         { x: centroidX - halfWidth, y: centroidY + halfHeigth}
                     ],
-                    launch: function( launch ) {
-                        this.applyForce( launch, this.body.movedCentroid() );
-                    },
                     movedCentroid: function() {
                         return new Physics.vector( + this.width / 2, 0 ).rotate( - this.state.angular.pos );
                     }
@@ -58,13 +109,22 @@ define(function (require) {
                     Behaviors.bodyCollisionDetection,
                     Behaviors.sweepPrune
                 );
+
+                this.launch = function( strength ) {
+                    var launch = new Physics.vector( strength, 0 );
+                    launch.rotate( this.body.state.angular.pos );
+                    this.body.applyForce( launch, this.body.movedCentroid() );
+                };
             }
         },
         maps: {
             TwilightSpire: function() {
                 this.bodies = [];
                 var blockSize = 30;
-                new Maps.TwilightSpire().parts.forEach( _.bind( function( part ){
+                
+                this.model = new Models.maps.TwilightSpire();
+
+                this.model.parts.forEach( _.bind( function( part ){
                     var centroidX = ( part.x * 30 ) + ( part.width * blockSize / 2 );
                     var centroidY = ( part.y * 30 ) + ( part.height * blockSize / 2 );
                     var halfHeigth = part.height * blockSize / 2;

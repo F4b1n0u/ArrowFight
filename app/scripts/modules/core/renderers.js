@@ -11,7 +11,7 @@ define(function (require) {
             styles: {
                 'convex-polygon' : {
                     lineWidth: 0,
-                    alpha: 0.8
+                    alpha: 0
                 }
             }
         } )
