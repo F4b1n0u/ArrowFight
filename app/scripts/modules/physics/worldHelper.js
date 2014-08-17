@@ -2,8 +2,8 @@
 
 define(function (require) {
     var Physics = require("physicsjs");
-    var Renderers = require("scripts/modules/physics/renderers");
     var Behaviors = require("scripts/modules/physics/behaviors");
+    var Renderers = require("scripts/modules/core/renderers");
     var Elements = require("scripts/modules/core/elements");
 
     var amountOfArrows = 6;
@@ -12,8 +12,8 @@ define(function (require) {
     var worldHelper = {
         init: function( elements ) {
             var world = Physics.world( {
-                timestep: 1000.0 / 600,
-                maxIPF: 60,
+                timestep: 1000.0 / 300,
+                maxIPF: 30,
                 integrator: 'verlet'
             },function( world ){
                 world.add( Renderers.pixi );

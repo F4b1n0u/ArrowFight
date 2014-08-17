@@ -3,7 +3,7 @@
 define(function (require) {
     var $ = require('jquery');
     var Physics = require('physicsjs');
-    var Renderers = require("scripts/modules/physics/renderers");
+    var Renderers = require("scripts/modules/core/renderers");
     var Bounds = require("scripts/modules/physics/bounds");
 
     Physics.behavior('border-warp-behaviour', 'edge-collision-detection', function ( parent ) {

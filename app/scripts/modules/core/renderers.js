@@ -7,13 +7,11 @@ define(function (require) {
             el: 'viewport',
             width: 960,
             height: 720,
+            meta: true, 
             styles: {
                 'convex-polygon' : {
-                    lineWidth: 1,
-                    alpha: 0.5,
-                    strokeStyle: 'white',
-                    angleIndicator: 'white',
-                    fillStyle: 'red'
+                    lineWidth: 0,
+                    alpha: 0.8
                 }
             }
         } )

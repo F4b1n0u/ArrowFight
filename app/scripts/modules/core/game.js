@@ -2,8 +2,8 @@
 
 define(function (require) {
     var Physics = require("physicsjs");
-    var Renderers = require("scripts/modules/physics/renderers");
     var WorldHelper = require("scripts/modules/physics/worldHelper");
+    var Renderers = require("scripts/modules/core/renderers");
     var Elements = require("scripts/modules/core/elements");
 
     var elements = [];

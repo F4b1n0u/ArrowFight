@@ -1,8 +1,6 @@
 'use strict';
 
 define(function (require) {
-    var Renderers = require("scripts/modules/physics/renderers");
-
     var Sprites = {
         items : {
             Arrow: function(){

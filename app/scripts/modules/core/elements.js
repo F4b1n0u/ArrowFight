@@ -5,7 +5,7 @@ define(function (require) {
     var Physics = require("physicsjs");
     var Views = require("scripts/modules/physics/views");
     var Behaviors = require("scripts/modules/physics/behaviors");
-    var Renderers = require("scripts/modules/physics/renderers");
+    var Renderers = require("scripts/modules/core/renderers");
     var Maps = require("scripts/modules/core/models/maps");
     require("scripts/modules/physics/bodies");
 
@@ -52,7 +52,7 @@ define(function (require) {
                 this.behaviors = [];
 
                 this.behaviors.push(
-                    Behaviors.borderWarp,
+                    //Behaviors.borderWarp,
                     Behaviors.gravity,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,

@@ -2,7 +2,7 @@
 
 define(function (require) {
     var Physics = require('physicsjs');
-    var Renderers = require("scripts/modules/physics/renderers");
+    var Renderers = require("scripts/modules/core/renderers");
 
     var x = 0;
     var y = 0;
