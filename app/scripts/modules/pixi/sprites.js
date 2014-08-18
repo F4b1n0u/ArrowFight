@@ -3,8 +3,8 @@
 define(function (require) {
     var Sprites = {
         archers: {
-            ArcherA: function() {
-                return PIXI.Sprite.fromImage( 'images/archers/archer_A_stand.png' );
+            Archer: function( team ) {
+                return PIXI.Sprite.fromImage( 'images/archers/archer_' + team + '_stand.png' );
             }
         },
         items : {

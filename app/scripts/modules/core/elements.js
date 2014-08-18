@@ -3,10 +3,9 @@
 
 define(function (require) {
     var Physics = require("physicsjs");
-    var Views = require("scripts/modules/physics/views");
     var Behaviors = require("scripts/modules/physics/behaviors");
-    var Renderers = require("scripts/modules/core/renderers");
     var Models = require("scripts/modules/core/models");
+    var Views = require("scripts/modules/core/views");
     require("scripts/modules/physics/bodies");
 
     var defaults = {
@@ -19,7 +18,7 @@ define(function (require) {
 
     var Elements = {
         archers: {
-            ArcherA: function( options ) {
+            Archer: function( team, options ) {
                 var width = 52;
                 var height = 57;
 
@@ -36,35 +35,42 @@ define(function (require) {
                         { x: centroidX - halfWidth, y: centroidY + halfHeigth}
                     ]
                 }
-                params = $.extend({}, params, options);
+                params = $.extend( {}, params, options );
 
-                this.model = new Models.archers.ArcherA();
+                this.model = new Models.archers.Archer();
 
                 this.body = Physics.body( 'archer', params );
-                this.body.view = new Views.archers.ArcherA();
+                this.body.view = new Views.archers.Archer( team, null );
 
                 this.view = this.body.view;
 
                 this.behaviors = [];
 
                 this.behaviors.push(
-                    Behaviors.gravity,
+                    Behaviors.gravityArcher,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,
                     Behaviors.sweepPrune
                 );
 
-                this.walk = function( direction ) {
-                    var strength = 0.2;
-                    if( direction === 'left' ) {
-                        strength *= -1;
-                    }
-                    var launch = new Physics.vector( strength, 0 );
-                    this.body.applyForce( launch );
-                };
-                this.stop = function(  ) {
+                this.behaviors.forEach( function( behavior ) {
+                    var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
+                    targets.push( this.body );
+                    behavior.applyTo( targets );
+                }, this );
 
+                this.walk = function( direction ) {
+                    var speed = 0.3;
+                    if( direction === 'left' ) {
+                        speed *= -1;
+                    }
+                    this.body.state.vel.x = speed;
                 };
+
+                this.stop = function() {
+                    this.body.state.vel.x = 0;
+                };
+
                 this.jump = function( level ) {
                     var strength = 2 * level;
                     var launch = new Physics.vector( 0 , - strength );
@@ -88,14 +94,12 @@ define(function (require) {
                         { x: centroidX + halfWidth, y: centroidY - halfHeigth},
                         { x: centroidX + halfWidth, y: centroidY + halfHeigth},
                         { x: centroidX - halfWidth, y: centroidY + halfHeigth}
-                    ],
-                    movedCentroid: function() {
-                        return new Physics.vector( + this.width / 2, 0 ).rotate( - this.state.angular.pos );
-                    }
+                    ]
                 }
                 params = $.extend({}, params, options);
 
                 this.body = Physics.body( 'arrow', params );
+
                 this.body.view = new Views.items.Arrow();
 
                 this.view = this.body.view;
@@ -104,11 +108,17 @@ define(function (require) {
 
                 this.behaviors.push(
                     //Behaviors.borderWarp,
-                    Behaviors.gravity,
+                    Behaviors.gravityArrow,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,
                     Behaviors.sweepPrune
                 );
+
+                this.behaviors.forEach( function( behavior ) {
+                    var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
+                    targets.push( this.body );
+                    behavior.applyTo( targets );
+                }, this );
 
                 this.launch = function( strength ) {
                     var launch = new Physics.vector( strength, 0 );
@@ -144,14 +154,19 @@ define(function (require) {
                 this.view = new Views.maps.TwilightSpire();
 
                 this.behaviors = [];
+                this.behaviors.push(
+                    Behaviors.bodyImpulseResponse,
+                    Behaviors.bodyCollisionDetection,
+                    Behaviors.sweepPrune
+                );
 
-                this.bodies.forEach( _.bind( function( body ) {
-                    this.behaviors.push(
-                        Behaviors.bodyImpulseResponse,
-                        Behaviors.bodyCollisionDetection,
-                        Behaviors.sweepPrune
-                    );
-                }, this ) );
+                this.bodies.forEach( function( body ) {
+                    this.behaviors.forEach( _.bind( function( behavior ) {
+                        var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
+                        targets.push( this );
+                        behavior.applyTo( targets );
+                    }, body ) );
+                }, this );
             }
         }
     };

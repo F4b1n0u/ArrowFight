@@ -4,7 +4,7 @@ define(function (require) {
 
     var models = {
     	archers: {
-            ArcherA: function() {
+            Archer: function() {
                 this.score = 0;
                 this.arrows = [];
             }

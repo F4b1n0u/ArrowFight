@@ -1,7 +1,7 @@
 {"frames": [
 
 {
-	"filename": "archer_A_jump_1.png",
+	"filename": "archer_green_jump_1.png",
 	"frame": {"x":2,"y":123,"w":46,"h":70},
 	"rotated": false,
 	"trimmed": false,
@@ -10,7 +10,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "archer_A_jump_2.png",
+	"filename": "archer_green_jump_2.png",
 	"frame": {"x":2,"y":58,"w":49,"h":63},
 	"rotated": false,
 	"trimmed": false,
@@ -19,7 +19,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "archer_A_jump_3.png",
+	"filename": "archer_green_jump_3.png",
 	"frame": {"x":2,"y":2,"w":51,"h":54},
 	"rotated": false,
 	"trimmed": false,
@@ -30,7 +30,7 @@
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "archer_A_jump.png",
+	"image": "archer_green_jump.png",
 	"format": "RGBA8888",
 	"size": {"w":55,"h":195},
 	"scale": "1",

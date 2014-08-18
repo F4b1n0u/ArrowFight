@@ -9,7 +9,7 @@ define(function (require) {
     var keyboardMapping = {
         init: function() {
             KeyboardJS.on( 'a', function(){}, function(){
-                Game.addArcher( 'archerA' );
+                Game.addArcher( 'green' );
                 KeyboardJS.clear( 'a' );
             } );
 
@@ -23,8 +23,8 @@ define(function (require) {
 
             KeyboardJS.on( 'up',
                 function(){
-                    if ( Game.archers['archerA'] ) {
-                        Game.archers['archerA'].jump( 1 );
+                    if ( Game.archers['green'] ) {
+                        Game.archers['green'].jump( 1.2 );
                     }
                 },
                 function(){
@@ -34,23 +34,27 @@ define(function (require) {
 
             KeyboardJS.on( 'left',
                 function(){
-                    if ( Game.archers['archerA'] ) {
-                        Game.archers['archerA'].walk( 'left' );
+                    if ( Game.archers['green'] ) {
+                        Game.archers['green'].walk( 'left' );
                     }
                 },
                 function(){
-                    
+                    if ( Game.archers['green'] ) {
+                        Game.archers['green'].stop();
+                    }
                 }
             );
 
             KeyboardJS.on( 'right',
                 function(){
-                    if ( Game.archers['archerA'] ) {
-                        Game.archers['archerA'].walk( 'right' );
+                    if ( Game.archers['green'] ) {
+                        Game.archers['green'].walk( 'right' );
                     }
                 },
                 function(){
-                    
+                    if ( Game.archers['green'] ) {
+                        Game.archers['green'].stop();
+                    }
                 }
             );
         }

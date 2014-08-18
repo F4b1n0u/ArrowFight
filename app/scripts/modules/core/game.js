@@ -22,7 +22,8 @@ define(function (require) {
     }, Game );
 
     Game.addArcher = _.bind( function( id ) {
-        var element = new Elements.archers.ArcherA( {
+        var element = new Elements.archers.Archer( id,
+        {
             x: 480,
             y: 360
         } );

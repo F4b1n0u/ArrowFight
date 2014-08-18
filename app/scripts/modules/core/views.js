@@ -25,10 +25,10 @@ define(function (require) {
             }
         },
         archers: {
-            ArcherA: function( options ){
+            Archer: function( team, options ){
                 var params = $.extend( {}, defaults, options )
 
-                var view = new Sprites.archers.ArcherA();
+                var view = new Sprites.archers.Archer( team );
                 view.anchor.x = params.anchor.x;
                 view.anchor.y = params.anchor.y;
 
