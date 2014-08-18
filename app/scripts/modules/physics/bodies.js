@@ -10,7 +10,7 @@ define(function (require) {
             init: function (options) {
                 var defaults = {
                     restitution: 0,
-                    cof: 0,
+                    cof: 0.05,
                     mass: 10, 
                     treatment: 'dynamic'
                 };
@@ -31,7 +31,7 @@ define(function (require) {
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             },
             movedCentroid: function() {
-                return new Physics.vector( + this.width / 2, 0 ).rotate( - this.state.angular.pos );
+                return new Physics.vector( this.width / 2, 0 ).rotate( - this.state.angular.pos );
             }
         }
     });

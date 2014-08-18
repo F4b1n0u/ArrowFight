@@ -47,25 +47,47 @@ define(function (require) {
         }
     });
 
-    Physics.behavior( 'gravity-arrow', 'constant-acceleration', function ( parent ) {
+    Physics.behavior( 'limited-gravity', 'constant-acceleration', function ( parent ) {
         return {
             init: function( options ) {
                 var defaults = {};
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             },
             behave: function( data ) {
-                data.bodies.forEach( function( body ){
-                    body.applyForce( this._acc, body.movedCentroid());
+                var maximumVelocity = 1;
+                this.getTargets().forEach( function( body ){
+                    if ( body.state.vel.norm() < maximumVelocity ) {
+                        parent.behave.call( this, data );
+                    }
                 }, this );
             }
         }
     });
 
-    Physics.behavior( 'gravity-archer', 'constant-acceleration', function ( parent ) {
+    Physics.behavior( 'gravity-arrow', 'limited-gravity', function ( parent ) {
+        return {
+            init: function( options ) {
+                var defaults = {};
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+            behave: function( data ) {
+                this.getTargets().forEach( function( body ){
+                    var movedCentroid = body.movedCentroid();
+                    body.applyForce( this._acc, body.movedCentroid());
+                    // var tangent = new Physics.vector( body.state.old.pos.x - movedCentroid.x, body.state.old.pos.y - movedCentroid.y );
+                    // if ( tangent.norm() ) {
+                    //     body.state.angular.pos = tangent.angle();
+                    // }
+                }, this );
+            }
+        }
+    });
+
+    Physics.behavior( 'gravity-archer', 'limited-gravity', function ( parent ) {
         return {
             behave: function( data ){
                 parent.behave.call( this, data );
-                this._targets.forEach( function( body ) {
+                this.getTargets().forEach( function( body ) {
                     body.state.angular.pos = 0;
                 } );
             }

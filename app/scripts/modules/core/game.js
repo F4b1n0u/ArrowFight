@@ -1,10 +1,10 @@
 'use strict';
 
 define(function (require) {
-    var Physics = require("physicsjs");
-    var WorldHelper = require("scripts/modules/physics/worldHelper");
-    var Renderers = require("scripts/modules/core/renderers");
-    var Elements = require("scripts/modules/core/elements");
+    var Physics = require( "physicsjs" );
+    var WorldHelper = require( "scripts/modules/physics/worldHelper" );
+    var Renderers = require( "scripts/modules/core/renderers" );
+    var Elements = require( 'scripts/modules/core/elements' );
 
     var Game = {
         world: null,
@@ -80,16 +80,6 @@ define(function (require) {
     Game.launchArrows = _.bind( function() {
         this.items.forEach( function( element ){
             element.launch( 0.9 );
-        } );
-    }, Game );
-
-    Game.turnArrows = _.bind( function(direction ) {
-        this.items.forEach( function( element ){
-            var delta = 1 / 32 * Math.PI;
-            if ( direction === 'left' ) {
-                delta *= -1;
-            }
-            element.body.state.angular.pos += delta;
         } );
     }, Game );
 

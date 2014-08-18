@@ -7,7 +7,8 @@ require.config({
         jquery: '../bower_components/jquery/dist/jquery',
         underscore: '../bower_components/underscore/underscore',
         pixi: '../bower_components/pixi.js/bin/pixi',
-        keyboard: '../bower_components/KeyboardJS/keyboard'
+        keyboard: '../bower_components/KeyboardJS/keyboard',
+        observer: '../bower_components/observer/javascripts/jquery.observer'
     },
 
     packages: [
@@ -17,6 +18,7 @@ require.config({
             main: 'physicsjs-full-0.6.0'
         }
     ],
+    
     shim: {
         'jquery': {
             exports: '$'

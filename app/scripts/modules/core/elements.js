@@ -1,4 +1,3 @@
-
 'use strict';
 
 define(function (require) {
@@ -15,6 +14,14 @@ define(function (require) {
         vx: 0,
         vy: 0
     }
+
+    var _updateBehaviors = function( behaviors, target ) {
+        behaviors.forEach( function( behavior ) {
+            var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
+            targets.push( this );
+            behavior.applyTo( targets );
+        }, target );
+    };
 
     var Elements = {
         archers: {
@@ -47,35 +54,31 @@ define(function (require) {
                 this.behaviors = [];
 
                 this.behaviors.push(
+                    // Behaviors.borderWarp,
                     Behaviors.gravityArcher,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,
                     Behaviors.sweepPrune
                 );
 
-                this.behaviors.forEach( function( behavior ) {
-                    var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
-                    targets.push( this.body );
-                    behavior.applyTo( targets );
-                }, this );
+                _updateBehaviors( this.behaviors, this.body );
 
                 this.walk = function( direction ) {
-                    var speed = 0.3;
-                    if( direction === 'left' ) {
-                        speed *= -1;
-                    }
-                    this.body.state.vel.x = speed;
-                };
+                    var way = ( direction === 'right' ) ?  1 : -1;
+
+                    this.body.state.vel.x = 0.2 * way;
+
+                    this.view.scale.x = way;
+                }.bind( this );
+
+                this.jump = function() {
+                    var move = new Physics.vector( 0, - 2.5 );
+                    this.body.applyForce( move );
+                }.bind( this );
 
                 this.stop = function() {
                     this.body.state.vel.x = 0;
-                };
-
-                this.jump = function( level ) {
-                    var strength = 2 * level;
-                    var launch = new Physics.vector( 0 , - strength );
-                    this.body.applyForce( launch );
-                };
+                }.bind( this );
             }
         },
         items: {
@@ -107,18 +110,14 @@ define(function (require) {
                 this.behaviors = [];
 
                 this.behaviors.push(
-                    //Behaviors.borderWarp,
+                    // Behaviors.borderWarp,
                     Behaviors.gravityArrow,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,
                     Behaviors.sweepPrune
                 );
 
-                this.behaviors.forEach( function( behavior ) {
-                    var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
-                    targets.push( this.body );
-                    behavior.applyTo( targets );
-                }, this );
+                _updateBehaviors( this.behaviors, this.body );
 
                 this.launch = function( strength ) {
                     var launch = new Physics.vector( strength, 0 );
@@ -161,11 +160,7 @@ define(function (require) {
                 );
 
                 this.bodies.forEach( function( body ) {
-                    this.behaviors.forEach( _.bind( function( behavior ) {
-                        var targets = ( behavior._targets instanceof Array ) ? behavior._targets : [];
-                        targets.push( this );
-                        behavior.applyTo( targets );
-                    }, body ) );
+                    _updateBehaviors( this.behaviors, body );
                 }, this );
             }
         }

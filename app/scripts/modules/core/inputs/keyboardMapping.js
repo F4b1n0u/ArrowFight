@@ -4,7 +4,7 @@ define(function (require) {
     var KeyboardJS = require("keyboard");
     var Game = require('scripts/modules/core/game');
 
-    var initalArrowAngle = - 1 / 2 * Math.PI;
+    var initalArrowAngle = 1 / 4 * Math.PI;
 
     var keyboardMapping = {
         init: function() {
@@ -24,7 +24,7 @@ define(function (require) {
             KeyboardJS.on( 'up',
                 function(){
                     if ( Game.archers['green'] ) {
-                        Game.archers['green'].jump( 1.2 );
+                        Game.archers['green'].jump();
                     }
                 },
                 function(){
