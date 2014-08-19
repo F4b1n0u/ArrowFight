@@ -1,12 +1,23 @@
 'use strict';
 
 define(function (require) {
+    var Field = require("scripts/modules/core/field");
 
     var models = {
     	archers: {
-            Archer: function() {
-                this.score = 0;
-                this.arrows = [];
+            Archer: function( sandbox ) {
+                this.score = new Field( 0 );
+                this.quiver = new Field( {
+                    amount: 3,
+                    isEmpty: function() {
+                        this.amount > 0;
+                    },
+                    pick: function() {
+                        this.amount --;
+                    }
+                } );
+                this.direction = new Field( 'right', sandbox, 'model:archer:direction');
+                this.isDrawing = new Field( false, sandbox, 'model:archer:isDrawing');
             }
         },
     	maps: {

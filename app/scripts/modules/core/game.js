@@ -54,7 +54,7 @@ define(function (require) {
         if ( element.hasOwnProperty( 'behaviors' ) ) {
             this.world.add( element.behaviors );
         }
-        if ( element.hasOwnProperty( 'view' ) ) {
+        if ( element.hasOwnProperty( 'view' ) && element.view ) {
             Renderers.pixi.stage.addChild( element.view);
         }
 
@@ -70,7 +70,7 @@ define(function (require) {
         if ( element.hasOwnProperty( 'behaviors' ) ) {
             this.world.add( element.behaviors );
         }
-        if ( element.hasOwnProperty( 'view' ) ) {
+        if ( element.hasOwnProperty( 'view' ) && element.view ) {
             Renderers.pixi.stage.addChild( element.view);
         }
 

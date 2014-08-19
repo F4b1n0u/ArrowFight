@@ -2,9 +2,12 @@
 
 define(function (require) {
     var Physics = require("physicsjs");
+    var Renderers = require( "scripts/modules/core/renderers" );
     var Behaviors = require("scripts/modules/physics/behaviors");
     var Models = require("scripts/modules/core/models");
     var Views = require("scripts/modules/core/views");
+    var Field = require("scripts/modules/core/field");
+    var Events = require("minivents");
     require("scripts/modules/physics/bodies");
 
     var defaults = {
@@ -23,9 +26,61 @@ define(function (require) {
         }, target );
     };
 
+    var _replaceView = function ( elementTarget, params ) {
+        var oldView = elementTarget.view;
+        switch( params.type ) {
+            case 'sprite':
+                var texture = PIXI.Texture.fromFrame( params.textureIds[0] );
+
+                if ( elementTarget.view instanceof PIXI.Sprite ) {
+                    elementTarget.view.setTexture( texture );
+                } else if ( elementTarget.view instanceof PIXI.MovieClip ) {
+                    var newView = PIXI.Sprite.fromFrame( textureId );
+                    elementTarget.view.stop();
+                    
+                    element.view = newView;
+                    _reshape( elementTarget );
+
+                    Renderers.pixi.stage.removeChild( oldView );
+                    Renderers.pixi.stage.addChild( newView );
+                }
+                break;
+            case 'movieclip':
+                if ( elementTarget.view instanceof PIXI.MovieClip ) {
+                    elementTarget.view.stop();
+                    elementTarget.view.setTextures( textureIds );
+                } else if ( elementTarget.view instanceof PIXI.Sprite ) {
+                    var newView = PIXI.MovieClip( params.textureIds );
+                    
+                    element.view = newView;
+                    Renderers.pixi.stage.removeChild( oldView );
+                    Renderers.pixi.stage.addChild( newView );
+                }
+                targetedView.animationSpeed = params.animationSpeed;
+                targetedView.play();
+                break;
+        }
+
+    }
+
+    var _reshape = function( elementTarget ) {
+        var bodyWidth = elementTarget.body.width;
+        var bodyHeight = elementTarget.body.height;
+        var viewWidth = elementTarget.view.width;
+        var viewHeight = elementTarget.view.height;
+
+        if ( bodyWidth != viewWidth ) {
+            elementTarget.body.width = viewWidth
+        }
+        if ( bodyHeight != viewHeight ) {
+            elementTarget.body.height = viewHeight
+        }
+    }
+
     var Elements = {
         archers: {
             Archer: function( team, options ) {
+                var sandbox = new Events();
                 var width = 52;
                 var height = 57;
 
@@ -40,11 +95,14 @@ define(function (require) {
                         { x: centroidX + halfWidth, y: centroidY - halfHeigth},
                         { x: centroidX + halfWidth, y: centroidY + halfHeigth},
                         { x: centroidX - halfWidth, y: centroidY + halfHeigth}
-                    ]
+                    ],
+                    isInTheAir: new Field( false, sandbox, 'body:archer:isInTheAir' ),
+                    isFalling: new Field( false, sandbox, 'body:archer:isFalling' ),
+                    isJumping: new Field( false, sandbox, 'body:archer:isJumping' )
                 }
                 params = $.extend( {}, params, options );
 
-                this.model = new Models.archers.Archer();
+                this.model = new Models.archers.Archer( sandbox );
 
                 this.body = Physics.body( 'archer', params );
                 this.body.view = new Views.archers.Archer( team, null );
@@ -54,7 +112,8 @@ define(function (require) {
                 this.behaviors = [];
 
                 this.behaviors.push(
-                    // Behaviors.borderWarp,
+                    Behaviors.touchDetection,
+                    Behaviors.fallingJumpingDetection,
                     Behaviors.gravityArcher,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,
@@ -64,21 +123,92 @@ define(function (require) {
                 _updateBehaviors( this.behaviors, this.body );
 
                 this.walk = function( direction ) {
-                    var way = ( direction === 'right' ) ?  1 : -1;
+                    if ( !this.model.isDrawing.get() ) {
+                        this.model.direction.set( direction );
 
-                    this.body.state.vel.x = 0.2 * way;
-
-                    this.view.scale.x = way;
-                }.bind( this );
+                        var way = ( direction === 'right' ) ?  1 : -1;
+                        this.body.state.vel.x = 0.3 * way;
+                    }
+                };
 
                 this.jump = function() {
-                    var move = new Physics.vector( 0, - 2.5 );
-                    this.body.applyForce( move );
-                }.bind( this );
+                    if ( !this.body.isInTheAir.get() ) {
+                        var move = new Physics.vector( 0, - 2.5 );
+                        this.body.applyForce( move );
+                        this.body.isInTheAir.set( true );
+                    }
+                };
 
                 this.stop = function() {
-                    this.body.state.vel.x = 0;
-                }.bind( this );
+                    if ( !this.body.isInTheAir.get() ) {
+                        this.body.state.vel.x = 0;
+                    }
+                };
+
+                this.draw = function() {
+                    if ( !this.model.isDrawing.get()) {
+                        this.stop();
+                        var quiver = this.model.quiver.get();
+                        if ( !quiver.isEmpty() ) {
+                            quiver.pick();
+                            this.model.isDrawing.set( true );
+                        }
+                    }
+                };
+
+                this.releaseArrow = function() {
+                    if ( this.model.isDrawing) {
+                        // TODO throw arrow from the position of the archer
+                        this.model.isDrawing.set( false );
+                    }
+                };
+
+                sandbox.on( 'model:archer:isDrawing', function( values ){
+                    if ( values.new ) {
+                        _replaceView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_drawing_front' ]
+                        } );
+                    } else {
+                        _replaceView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_no_drawing' ]
+                        } );
+                    }
+                }, this );
+
+                sandbox.on( 'body:archer:isFalling', function( values ){
+                    if ( values.new ) {
+                        _replaceView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_fall_1' ]
+                        } );
+                    } else {
+                        _replaceView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_no_drawing' ]
+                        } );
+                    }
+                }, this );
+
+                sandbox.on( 'model:archer:direction', function( values ){
+                    var way = ( values.new === 'right' ) ?  1 : -1;
+                    this.view.scale.x = way;
+                }, this );
+
+                sandbox.on( 'body:archer:isJumping', function( values ){
+                    if ( values.new ) {
+                        _replaceView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_jump_1' ]
+                        } );
+                    } else {
+                        _replaceView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_no_drawing' ]
+                        } );
+                    }
+                }, this );           
             }
         },
         items: {

@@ -1,0 +1,130 @@
+{
+	"frames": {
+		"archer_green_drawing_front": {
+			"filename": "archer_green_drawing_front.png",
+			"frame": {"x":193,"y":67,"w":113,"h":57},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":100,"y":-100,"w":113,"h":57},
+			"sourceSize": {"w":113,"h":57},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_drawing_up": {
+			"filename": "archer_green_drawing_up.png",
+			"frame": {"x":2,"y":2,"w":40,"h":116},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":40,"h":116},
+			"sourceSize": {"w":40,"h":116},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_drawing_up_diag": {
+			"filename": "archer_green_drawing_up_diag.png",
+			"frame": {"x":44,"y":2,"w":90,"h":92},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":90,"h":92},
+			"sourceSize": {"w":90,"h":92},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_climb": {
+			"filename": "archer_green_climb.png",
+			"frame": {"x":362,"y":59,"w":40,"h":55},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":40,"h":55},
+			"sourceSize": {"w":40,"h":55},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_fall_1": {
+			"filename": "archer_green_fall_1.png",
+			"frame": {"x":235,"y":2,"w":52,"h":58},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":58},
+			"sourceSize": {"w":52,"h":58},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_fall_2": {
+			"filename": "archer_green_fall_2.png",
+			"frame": {"x":136,"y":74,"w":55,"h":48},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":55,"h":48},
+			"sourceSize": {"w":55,"h":48},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_fall_3": {
+			"filename": "archer_green_fall_3.png",
+			"frame": {"x":343,"y":2,"w":52,"h":55},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":55},
+			"sourceSize": {"w":52,"h":55},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_jump_1": {
+			"filename": "archer_green_jump_1.png",
+			"frame": {"x":404,"y":59,"w":51,"h":54},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":51,"h":54},
+			"sourceSize": {"w":51,"h":54},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_jump_2": {
+			"filename": "archer_green_jump_2.png",
+			"frame": {"x":136,"y":2,"w":46,"h":70},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":46,"h":70},
+			"sourceSize": {"w":46,"h":70},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_jump_3": {
+			"filename": "archer_green_jump_3.png",
+			"frame": {"x":184,"y":2,"w":49,"h":63},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":49,"h":63},
+			"sourceSize": {"w":49,"h":63},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_no_drawing": {
+			"filename": "archer_green_no_drawing.png",
+			"frame": {"x":289,"y":2,"w":52,"h":57},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":57},
+			"sourceSize": {"w":52,"h":57},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_walk_1": {
+			"filename": "archer_green_walk_1.png",
+			"frame": {"x":308,"y":61,"w":52,"h":57},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":57},
+			"sourceSize": {"w":52,"h":57},
+			"pivot": {"x":0.5,"y":0.5}
+		},
+		"archer_green_walk_2": {
+			"filename": "archer_green_walk_2.png",
+			"frame": {"x":397,"y":2,"w":52,"h":55},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":55},
+			"sourceSize": {"w":52,"h":55},
+			"pivot": {"x":0.5,"y":0.5}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "archer_green.png",
+		"format": "RGBA8888",
+		"size": {"w":458,"h":126},
+		"scale": "1",
+		"smartupdate": "$TexturePacker:SmartUpdate:bc6deb0ae03a7d0a35898a78a8e7bbb4:28aac7f156c0c251aa1525bd98d6ca28:e491e07e0e31229514ece22b358ee30a$"
+	}
+}

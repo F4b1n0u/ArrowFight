@@ -5,7 +5,7 @@ define(function (require) {
     var Physics = require('physicsjs');
     var Renderers = require("scripts/modules/core/renderers");
     var Bounds = require("scripts/modules/physics/bounds");
-
+    
     Physics.behavior('border-warp-behaviour', 'edge-collision-detection', function ( parent ) {
         return {
             init: function ( options ) {
@@ -94,13 +94,61 @@ define(function (require) {
         }
     });
 
-
-    Physics.behavior( 'moving-archer', 'constant-acceleration', function ( parent ) {
+    Physics.behavior( 'touch-detection', 'body-collision-detection', function ( parent ) {
         return {
-            behave: function( data ) {
-                this._targets.forEach( function( body ){
-                    body.applyForce( this._acc, body.movedCentroid() );
-                }, this );
+            init: function( options ) {
+                var defaults = {};
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+            
+            connect: function( world ){
+                world.on( 'collisions:detected', this.checkGroundCollision, this );
+            },
+    
+            disconnect: function( world ) {
+                world.off( 'collisions:detected', this.checkGroundCollision );
+            },
+
+            checkGroundCollision: function( data ){
+                var body = null;
+                data.collisions.forEach( function( collision ) {
+                    if ( collision.bodyA.name === 'archer' || collision.bodyB.name === 'archer' ) {
+                        if ( collision.bodyA.name === 'archer' ) {
+                            body = collision.bodyA;
+                        } else {
+                            body = collision.bodyB;
+                        }
+                        body.isInTheAir.set( false );
+                    }
+                } );
+            }
+        }
+    });
+
+    Physics.behavior( 'falling-jumping-detection', function ( parent ) {
+        return {
+            init: function( options ) {
+                var defaults = {};
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+
+            behave: function( data ){
+                this.getTargets().forEach( function( body ) {
+                    var threshold = 0.1;
+                    if ( body.state.vel.y > 0 ) {
+                        if ( body.state.vel.y > threshold ) {
+                            body.isFalling.set( true );
+                        } else {
+                            body.isFalling.set( false );
+                        }
+                    } else {
+                        if ( body.state.vel.y < - threshold ) {
+                            body.isJumping.set( true );
+                        } else {
+                            body.isJumping.set( false );
+                        }
+                    } 
+                } );
             }
         }
     });
@@ -109,6 +157,8 @@ define(function (require) {
         borderWarp: Physics.behavior( 'border-warp-behaviour'),
         gravityArcher: Physics.behavior( 'gravity-archer', { acc: { x : 0, y: 0.002 } } ),
         gravityArrow: Physics.behavior( 'gravity-arrow', { acc: { x : 0, y: 0.002 } } ),
+        touchDetection: Physics.behavior( 'touch-detection' ),
+        fallingJumpingDetection: Physics.behavior( 'falling-jumping-detection' ),
         bodyImpulseResponse:  Physics.behavior( 'body-impulse-response' ),
         bodyCollisionDetection: Physics.behavior( 'body-collision-detection' ),
         sweepPrune: Physics.behavior('sweep-prune')

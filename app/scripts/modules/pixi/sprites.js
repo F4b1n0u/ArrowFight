@@ -1,10 +1,16 @@
 'use strict';
 
 define(function (require) {
+    var Renderers = require("scripts/modules/core/renderers");
+
+    var spriteSheetLoader = new PIXI.SpriteSheetLoader( 'images/archers/archer_green.json' ).load();
+
     var Sprites = {
         archers: {
             Archer: function( team ) {
-                return PIXI.Sprite.fromImage( 'images/archers/archer_' + team + '_stand.png' );
+                var sprite = PIXI.Sprite.fromImage( 'images/blank.png' );
+                sprite.setTexture( PIXI.Texture.fromFrame( 'archer_green_no_drawing' ) );
+                return sprite;
             }
         },
         items : {

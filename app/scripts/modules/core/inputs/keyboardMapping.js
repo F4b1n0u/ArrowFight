@@ -13,12 +13,12 @@ define(function (require) {
                 KeyboardJS.clear( 'a' );
             } );
 
-            KeyboardJS.on( 'z', function(){}, function(){
-                Game.addArrow( initalArrowAngle );
-            } );
-
-            KeyboardJS.on( 'space', function(){}, function(){
-                Game.launchArrows();
+            KeyboardJS.on( 'space',
+                function(){
+                    Game.archers['green'].draw();
+                },
+                function(){
+                    Game.archers['green'].releaseArrow();
             } );
 
             KeyboardJS.on( 'up',

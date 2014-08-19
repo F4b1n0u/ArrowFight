@@ -6,9 +6,9 @@ require.config({
     paths: {
         jquery: '../bower_components/jquery/dist/jquery',
         underscore: '../bower_components/underscore/underscore',
-        pixi: '../bower_components/pixi.js/bin/pixi',
+        pixi: '../bower_components/pixi.js/bin/pixi.dev',
         keyboard: '../bower_components/KeyboardJS/keyboard',
-        observer: '../bower_components/observer/javascripts/jquery.observer'
+        minivents: './libs/allouis-minivents/minivents'
     },
 
     packages: [
@@ -28,7 +28,10 @@ require.config({
         },
         'pixi':  {
             exports: 'PIXI'
-        }
+        },
+        'minivents': {
+            exports: 'Events'
+        } 
     }
 });
 

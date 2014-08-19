@@ -1,6 +1,6 @@
 'use strict';
 
-define(function (require) {
+define( function ( require ) {
     var Physics = require("physicsjs");
     var Views = require("scripts/modules/core/views");
     var Behaviors = require("scripts/modules/physics/behaviors");
@@ -15,7 +15,7 @@ define(function (require) {
                     treatment: 'dynamic'
                 };
                 parent.init.call( this, $.extend( {}, defaults, options ) );
-            },
+            }
         }
     });
 
@@ -23,8 +23,8 @@ define(function (require) {
         return {
             init: function (options) {
                 var defaults = {
-                    restitution: 0.5,
-                    cof: 2,
+                    restitution: 1,
+                    cof: 1,
                     mass: 1,
                     treatment: 'dynamic'
                 };
@@ -40,7 +40,7 @@ define(function (require) {
         return {
             init: function ( options ) {
                 var defaults = {
-                    restitution: 0.3,
+                    restitution: 0,
                     cof: 2,
                     mass: 1,
                     treatment: 'static'
