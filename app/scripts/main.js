@@ -11,9 +11,9 @@ require.config({
         
         minivents: './libs/allouis-minivents/minivents',
 
+        game: 'scripts/modules/core/game',
         elements: './scripts/modules/core/elements',
         virtualGamePad: './scripts/modules/inputs/virtualGamePad',
-        game: './scripts/modules/core/game',
         behaviors: './scripts/modules/physics/behaviors',
         renderers: './scripts/modules/core/renderers',
         bounds: './scripts/modules/physics/bounds',
@@ -21,7 +21,9 @@ require.config({
         worldHelper: './scripts/modules/physics/worldHelper',
         bodies: './scripts/modules/physics/bodies',
         models: './scripts/modules/core/models',
-        views: './scripts/modules/core/views'
+        views: './scripts/modules/core/views',
+        keyboardMapping: 'scripts/modules/inputs/keyboardMapping',
+        spriteCache: 'scripts/modules/pixi/spriteCache'
     },
 
     packages: [
@@ -54,10 +56,17 @@ define(function(require) {
     require("jquery");
     require("underscore");
     require("pixi");
-    var Game = require('scripts/modules/core/game');
-    var KeyboardMapping = require('scripts/modules/inputs/keyboardMapping');
+    var Game =              require( 'game' );
+    var KeyboardMapping =   require( 'keyboardMapping' );
+    var SpriteCache =       require( 'spriteCache' );
 
-    var game = new Game();
-    var keyboardMapping = new KeyboardMapping( game.virtualGamePad );
-    keyboardMapping.game = game;     // TO DELETE
+    var mapId = 'TwilightSpire';
+    var teams = [ 'green' ];    
+
+    var loadGame = function() {
+        var game = new Game( mapId, teams );
+        var keyboardMapping = new KeyboardMapping( game.virtualGamePad );
+    } 
+
+    SpriteCache( loadGame );
 });

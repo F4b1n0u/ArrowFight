@@ -2,9 +2,8 @@
 'use strict';
 
 define(function (require) {
-    var Physics = require("physicsjs");
-    var Sprites = require("scripts/modules/pixi/sprites");
-
+    var Renderers = require( 'renderers' );
+    
     var defaults = {
         anchor: {
             x: 0.5,
@@ -15,29 +14,32 @@ define(function (require) {
     var Views = {
         items: {
             Arrow: function( options ){
-                var params = $.extend( {}, defaults, options )
+                var arrowDefault = {
+                    texture: './images/items/arrow.png',
+                };
+                var params = $.extend( {}, defaults, arrowDefault, options )
 
-                var view = new Sprites.items.Arrow();
-                view.anchor.x = params.anchor.x;
-                view.anchor.y = params.anchor.y;
+                var view = Renderers.pixi.createDisplay( 'sprite', params );
 
                 return view;
             }
         },
         archers: {
             Archer: function( team, options ){
-                var params = $.extend( {}, defaults, options )
+                var arrowDefault = {
+                    texture: './images/blank.png'
+                }
+                var params = $.extend( {}, defaults, arrowDefault, options )
 
-                var view = new Sprites.archers.Archer( team );
-                view.anchor.x = params.anchor.x;
-                view.anchor.y = params.anchor.y;
-
+                var view = Renderers.pixi.createDisplay( 'sprite', params );
+                
                 return view;
             }
         },
         maps: {
             TwilightSpire: function( options ) {
                 var mapDefault = {
+                    texture: './images/maps/twilightSpire.png',
                     anchor: {
                         x: 0,
                         y: 0
@@ -45,10 +47,8 @@ define(function (require) {
                 }
                 var params = $.extend( {}, defaults, mapDefault, options )
 
-                var view = new Sprites.maps.TwilightSpire();
-                view.anchor.x = params.anchor.x;
-                view.anchor.y = params.anchor.y;
-
+                var view = Renderers.pixi.createDisplay( 'sprite', params );
+                
                 return view;
             }
         }

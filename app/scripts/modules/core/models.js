@@ -14,11 +14,13 @@ define(function (require) {
                         this.amount > 0;
                     },
                     pick: function() {
-                        this.amount --;
+                        if ( !this.isEmpty() ) {
+                            this.amount --;
+                        }
                     }
                 } );
                 this.isDrawing = new Field( false, sandbox, 'model:archer:isDrawing');
-                this.aimVector = new Field( Physics.vector( 1, 0 ), sandbox, 'model:archer:aimVector' );
+                this.aimVector = new Field( Physics.vector( 0, 0 ), sandbox, 'model:archer:aimVector' );
             }
         },
     	maps: {

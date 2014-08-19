@@ -2,15 +2,15 @@
 
 define(function (require) {
     var KeyboardJS = require( 'keyboard' );
-    var Game = require( 'game' );
 
     var keyboardMapping = function ( virtualGamePad ) {
         KeyboardJS.on( 'a',
             function(){
                 virtualGamePad.button.start.set ( true );
-                KeyboardJS.clear( 'a' );
             },
-            function(){}
+            function(){
+                virtualGamePad.button.start.set ( false );
+            }
         );
 
         KeyboardJS.on( 'space',
@@ -33,7 +33,7 @@ define(function (require) {
 
         KeyboardJS.on( 'up',
             function(){
-                virtualGamePad.joystick.vertical.set ( 1 );
+                virtualGamePad.joystick.vertical.set ( -1 );
             },
             function(){
                 virtualGamePad.joystick.vertical.set ( 0 );
@@ -42,7 +42,7 @@ define(function (require) {
 
         KeyboardJS.on( 'down',
             function(){
-                virtualGamePad.joystick.vertical.set ( -1 );
+                virtualGamePad.joystick.vertical.set ( 1 );
             },
             function(){
                 virtualGamePad.joystick.vertical.set ( 0 );

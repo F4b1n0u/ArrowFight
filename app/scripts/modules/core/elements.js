@@ -26,13 +26,12 @@ define(function (require) {
         }, target );
     };
 
-    var _replaceView = function ( elementTarget, params ) {
+    var _changeView = function ( elementTarget, params ) {
         var oldView = elementTarget.view;
         switch( params.type ) {
             case 'sprite':
-                var texture = PIXI.Texture.fromFrame( params.textureIds[0] );
-
                 if ( elementTarget.view instanceof PIXI.Sprite ) {
+                    var texture = PIXI.Texture.fromFrame( params.textureIds[0] );
                     elementTarget.view.setTexture( texture );
                 } else if ( elementTarget.view instanceof PIXI.MovieClip ) {
                     var newView = PIXI.Sprite.fromFrame( textureId );
@@ -60,7 +59,6 @@ define(function (require) {
                 targetedView.play();
                 break;
         }
-
     }
 
     var _reshape = function( elementTarget ) {
@@ -80,7 +78,6 @@ define(function (require) {
     var Elements = {
         archers: {
             Archer: function( team, options ) {
-                var sandbox = new Events();
                 var width = 52;
                 var height = 57;
 
@@ -89,6 +86,10 @@ define(function (require) {
                 var halfHeigth = height / 2;
                 var halfWidth = width / 2;
 
+                this.sandbox = new Events();
+
+                this.model = new Models.archers.Archer( this.sandbox );
+
                 var params = {
                     vertices: [
                         { x: centroidX - halfWidth, y: centroidY - halfHeigth},
@@ -96,15 +97,13 @@ define(function (require) {
                         { x: centroidX + halfWidth, y: centroidY + halfHeigth},
                         { x: centroidX - halfWidth, y: centroidY + halfHeigth}
                     ],
-                    isInTheAir: new Field( false, sandbox, 'body:archer:isInTheAir' ),
-                    isFalling: new Field( false, sandbox, 'body:archer:isFalling' ),
-                    isJumping: new Field( false, sandbox, 'body:archer:isJumping' )
+                    isInTheAir: new Field( false, this.sandbox, 'body:archer:isInTheAir' ),
+                    isFalling: new Field( false, this.sandbox, 'body:archer:isFalling' ),
+                    isJumping: new Field( false, this.sandbox, 'body:archer:isJumping' )
                 }
                 params = $.extend( {}, params, options );
-
-                this.model = new Models.archers.Archer( sandbox );
-
                 this.body = new Bodies.Archer( params );
+
                 this.body.view = new Views.archers.Archer( team, null );
 
                 this.view = this.body.view;
@@ -122,7 +121,7 @@ define(function (require) {
 
                 _updateBehaviors( this.behaviors, this.body );
 
-                this.walk = function() {
+                this.move = function() {
                     if ( !this.model.isDrawing.get() ) {
                         var direction = this.model.aimVector.get().x;
                         this.body.state.vel.x = 0.3 * direction;
@@ -156,57 +155,91 @@ define(function (require) {
 
                 this.releaseArrow = function() {
                     if ( this.model.isDrawing) {
-                        // TODO throw arrow from the position of the archer
+                        
                         this.model.isDrawing.set( false );
                     }
                 };
 
-                sandbox.on( 'model:archer:isDrawing', function( value ){
-                    var aimVector = this.model.aimVector.get();
-                    
-                    
-                    if ( aimVector.y === 0 ) {
-                        _replaceView( this, {
-                            type: 'sprite',
-                            textureIds: [ 'archer_green_drawing_front' ]
-                        } );
-                    } else if ( aimVector.y < 0 ) {
-                        _replaceView( this, {
-                            type: 'sprite',
-                            textureIds: [ 'archer_green_drawing_up' ]
-                        } );
-                    }
-                }, this );
-
-                sandbox.on( 'body:archer:isFalling', function( value ){
+                this.sandbox.on( 'body:archer:isFalling', function( value ){
                     if ( value.new ) {
-                        _replaceView( this, {
+                        _changeView( this, {
                             type: 'sprite',
                             textureIds: [ 'archer_green_fall_1' ]
                         } );
                     } else {
-                        _replaceView( this, {
+                        _changeView( this, {
                             type: 'sprite',
                             textureIds: [ 'archer_green_no_drawing' ]
                         } );
                     }
                 }, this );
 
-                sandbox.on( 'model:archer:aimVector', function( value ){
-                    var way = value.new.x;
-                    this.view.scale.x = way;
-                }, this );
-
-                sandbox.on( 'body:archer:isJumping', function( value ){
+                this.sandbox.on( 'model:archer:isDrawing', function( value ){
                     if ( value.new ) {
-                        _replaceView( this, {
-                            type: 'sprite',
-                            textureIds: [ 'archer_green_jump_1' ]
+                        this.stop();
+                        this.sandbox.emit( 'model:archer:aimVector', {
+                            old: this.model.aimVector.get(),
+                            new: this.model.aimVector.get()
                         } );
                     } else {
-                        _replaceView( this, {
+                        _changeView( this, {
                             type: 'sprite',
                             textureIds: [ 'archer_green_no_drawing' ]
+                        } );
+                    }
+                }, this );
+
+                this.sandbox.on( 'model:archer:aimVector', function( value ){
+                    if ( this.model.isDrawing.get() ) {
+                        var aimVector = this.model.aimVector.get();
+                        
+                        if ( aimVector.y === 0 ) {
+                            _changeView( this, {
+                                type: 'sprite',
+                                textureIds: [ 'archer_green_drawing_front' ]
+                            } );
+                        } else if ( aimVector.y < 0 ) {
+                            if ( aimVector.x === 0 ) {
+                                _changeView( this, {
+                                    type: 'sprite',
+                                    textureIds: [ 'archer_green_drawing_up' ]
+                                } );
+                            } else {
+                                _changeView( this, {
+                                    type: 'sprite',
+                                    textureIds: [ 'archer_green_drawing_up_diag' ]
+                                } );
+                            }
+                        } else if ( aimVector.y > 0 ) {
+                            // if ( aimVector.x === 0 ) {
+                            //     _changeView( this, {
+                            //         type: 'sprite',
+                            //         textureIds: [ 'archer_green_drawing_down' ]
+                            //     } );
+                            // } else {
+                            //     _changeView( this, {
+                            //         type: 'sprite',
+                            //         textureIds: [ 'archer_green_drawing_down_diag' ]
+                            //     } );
+                            // }
+                        }
+                    } else {
+                        this.move();
+                        _changeView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_no_drawing' ]
+                        } );
+                    }
+                    if (value.new.x != 0 ) {
+                        this.view.scale.x = value.new.x;
+                    }
+                }, this );
+
+                this.sandbox.on( 'body:archer:isJumping', function( value ){
+                    if ( value.new ) {
+                        _changeView( this, {
+                            type: 'sprite',
+                            textureIds: [ 'archer_green_jump_1' ]
                         } );
                     }
                 }, this );           

@@ -8,7 +8,7 @@ define( function ( require ) {
             init: function (options) {
                 var defaults = {
                     restitution: 0,
-                    cof: 0.5,
+                    cof: 0,
                     mass: 10, 
                     treatment: 'dynamic'
                 };

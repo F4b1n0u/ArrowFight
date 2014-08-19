@@ -5,6 +5,8 @@ define(function (require) {
 	var Field = require( 'field' );
 
 	var VirtualGamePad = function ( sandbox ){
+		this.sandbox = sandbox;
+		
 		this.joystick = {
 			horizontal: new Field( 0, sandbox, 'virtualGamePad:joystick:horizontal'),
 			vertical: new Field( 0, sandbox, 'virtualGamePad:joystick:vertical')
