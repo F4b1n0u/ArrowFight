@@ -3,14 +3,14 @@
 define( function ( require ) {
     var Physics = require("physicsjs");
     var Views = require("scripts/modules/core/views");
-    var Behaviors = require("scripts/modules/physics/behaviors");
+    var Behaviors = require("behaviors");
 
     Physics.body( 'archer', 'convex-polygon', function ( parent ) {
         return {
             init: function (options) {
                 var defaults = {
                     restitution: 0,
-                    cof: 0.05,
+                    cof: 0.5,
                     mass: 10, 
                     treatment: 'dynamic'
                 };

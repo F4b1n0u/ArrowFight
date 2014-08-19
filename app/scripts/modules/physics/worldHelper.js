@@ -1,10 +1,10 @@
 'use strict';
 
 define(function (require) {
-    var Physics = require("physicsjs");
-    var Behaviors = require("scripts/modules/physics/behaviors");
-    var Renderers = require("scripts/modules/core/renderers");
-    var Elements = require("scripts/modules/core/elements");
+    var Physics = require('physicsjs');
+    var Behaviors = require('behaviors');
+    var Renderers = require('renderers');
+    var Elements = require('elements');
 
     var amountOfArrows = 6;
     var initalArrowAngle = - 1 / 2 * Math.PI;

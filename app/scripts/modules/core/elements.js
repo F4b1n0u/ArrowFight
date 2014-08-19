@@ -1,14 +1,14 @@
 'use strict';
 
 define(function (require) {
-    var Physics = require("physicsjs");
-    var Renderers = require( "scripts/modules/core/renderers" );
-    var Behaviors = require("scripts/modules/physics/behaviors");
-    var Models = require("scripts/modules/core/models");
-    var Views = require("scripts/modules/core/views");
-    var Field = require("scripts/modules/core/field");
-    var Events = require("minivents");
-    require("scripts/modules/physics/bodies");
+    var Physics =   require( 'physicsjs' );
+    var Renderers = require( 'renderers' );
+    var Behaviors = require( 'behaviors' );
+    var Models =    require( 'models' );
+    var Views =     require( 'views' );
+    var Field =     require( 'field' );
+    var Events =    require( 'minivents' );
+    var Bodies =    require( 'bodies' );
 
     var defaults = {
         x: 0,
@@ -122,12 +122,10 @@ define(function (require) {
 
                 _updateBehaviors( this.behaviors, this.body );
 
-                this.walk = function( direction ) {
+                this.walk = function() {
                     if ( !this.model.isDrawing.get() ) {
-                        this.model.direction.set( direction );
-
-                        var way = ( direction === 'right' ) ?  1 : -1;
-                        this.body.state.vel.x = 0.3 * way;
+                        var direction = this.model.aimVector.get().x;
+                        this.body.state.vel.x = 0.3 * direction;
                     }
                 };
 
@@ -163,22 +161,25 @@ define(function (require) {
                     }
                 };
 
-                sandbox.on( 'model:archer:isDrawing', function( values ){
-                    if ( values.new ) {
+                sandbox.on( 'model:archer:isDrawing', function( value ){
+                    var aimVector = this.model.aimVector.get();
+                    
+                    
+                    if ( aimVector.y === 0 ) {
                         _replaceView( this, {
                             type: 'sprite',
                             textureIds: [ 'archer_green_drawing_front' ]
                         } );
-                    } else {
+                    } else if ( aimVector.y < 0 ) {
                         _replaceView( this, {
                             type: 'sprite',
-                            textureIds: [ 'archer_green_no_drawing' ]
+                            textureIds: [ 'archer_green_drawing_up' ]
                         } );
                     }
                 }, this );
 
-                sandbox.on( 'body:archer:isFalling', function( values ){
-                    if ( values.new ) {
+                sandbox.on( 'body:archer:isFalling', function( value ){
+                    if ( value.new ) {
                         _replaceView( this, {
                             type: 'sprite',
                             textureIds: [ 'archer_green_fall_1' ]
@@ -191,13 +192,13 @@ define(function (require) {
                     }
                 }, this );
 
-                sandbox.on( 'model:archer:direction', function( values ){
-                    var way = ( values.new === 'right' ) ?  1 : -1;
+                sandbox.on( 'model:archer:aimVector', function( value ){
+                    var way = value.new.x;
                     this.view.scale.x = way;
                 }, this );
 
-                sandbox.on( 'body:archer:isJumping', function( values ){
-                    if ( values.new ) {
+                sandbox.on( 'body:archer:isJumping', function( value ){
+                    if ( value.new ) {
                         _replaceView( this, {
                             type: 'sprite',
                             textureIds: [ 'archer_green_jump_1' ]

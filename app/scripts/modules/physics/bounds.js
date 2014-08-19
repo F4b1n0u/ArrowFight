@@ -1,8 +1,8 @@
 'use strict';
 
 define(function (require) {
-    var Physics = require('physicsjs');
-    var Renderers = require("scripts/modules/core/renderers");
+    var Physics = require( 'physicsjs' );
+    var Renderers = require( 'renderers' );
 
     var x = 0;
     var y = 0;

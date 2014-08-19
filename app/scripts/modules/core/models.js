@@ -1,6 +1,7 @@
 'use strict';
 
 define(function (require) {
+    var Physics = require("physicsjs");
     var Field = require("scripts/modules/core/field");
 
     var models = {
@@ -16,8 +17,8 @@ define(function (require) {
                         this.amount --;
                     }
                 } );
-                this.direction = new Field( 'right', sandbox, 'model:archer:direction');
                 this.isDrawing = new Field( false, sandbox, 'model:archer:isDrawing');
+                this.aimVector = new Field( Physics.vector( 1, 0 ), sandbox, 'model:archer:aimVector' );
             }
         },
     	maps: {

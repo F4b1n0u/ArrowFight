@@ -8,7 +8,20 @@ require.config({
         underscore: '../bower_components/underscore/underscore',
         pixi: '../bower_components/pixi.js/bin/pixi.dev',
         keyboard: '../bower_components/KeyboardJS/keyboard',
-        minivents: './libs/allouis-minivents/minivents'
+        
+        minivents: './libs/allouis-minivents/minivents',
+
+        elements: './scripts/modules/core/elements',
+        virtualGamePad: './scripts/modules/inputs/virtualGamePad',
+        game: './scripts/modules/core/game',
+        behaviors: './scripts/modules/physics/behaviors',
+        renderers: './scripts/modules/core/renderers',
+        bounds: './scripts/modules/physics/bounds',
+        field: './scripts/modules/core/field',
+        worldHelper: './scripts/modules/physics/worldHelper',
+        bodies: './scripts/modules/physics/bodies',
+        models: './scripts/modules/core/models',
+        views: './scripts/modules/core/views'
     },
 
     packages: [
@@ -42,11 +55,9 @@ define(function(require) {
     require("underscore");
     require("pixi");
     var Game = require('scripts/modules/core/game');
-    var KeyboardMapping = require('scripts/modules/core/inputs/keyboardMapping');
+    var KeyboardMapping = require('scripts/modules/inputs/keyboardMapping');
 
-    Game.initWorld();
-    Game.addMap();
-    Game.start();
-
-    KeyboardMapping.init();
+    var game = new Game();
+    var keyboardMapping = new KeyboardMapping( game.virtualGamePad );
+    keyboardMapping.game = game;     // TO DELETE
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 define(function (require) {
-    var Renderers = require("scripts/modules/core/renderers");
+    var Renderers = require( 'renderers' );
 
     var spriteSheetLoader = new PIXI.SpriteSheetLoader( 'images/archers/archer_green.json' ).load();
 
