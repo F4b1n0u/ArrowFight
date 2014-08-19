@@ -2,9 +2,7 @@
 
 define(function (require) {
     var Physics = require('physicsjs');
-    var Behaviors = require('behaviors');
     var Renderers = require('renderers');
-    var Elements = require('elements');
 
     var amountOfArrows = 6;
     var initalArrowAngle = - 1 / 2 * Math.PI;

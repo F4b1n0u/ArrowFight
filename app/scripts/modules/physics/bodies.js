@@ -1,9 +1,7 @@
 'use strict';
 
 define( function ( require ) {
-    var Physics = require("physicsjs");
-    var Views = require("scripts/modules/core/views");
-    var Behaviors = require("behaviors");
+    var Physics =  require( 'physicsjs' );
 
     Physics.body( 'archer', 'convex-polygon', function ( parent ) {
         return {
@@ -49,6 +47,14 @@ define( function ( require ) {
             },
         }
     });
+
+    var Bodies = {
+        Archer: function( params ) { return Physics.body( 'archer', params) },
+        Arrow: function( params ) { return Physics.body( 'arrow', params ) },
+        MapPart: function( params ) { return Physics.body( 'map-part', params ) }
+    };
+
+    return Bodies;
 });
 
 

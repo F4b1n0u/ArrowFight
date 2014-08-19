@@ -82,23 +82,24 @@ define( function (require) {
 
         // binding with the virtualgamePad
         this.sandbox.on( 'virtualGamePad:joystick:vertical', function(value) {
-        } );
+            
+        }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:joystick:horizontal', function(value) {
-            
-        } );
+
+        }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:jump', function(value) {
 
-        } );
+        }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:fire', function(value) {
 
-        } );
+        }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:start', function(value) {
             start();
-        } );
+        }.bind( this ) );
     };
 
     return Game;

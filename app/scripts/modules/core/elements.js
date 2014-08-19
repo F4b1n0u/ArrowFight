@@ -104,7 +104,7 @@ define(function (require) {
 
                 this.model = new Models.archers.Archer( sandbox );
 
-                this.body = Physics.body( 'archer', params );
+                this.body = new Bodies.Archer( params );
                 this.body.view = new Views.archers.Archer( team, null );
 
                 this.view = this.body.view;
@@ -232,7 +232,7 @@ define(function (require) {
                 }
                 params = $.extend({}, params, options);
 
-                this.body = Physics.body( 'arrow', params );
+                this.body = new Bodies.Arrow( params );
 
                 this.body.view = new Views.items.Arrow();
 
@@ -269,7 +269,7 @@ define(function (require) {
                     var centroidY = ( part.y * 30 ) + ( part.height * blockSize / 2 );
                     var halfHeigth = part.height * blockSize / 2;
                     var halfWidth = part.width * blockSize / 2;
-                    this.bodies.push( Physics.body('map-part', {
+                    var params = {
                         x: centroidX,
                         y: centroidY,
                         vertices: [
@@ -278,7 +278,8 @@ define(function (require) {
                             { x: centroidX + halfWidth, y: centroidY + halfHeigth},
                             { x: centroidX - halfWidth, y: centroidY + halfHeigth}
                         ]
-                    } ) )
+                    };
+                    this.bodies.push( new Bodies.MapPart( params ) );
                 } , this ) );
 
                 this.view = new Views.maps.TwilightSpire();

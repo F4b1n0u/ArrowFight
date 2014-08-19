@@ -1,10 +1,10 @@
 'use strict';
 
 define(function (require) {
-    var $ = require( 'jquery' );
-    var Physics = require( 'physicsjs' );
+    var $ =         require( 'jquery' );
+    var Physics =   require( 'physicsjs' );
     var Renderers = require( 'renderers' );
-    var Bounds = require( 'bounds' );
+    var Bounds =    require( 'bounds' );
     
     Physics.behavior('border-warp-behaviour', 'edge-collision-detection', function ( parent ) {
         return {
