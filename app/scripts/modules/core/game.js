@@ -5,18 +5,13 @@ define( function (require) {
     var WorldHelper =       require( 'worldHelper' );
     var Renderers =         require( 'renderers' );
     var Elements =          require( 'elements' );
-    var Events =            require( 'minivents' );
-    var VirtualGamePad =    require( 'virtualGamePad');
+    var Events =            require( 'minivents' );    
 
-    var Game = function ( mapId, teams ) {
+    var Game = function ( mapId ) {
         this.world = WorldHelper.init();
-        this.items = [];
-        this.mapParts = [];
-        this.archers = {};
-        this.sandbox = new Events();
-        this.virtualGamePad = new VirtualGamePad( this.sandbox );
+        this.sandbox = new Events();        
 
-        var _addElement = function( element, rack, location ) {
+        var _addElement = function( element ) {
             if ( element.hasOwnProperty( 'body' ) ) {
                 this.world.add( element.body );
             }
@@ -29,19 +24,11 @@ define( function (require) {
             if ( element.view ) {
                 Renderers.pixi.stage.addChild( element.view);
             }
-            if ( location ) {
-                if ( rack.hasOwnProperty( location ) ) {
-                    rack[location] = null;
-                }
-                rack[location] = element;
-            } else {
-                rack.push( element );
-            }
         }.bind( this );
 
         var _addMap = function( id ) {
             var element = new Elements.Map( id );
-            _addElement( element , this.mapParts );
+            _addElement( element );
         }.bind( this );
 
         var _addArcher = function( team ) {
@@ -50,7 +37,9 @@ define( function (require) {
                 x: 480,
                 y: 360
             } );
-            _addElement( element, this.archers, team );
+            _addElement( element );
+
+            return element;
         }.bind( this );
 
         var _releaseArrow = function( archer ) {
@@ -64,48 +53,53 @@ define( function (require) {
                 angle: angle
             } );
             element.launch( 0.45 );
-            _addElement( element , this.items );
+            _addElement( element );
         }.bind( this );
 
-        this.sandbox.on( 'virtualGamePad:joystick:vertical', function(value) {
-            var aimVectorField = this.archers.green.model.aimVector
-            var aimVector = aimVectorField.get().clone();
-            aimVector.y = value.new;
-            aimVectorField.set( aimVector );
-        }.bind( this ) );
+        this.plugVirtualGamePad = function( virtualGamePad ) {
+            var team = virtualGamePad.team;
+            var baseChannel = team + ':virtualGamePad:';
 
-        this.sandbox.on( 'virtualGamePad:joystick:horizontal', function(value) {
-            var aimVectorField = this.archers.green.model.aimVector
-            var aimVector = aimVectorField.get().clone();
-            aimVector.x = value.new;
-            aimVectorField.set( aimVector );
-            if ( aimVector.x ) {
-                this.archers.green.model.mainDirection.get().x = aimVector.x;
-            }
-        }.bind( this ) );
+            var archer = _addArcher( team );
 
-        this.sandbox.on( 'virtualGamePad:button:jump', function(value) {
-            this.archers.green.jump();
-        }.bind( this ) );
+            this.sandbox.on( baseChannel + 'joystick:vertical', function(value) {
+                var aimVectorField = this.model.aimVector
+                var aimVector = aimVectorField.get().clone();
+                aimVector.y = value.new;
+                aimVectorField.set( aimVector );
+            }.bind( archer ) );
 
-        this.sandbox.on( 'virtualGamePad:button:fire', function(value) {
-            var archer = this.archers.green;
-            if ( value.new ) {
-                archer.draw();
-            } else if ( archer.body.isDrawing.get() ){
-                _releaseArrow( archer );
-                archer.releaseArrow();
-            }
-        }.bind( this ) );
+            this.sandbox.on( baseChannel + 'joystick:horizontal', function(value) {
+                var aimVectorField = this.model.aimVector
+                var aimVector = aimVectorField.get().clone();
+                aimVector.x = value.new;
+                aimVectorField.set( aimVector );
+                if ( aimVector.x ) {
+                    this.model.mainDirection.get().x = aimVector.x;
+                }
+            }.bind( archer ) );
 
-        this.sandbox.on( 'virtualGamePad:button:start', function(value) {
-            if ( value.new && ! Physics.util.ticker.isActive()) {
-                Physics.util.ticker.start();
-            }
-        }.bind( this ) );
+            this.sandbox.on( baseChannel + 'button:jump', function(value) {
+                this.jump();
+            }.bind( archer ) );
+
+            this.sandbox.on( baseChannel + 'button:fire', function(value) {
+                if ( value.new ) {
+                    this.draw();
+                } else if ( this.body.isDrawing.get() ){
+                    _releaseArrow( this );
+                    this.releaseArrow();
+                }
+            }.bind( archer ) );
+
+            this.sandbox.on( baseChannel + 'button:start', function(value) {
+                if ( value.new && ! Physics.util.ticker.isActive()) {
+                    Physics.util.ticker.start();
+                }
+            }.bind( archer ) );
+        }.bind( this );
 
         _addMap( mapId );
-        _addArcher( teams[0] );
     };
 
     return Game;

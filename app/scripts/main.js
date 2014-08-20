@@ -4,33 +4,37 @@ require.config({
     baseUrl: './',
 
     paths: {
-        jquery: '../bower_components/jquery/dist/jquery',
+        jquery:     '../bower_components/jquery/dist/jquery',
         underscore: '../bower_components/underscore/underscore',
-        pixi: '../bower_components/pixi.js/bin/pixi.dev',
-        keyboard: '../bower_components/KeyboardJS/keyboard',
+        pixi:       '../bower_components/pixi.js/bin/pixi.dev',
+        keyboard:   '../bower_components/KeyboardJS/keyboard',
         
-        minivents: './libs/allouis-minivents/minivents',
+        minivents:  './libs/allouis-minivents/minivents',
 
-        game: 'scripts/modules/core/game',
-        elements: './scripts/modules/core/elements',
-        virtualGamePad: './scripts/modules/inputs/virtualGamePad',
-        behaviors: './scripts/modules/physics/behaviors',
-        renderers: './scripts/modules/core/renderers',
-        bounds: './scripts/modules/physics/bounds',
-        field: './scripts/modules/core/field',
-        worldHelper: './scripts/modules/physics/worldHelper',
-        bodies: './scripts/modules/physics/bodies',
-        models: './scripts/modules/core/models',
-        views: './scripts/modules/core/views',
-        keyboardMapping: 'scripts/modules/inputs/keyboardMapping',
-        spriteCache: 'scripts/modules/pixi/spriteCache'
+        elements:   './scripts/modules/core/elements',
+        field:      './scripts/modules/core/field',
+        game:       'scripts/modules/core/game',
+        models:     './scripts/modules/core/models',
+        renderers:  './scripts/modules/core/renderers',
+        views:      './scripts/modules/core/views',
+        
+        keyboardMapper:     'scripts/modules/inputs/keyboardMapper',
+        keyboardMappings:   'scripts/modules/inputs/keyboardMappings',
+        virtualGamePad:     './scripts/modules/inputs/virtualGamePad',
+        
+        behaviors:      './scripts/modules/physics/behaviors',
+        bodies:         './scripts/modules/physics/bodies',
+        bounds:         './scripts/modules/physics/bounds',
+        worldHelper:    './scripts/modules/physics/worldHelper',
+
+        spriteCache:    'scripts/modules/pixi/spriteCache'
     },
 
     packages: [
         {
-            name: 'physicsjs',
-            location: '../bower_components/PhysicsJS/dist/',
-            main: 'physicsjs-full-0.6.0'
+            name:       'physicsjs',
+            location:   '../bower_components/PhysicsJS/dist/',
+            main:       'physicsjs-full-0.6.0'
         }
     ],
     
@@ -57,15 +61,23 @@ define(function(require) {
     require("underscore");
     require("pixi");
     var Game =              require( 'game' );
-    var KeyboardMapping =   require( 'keyboardMapping' );
+    var KeyboardMappings =  require( 'keyboardMappings' );
+    var VirtualGamePad =    require( 'virtualGamePad');
+    var KeyboardMapper =    require( 'keyboardMapper' );
     var SpriteCache =       require( 'spriteCache' );
 
     var mapId = 'TwilightSpire';
-    var teams = [ 'green' ];    
 
     var loadGame = function() {
-        var game = new Game( mapId, teams );
-        var keyboardMapping = new KeyboardMapping( game.virtualGamePad );
+        var game = new Game( mapId );
+
+        var team = 'green';
+        var virtualGamePadGreen = new VirtualGamePad( game, team );
+        var keyboardMapperGreen = new KeyboardMapper( virtualGamePadGreen , KeyboardMappings[ team ]);
+
+        var team = 'red';
+        var virtualGamePadGreen = new VirtualGamePad( game, team );
+        var keyboardMapperGreen = new KeyboardMapper( virtualGamePadGreen , KeyboardMappings[ team ]);
     } 
 
     SpriteCache( loadGame );

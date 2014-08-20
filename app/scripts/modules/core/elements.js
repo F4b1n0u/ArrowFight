@@ -82,12 +82,13 @@ define(function (require) {
 
     var Elements = {
         Archer: function( team, options ) {
+            this.team = team;
+            this.sandbox = new Events();
+            this.model = new Models.Archer( this.sandbox );
+
             var width = 52;
             var height = 57;
-
-            this.sandbox = new Events();
-            this.model = new Models.archers.Archer( this.sandbox );
-
+            
             var params = {
                 height: height,
                 width: width,
@@ -100,7 +101,7 @@ define(function (require) {
             params = $.extend( {}, params, options );
             this.body = new Bodies.Archer( params );
 
-            this.body.view = new Views.archers.Archer( team, null );
+            this.body.view = new Views.archers.Archer( this.team, null );
 
             this.view = this.body.view;
 
@@ -159,12 +160,12 @@ define(function (require) {
                 if ( value.new ) {
                     _changeView( this, {
                         type: 'sprite',
-                        textureIds: [ 'archer_green_fall_1' ]
+                        textureIds: [ 'archer_' + this.team + '_fall_1' ]
                     } );
                 } else {
                     _changeView( this, {
                         type: 'sprite',
-                        textureIds: [ 'archer_green_no_drawing' ]
+                        textureIds: [ 'archer_' + this.team + '_no_drawing' ]
                     } );
                 }
             }, this );
@@ -179,7 +180,7 @@ define(function (require) {
                 } else {
                     _changeView( this, {
                         type: 'sprite',
-                        textureIds: [ 'archer_green_no_drawing' ]
+                        textureIds: [ 'archer_' + this.team + '_no_drawing' ]
                     } );
                 }
             }, this );
@@ -191,30 +192,30 @@ define(function (require) {
                     if ( aimVector.y === 0 ) {
                         _changeView( this, {
                             type: 'sprite',
-                            textureIds: [ 'archer_green_drawing_front' ]
+                            textureIds: [ 'archer_' + this.team + '_drawing_front' ]
                         } );
                     } else if ( aimVector.y < 0 ) {
                         if ( aimVector.x === 0 ) {
                             _changeView( this, {
                                 type: 'sprite',
-                                textureIds: [ 'archer_green_drawing_up' ]
+                                textureIds: [ 'archer_' + this.team + '_drawing_up' ]
                             } );
                         } else {
                             _changeView( this, {
                                 type: 'sprite',
-                                textureIds: [ 'archer_green_drawing_up_diag' ]
+                                textureIds: [ 'archer_' + this.team + '_drawing_up_diag' ]
                             } );
                         }
                     } else if ( aimVector.y > 0 ) {
                         if ( aimVector.x === 0 ) {
                             _changeView( this, {
                                 type: 'sprite',
-                                textureIds: [ 'archer_green_drawing_down' ]
+                                textureIds: [ 'archer_' + this.team + '_drawing_down' ]
                             } );
                         } else {
                             _changeView( this, {
                                 type: 'sprite',
-                                textureIds: [ 'archer_green_drawing_down_diag' ]
+                                textureIds: [ 'archer_' + this.team + '_drawing_down_diag' ]
                             } );
                         }
                     }
@@ -222,7 +223,7 @@ define(function (require) {
                     this.move();
                     _changeView( this, {
                         type: 'sprite',
-                        textureIds: [ 'archer_green_no_drawing' ]
+                        textureIds: [ 'archer_' + this.team + '_no_drawing' ]
                     } );
                 }
                 if (value.new.x != 0 ) {
@@ -234,7 +235,7 @@ define(function (require) {
                 if ( value.new ) {
                     _changeView( this, {
                         type: 'sprite',
-                        textureIds: [ 'archer_green_jump_1' ]
+                        textureIds: [ 'archer_' + this.team + '_jump_1' ]
                     } );
                 }
             }, this );
@@ -287,7 +288,7 @@ define(function (require) {
         Map: function( mapId ) {
             this.bodies = [];
             
-            this.model = new Models.maps[ mapId ]();
+            this.model = new Models[ mapId ]();
 
             this.model.parts.forEach( _.bind( function( part ){
                 var params = {
