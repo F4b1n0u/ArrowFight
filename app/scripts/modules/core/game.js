@@ -11,92 +11,82 @@ define( function (require) {
     var Game = function ( mapId, teams ) {
         this.world = WorldHelper.init();
         this.items = [];
-        this.archers = []
         this.mapParts = [];
+        this.archers = {};
         this.sandbox = new Events();
         this.virtualGamePad = new VirtualGamePad( this.sandbox );
 
-        var realesArrow = function( archer ) {
-            var element = new Elements.items.Arrow( {
-                x: archer.body.state.pos.x,
-                y: archer.body.state.pos.y,
-                angle: archer.model.aimVector.get().angle()
-            } );
-
-            element.launch( 0.45 );
-
+        var _addElement = function( element, rack, location ) {
             if ( element.hasOwnProperty( 'body' ) ) {
                 this.world.add( element.body );
             }
-            if ( element.hasOwnProperty( 'behaviors' ) ) {
-                this.world.add( element.behaviors );
-            }
-            if ( element.hasOwnProperty( 'view' ) && element.view ) {
-                Renderers.pixi.stage.addChild( element.view);
-            }
-            this.items.push( element );
-        }.bind( this );
-
-        var _addMap = function( id ) {
-            var element = new Elements.maps[ id ]();
-            
             if ( element.hasOwnProperty( 'bodies' ) ) {
                 this.world.add( element.bodies );
             }
             if ( element.hasOwnProperty( 'behaviors' ) ) {
                 this.world.add( element.behaviors );
             }
-            if ( element.hasOwnProperty( 'view' ) && element.view ) {
+            if ( element.view ) {
                 Renderers.pixi.stage.addChild( element.view);
             }
-
-            this.mapParts.push( element );
+            if ( location ) {
+                if ( rack.hasOwnProperty( location ) ) {
+                    rack[location] = null;
+                }
+                rack[location] = element;
+            } else {
+                rack.push( element );
+            }
         }.bind( this );
 
-        var _addArcher = function( id ) {
-            var element = new Elements.archers.Archer( id,
+        var _addMap = function( id ) {
+            var element = new Elements.Map( id );
+            _addElement( element , this.mapParts );
+        }.bind( this );
+
+        var _addArcher = function( team ) {
+            var element = new Elements.archers.Archer( team,
             {
                 x: 480,
                 y: 360
             } );
-            
-            if ( element.hasOwnProperty( 'body' ) ) {
-                this.world.add( element.body );
-            }
-            if ( element.hasOwnProperty( 'behaviors' ) ) {
-                this.world.add( element.behaviors );
-            }
-            if ( element.hasOwnProperty( 'view' ) ) {
-                Renderers.pixi.stage.addChild( element.view);
-            }
+            _addElement( element, this.archers, team );
+        }.bind( this );
 
-            this.archers[id] = element;
+        var _releaseArrow = function( archer ) {
+            var element = new Elements.items.Arrow( {
+                x: archer.body.state.pos.x,
+                y: archer.body.state.pos.y,
+                angle: archer.model.aimVector.get().angle()
+            } );
+            element.launch( 0.45 );
+            _addElement( element , this.items );
         }.bind( this );
 
         this.sandbox.on( 'virtualGamePad:joystick:vertical', function(value) {
-            var aimVectorField = this.archers[ teams[0] ].model.aimVector
+            var aimVectorField = this.archers.green.model.aimVector
             var aimVector = aimVectorField.get().clone();
             aimVector.y = value.new;
             aimVectorField.set( aimVector );
         }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:joystick:horizontal', function(value) {
-            var aimVectorField = this.archers[ teams[0] ].model.aimVector
+            var aimVectorField = this.archers.green.model.aimVector
             var aimVector = aimVectorField.get().clone();
             aimVector.x = value.new;
             aimVectorField.set( aimVector );
         }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:jump', function(value) {
-            this.archers[ teams[0] ].jump();
+            this.archers.green.jump();
         }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:fire', function(value) {
-            var archer = this.archers[ teams[0] ];
+            var archer = this.archers.green;
             if ( value.new ) {
                 archer.draw();
             } else if ( archer.model.isDrawing.get() ){
-                realesArrow( archer );
+                _releaseArrow( archer );
                 archer.releaseArrow();
             }
         }.bind( this ) );

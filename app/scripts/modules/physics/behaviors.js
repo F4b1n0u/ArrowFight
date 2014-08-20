@@ -71,14 +71,15 @@ define(function (require) {
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             },
             behave: function( data ) {
-                this.getTargets().forEach( function( body ){
-                    var movedCentroid = body.movedCentroid();
-                    body.applyForce( this._acc, body.movedCentroid());
-                    // var tangent = new Physics.vector( body.state.old.pos.x - movedCentroid.x, body.state.old.pos.y - movedCentroid.y );
-                    // if ( tangent.norm() ) {
-                    //     body.state.angular.pos = tangent.angle();
-                    // }
-                }, this );
+                // parent.behave.call( this, data );
+                // this.getTargets().forEach( function( body ){
+                //     var movedCentroid = body.movedCentroid();
+                //     body.applyForce( this._acc, body.movedCentroid());
+                //     var tangent = new Physics.vector( body.state.old.pos.x - movedCentroid.x, body.state.old.pos.y - movedCentroid.y );
+                //     if ( tangent.norm() ) {
+                //         body.state.angular.pos = tangent.angle();
+                //     }
+                // }, this );
             }
         }
     });
@@ -155,6 +156,7 @@ define(function (require) {
 
     var Behaviors = {
         borderWarp: Physics.behavior( 'border-warp-behaviour'),
+        gravity: Physics.behavior( 'constant-acceleration', { acc: { x : 0, y: 0.002 } } ),
         gravityArcher: Physics.behavior( 'gravity-archer', { acc: { x : 0, y: 0.002 } } ),
         gravityArrow: Physics.behavior( 'gravity-arrow', { acc: { x : 0, y: 0.004 } } ),
         touchDetection: Physics.behavior( 'touch-detection' ),

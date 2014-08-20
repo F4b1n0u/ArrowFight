@@ -81,22 +81,12 @@ define(function (require) {
                 var width = 52;
                 var height = 57;
 
-                var centroidX = options.x + ( width / 2 );
-                var centroidY = options.y + ( height / 2 );
-                var halfHeigth = height / 2;
-                var halfWidth = width / 2;
-
                 this.sandbox = new Events();
-
                 this.model = new Models.archers.Archer( this.sandbox );
 
                 var params = {
-                    vertices: [
-                        { x: centroidX - halfWidth, y: centroidY - halfHeigth},
-                        { x: centroidX + halfWidth, y: centroidY - halfHeigth},
-                        { x: centroidX + halfWidth, y: centroidY + halfHeigth},
-                        { x: centroidX - halfWidth, y: centroidY + halfHeigth}
-                    ],
+                    height: height,
+                    width: width,
                     isInTheAir: new Field( false, this.sandbox, 'body:archer:isInTheAir' ),
                     isFalling: new Field( false, this.sandbox, 'body:archer:isFalling' ),
                     isJumping: new Field( false, this.sandbox, 'body:archer:isJumping' )
@@ -109,7 +99,6 @@ define(function (require) {
                 this.view = this.body.view;
 
                 this.behaviors = [];
-
                 this.behaviors.push(
                     Behaviors.touchDetection,
                     Behaviors.fallingJumpingDetection,
@@ -247,21 +236,11 @@ define(function (require) {
                 var width = 43;
                 var height = 17;
 
-                var centroidX = options.x + ( width / 2 );
-                var centroidY = options.y + ( height / 2 );
-                var halfHeigth = height / 2;
-                var halfWidth = width / 2;
-
                 var params = {
-                    vertices: [
-                        { x: centroidX - halfWidth, y: centroidY - halfHeigth},
-                        { x: centroidX + halfWidth, y: centroidY - halfHeigth},
-                        { x: centroidX + halfWidth, y: centroidY + halfHeigth},
-                        { x: centroidX - halfWidth, y: centroidY + halfHeigth}
-                    ]
+                    width: width,
+                    height: height
                 }
                 params = $.extend({}, params, options);
-
                 this.body = new Bodies.Arrow( params );
 
                 this.body.view = new Views.items.Arrow();
@@ -272,7 +251,8 @@ define(function (require) {
 
                 this.behaviors.push(
                     // Behaviors.borderWarp,
-                    Behaviors.gravityArrow,
+                    // Behaviors.gravityArrow,
+                    Behaviors.gravity,
                     Behaviors.bodyImpulseResponse,
                     Behaviors.bodyCollisionDetection,
                     Behaviors.sweepPrune
@@ -287,44 +267,34 @@ define(function (require) {
                 };
             }
         },
-        maps: {
-            TwilightSpire: function() {
-                this.bodies = [];
-                var blockSize = 30;
-                
-                this.model = new Models.maps.TwilightSpire();
+        Map: function( mapId ) {
+            this.bodies = [];
+            
+            this.model = new Models.maps[ mapId ]();
 
-                this.model.parts.forEach( _.bind( function( part ){
-                    var centroidX = ( part.x * 30 ) + ( part.width * blockSize / 2 );
-                    var centroidY = ( part.y * 30 ) + ( part.height * blockSize / 2 );
-                    var halfHeigth = part.height * blockSize / 2;
-                    var halfWidth = part.width * blockSize / 2;
-                    var params = {
-                        x: centroidX,
-                        y: centroidY,
-                        vertices: [
-                            { x: centroidX - halfWidth, y: centroidY - halfHeigth},
-                            { x: centroidX + halfWidth, y: centroidY - halfHeigth},
-                            { x: centroidX + halfWidth, y: centroidY + halfHeigth},
-                            { x: centroidX - halfWidth, y: centroidY + halfHeigth}
-                        ]
-                    };
-                    this.bodies.push( new Bodies.MapPart( params ) );
-                } , this ) );
+            this.model.parts.forEach( _.bind( function( part ){
+                var params = {
+                    x: part.x,
+                    y: part.y,
+                    height: part.height,
+                    width: part.width,
+                    unitBlockSize: 30
+                };
+                this.bodies.push( new Bodies.MapPart( params ) );
+            } , this ) );
 
-                this.view = new Views.maps.TwilightSpire();
+            this.view = new Views.maps.TwilightSpire();
 
-                this.behaviors = [];
-                this.behaviors.push(
-                    Behaviors.bodyImpulseResponse,
-                    Behaviors.bodyCollisionDetection,
-                    Behaviors.sweepPrune
-                );
+            this.behaviors = [];
+            this.behaviors.push(
+                Behaviors.bodyImpulseResponse,
+                Behaviors.bodyCollisionDetection,
+                Behaviors.sweepPrune
+            );
 
-                this.bodies.forEach( function( body ) {
-                    _updateBehaviors( this.behaviors, body );
-                }, this );
-            }
+            this.bodies.forEach( function( body ) {
+                _updateBehaviors( this.behaviors, body );
+            }, this );
         }
     };
 

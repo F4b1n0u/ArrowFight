@@ -6,11 +6,21 @@ define( function ( require ) {
     Physics.body( 'archer', 'convex-polygon', function ( parent ) {
         return {
             init: function (options) {
+                var halfHeigth = options.height / 2;
+                var halfWidth = options.width / 2;
+                var centroidX = options.x + halfWidth;
+                var centroidY = options.y + halfHeigth;
                 var defaults = {
                     restitution: 0,
                     cof: 0,
                     mass: 10, 
-                    treatment: 'dynamic'
+                    treatment: 'dynamic',
+                    vertices: [
+                        { x: centroidX - halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY + halfHeigth},
+                        { x: centroidX - halfWidth, y: centroidY + halfHeigth}
+                    ]
                 };
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             }
@@ -20,11 +30,21 @@ define( function ( require ) {
     Physics.body( 'arrow', 'convex-polygon', function ( parent ) {
         return {
             init: function (options) {
+                var halfHeigth = options.height / 2;
+                var halfWidth = options.width / 2;
+                var centroidX = options.x + halfWidth;
+                var centroidY = options.y + halfHeigth;
                 var defaults = {
-                    restitution: 1,
+                    restitution: 0,
                     cof: 1,
                     mass: 1,
-                    treatment: 'dynamic'
+                    treatment: 'dynamic',
+                    vertices: [
+                        { x: centroidX - halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY + halfHeigth},
+                        { x: centroidX - halfWidth, y: centroidY + halfHeigth}
+                    ]
                 };
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             },
@@ -37,13 +57,29 @@ define( function ( require ) {
     Physics.body( 'map-part', 'convex-polygon', function ( parent ) {
         return {
             init: function ( options ) {
-                var defaults = {
-                    restitution: 0,
-                    cof: 2,
+                var unitBlockSize = options.unitBlockSize;
+
+                var halfHeigth = options.height * unitBlockSize / 2;
+                var halfWidth = options.width * unitBlockSize / 2;
+
+                var centroidX = ( options.x * unitBlockSize ) + halfWidth;
+                var centroidY = ( options.y * unitBlockSize ) + halfHeigth;
+                
+                var params = {
+                    restitution: 0.3,
+                    cof: 1,
                     mass: 1,
-                    treatment: 'static'
+                    treatment: 'static',
+                    x: centroidX,
+                    y: centroidY,
+                    vertices: [
+                        { x: centroidX - halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY - halfHeigth},
+                        { x: centroidX + halfWidth, y: centroidY + halfHeigth},
+                        { x: centroidX - halfWidth, y: centroidY + halfHeigth}
+                    ]
                 };
-                parent.init.call( this, $.extend( {}, defaults, options ) );
+                parent.init.call( this, $.extend( {}, params ) );
             },
         }
     });

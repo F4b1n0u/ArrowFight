@@ -8,7 +8,7 @@ define(function (require) {
     	archers: {
             Archer: function( sandbox ) {
                 this.quiver = {
-                    amount: 6,
+                    amount: 20,
                     isEmpty: function() {
                         return this.amount <= 0;
                     },
