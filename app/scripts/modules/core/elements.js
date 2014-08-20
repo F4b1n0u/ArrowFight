@@ -81,7 +81,7 @@ define(function (require) {
     }
 
     var Elements = {
-        Archer: function( team, options ) {
+        Archer: function( team, options, sandbox ) {
             this.team = team;
             this.sandbox = new Events();
             this.model = new Models.Archer( this.sandbox );
@@ -158,6 +158,12 @@ define(function (require) {
                         this.body.isDrawing.set( false );
                     }.bind( this ), 50);
                 }
+            }.bind( this );
+
+            this.reset = function( coordinate ) {
+                this.body.state.pos.x = coordinate.x;
+                this.body.state.pos.y = coordinate.y;
+                this.model.quiver.full();
             }.bind( this );
 
             this.sandbox.on( 'body:archer:isFalling', function( value ){
@@ -250,8 +256,8 @@ define(function (require) {
 
             this.sandbox.on( 'body:archer:isHit', function(){
                 _remove( this );
+                sandbox.emit( 'round:finish:looser', this );
             }, this );
-            
         },
         Arrow: function( options ) {
             var width = 43;

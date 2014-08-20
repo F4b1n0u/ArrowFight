@@ -31,13 +31,21 @@ define( function (require) {
             _addElement( element );
         }.bind( this );
 
-        var _addArcher = function( team ) {
+        var _addArcher = function( team, sandbox ) {
             var element = new Elements.Archer( team,
             {
                 x: 480,
                 y: 360
-            } );
+            }, sandbox );
             _addElement( element );
+
+            this.sandbox.on( 'round:finish:looser', function( looser ) {
+                looser.reset( {
+                    x: 480,
+                    y: 360
+                } );
+                _addElement( looser );
+            } );
 
             return element;
         }.bind( this );
@@ -60,7 +68,7 @@ define( function (require) {
             var team = virtualGamePad.team;
             var baseChannel = team + ':virtualGamePad:';
 
-            var archer = _addArcher( team );
+            var archer = _addArcher( team, this.sandbox );
 
             this.sandbox.on( baseChannel + 'joystick:vertical', function(value) {
                 var aimVectorField = this.model.aimVector

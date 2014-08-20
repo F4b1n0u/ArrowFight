@@ -12,6 +12,6 @@ controls:
 		press 'x' to draw the bow, realese it to throw an arrow
 
 	red team:
-			press 'z', 'q', 's', 'd' to aim or walk
-			press 'r' to jump
-			press 'f' to draw the bow, realese it to throw an arrow
+		press 'z', 'q', 's', 'd' to aim or walk
+		press 'r' to jump
+		press 'f' to draw the bow, realese it to throw an arrow
