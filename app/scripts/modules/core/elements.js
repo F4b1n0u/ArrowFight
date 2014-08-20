@@ -92,10 +92,13 @@ define(function (require) {
             var params = {
                 height: height,
                 width: width,
+
+                collect: new Field( null, this.sandbox, 'body:archer:collect' ),
+                isHit: new Field( null, this.sandbox, 'body:archer:isHit' ),
+
                 isInTheAir: new Field( false, this.sandbox, 'body:archer:isInTheAir' ),
                 isFalling: new Field( false, this.sandbox, 'body:archer:isFalling' ),
                 isJumping: new Field( false, this.sandbox, 'body:archer:isJumping' ),
-                collect: new Field( null, this.sandbox, 'body:archer:collect' ),
                 isDrawing: new Field( false, this.sandbox, 'body:archer:isDrawing')
             }
             params = $.extend( {}, params, options );
@@ -110,6 +113,7 @@ define(function (require) {
                 Behaviors.touchDetection,
                 Behaviors.fallingJumpingDetection,
                 Behaviors.collectDetection,
+                Behaviors.hitDetection,
                 Behaviors.gravityArcher,
                 Behaviors.bodyImpulseResponse,
                 Behaviors.bodyCollisionDetection,
@@ -243,6 +247,11 @@ define(function (require) {
             this.sandbox.on( 'body:archer:collect', function(){
                 this.model.quiver.collect();
             }, this );
+
+            this.sandbox.on( 'body:archer:isHit', function(){
+                _remove( this );
+            }, this );
+            
         },
         Arrow: function( options ) {
             var width = 43;
@@ -253,7 +262,11 @@ define(function (require) {
             var params = {
                 width: width,
                 height: height,
+
                 collected: new Field( null, this.sandbox, 'body:arrow:collected' ),
+                isPlant: new Field( null , this.sandbox, 'model:arrow:isPlant'),
+
+                isMortal: new Field( false , this.sandbox, 'model:arrow:isMortal')
             }
             params = $.extend({}, params, options);
             this.body = new Bodies.Arrow( params );
@@ -267,8 +280,11 @@ define(function (require) {
             this.behaviors.push(
                 // Behaviors.borderWarp,
                 // Behaviors.gravityArrow,
+                Behaviors.mortalDetection,
+                Behaviors.mortalDetection,
+                Behaviors.hitDetection,
                 Behaviors.gravity,
-                // Behaviors.bodyImpulseResponse,
+                Behaviors.bodyImpulseResponse,
                 Behaviors.bodyCollisionDetection,
                 Behaviors.sweepPrune
             );
@@ -283,6 +299,11 @@ define(function (require) {
 
             this.sandbox.on( 'body:arrow:collected', function(){
                 _remove( this );
+            }, this );
+
+
+            this.sandbox.on( 'body:arrow:isPlant', function(){
+                // TODO stop the arrow
             }, this );
         },
         Map: function( mapId ) {

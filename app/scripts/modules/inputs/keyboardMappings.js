@@ -3,23 +3,23 @@
 define(function (require) {
 
     var keyboardMappings = {
-        green: {
+        red: {
             button: [
                 {
                     action: 'start',
-                    key: 'y',
+                    key: 'enter',
                     max: true,
                     min: false
                 },
                 {
                     action: 'jump',
-                    key: 'c',
+                    key: 'r',
                     max: true,
                     min: false
                 },
                 {
                     action: 'fire',
-                    key: 'v',
+                    key: 'f',
                     max: true,
                     min: false
                 },
@@ -51,17 +51,23 @@ define(function (require) {
                 }
             ]
         },
-        red: {
+        green: {
             button: [
                 {
+                    action: 'start',
+                    key: 'enter',
+                    max: true,
+                    min: false
+                },
+                {
                     action: 'jump',
-                    key: 'o',
+                    key: 'p',
                     max: true,
                     min: false
                 },
                 {
                     action: 'fire',
-                    key: 'l',
+                    key: 'm',
                     max: true,
                     min: false
                 },

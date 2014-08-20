@@ -47,7 +47,7 @@ define(function (require) {
         }
     });
 
-    Physics.behavior( 'limited-gravity', 'constant-acceleration', function ( parent ) {
+    Physics.behavior( 'limited-gravity', function ( parent ) {
         return {
             init: function( options ) {
                 var defaults = {};
@@ -64,7 +64,7 @@ define(function (require) {
         }
     });
 
-    Physics.behavior( 'gravity-arrow', 'limited-gravity', function ( parent ) {
+    Physics.behavior( 'gravity-arrow', 'constant-acceleration', function ( parent ) {
         return {
             init: function( options ) {
                 var defaults = {};
@@ -84,7 +84,7 @@ define(function (require) {
         }
     });
 
-    Physics.behavior( 'gravity-archer', 'limited-gravity', function ( parent ) {
+    Physics.behavior( 'gravity-archer', 'constant-acceleration', function ( parent ) {
         return {
             behave: function( data ){
                 parent.behave.call( this, data );
@@ -126,7 +126,6 @@ define(function (require) {
         }
     });
 
-
     Physics.behavior( 'collect-detection', 'body-collision-detection', function ( parent ) {
         return {
             init: function( options ) {
@@ -151,6 +150,66 @@ define(function (require) {
                             collision.bodyB.collect.trigger();
                             collision.bodyA.collected.trigger();
                         }
+                    } else if ( collision.bodyA.name === 'archer' && collision.bodyB.name === 'arrow' ) {
+                        if ( ! collision.bodyA.isDrawing.get() ) {
+                            collision.bodyB.collected.trigger();
+                            collision.bodyA.collect.trigger();
+                        }
+                    }
+                } );
+            }
+        }
+    });
+
+    Physics.behavior( 'hit-detection', 'body-collision-detection', function ( parent ) {
+        return {
+            init: function( options ) {
+                var defaults = {};
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+            
+            connect: function( world ){
+                world.on( 'collisions:detected', this.checkGroundCollision, this );
+            },
+    
+            disconnect: function( world ) {
+                world.off( 'collisions:detected', this.checkGroundCollision );
+            },
+
+            checkGroundCollision: function( data ){
+                var body = null;
+                data.collisions.forEach( function( collision ) {
+                    var bodieNames = [];
+                    if ( collision.bodyA.name === 'arrow' && collision.bodyB.name === 'archer' ) {
+                        if ( collision.bodyA.isMortal.get() && ! collision.bodyB.isDrawing.get() ) {
+                            collision.bodyB.isHit.trigger();
+                            collision.bodyA.isPlant.trigger();
+                        }
+                    } else if ( collision.bodyA.name === 'archer' && collision.bodyB.name === 'arrow' ) {
+                        if ( collision.bodyB.isMortal.get() && ! collision.bodyA.isDrawing.get() ) {
+                            collision.bodyA.isHit.trigger();
+                            collision.bodyB.isPlant.trigger();
+                        }
+                    }
+                } );
+            }
+        }
+    });
+
+    Physics.behavior( 'mortal-detection', function ( parent ) {
+        return {
+            init: function( options ) {
+                var defaults = {};
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+            
+            behave: function( data ){
+                var body = null;
+                this.getTargets().forEach( function( body ) {
+                    if ( body.state.vel.norm() > 1 ) {
+                        body.isMortal.set( true );
+                    } else {
+                        body.isMortal.set( false );
                     }
                 } );
             }
@@ -187,12 +246,17 @@ define(function (require) {
 
     var Behaviors = {
         borderWarp: Physics.behavior( 'border-warp-behaviour'),
+        
         gravity: Physics.behavior( 'constant-acceleration', { acc: { x : 0, y: 0.002 } } ),
         gravityArcher: Physics.behavior( 'gravity-archer', { acc: { x : 0, y: 0.002 } } ),
         gravityArrow: Physics.behavior( 'gravity-arrow', { acc: { x : 0, y: 0.004 } } ),
+        
         touchDetection: Physics.behavior( 'touch-detection' ),
         fallingJumpingDetection: Physics.behavior( 'falling-jumping-detection' ),
         collectDetection: Physics.behavior( 'collect-detection' ),
+        mortalDetection: Physics.behavior( 'mortal-detection' ),
+        hitDetection: Physics.behavior( 'hit-detection' ),
+
         bodyImpulseResponse:  Physics.behavior( 'body-impulse-response' ),
         bodyCollisionDetection: Physics.behavior( 'body-collision-detection' ),
         sweepPrune: Physics.behavior('sweep-prune')

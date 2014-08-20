@@ -1,16 +1,17 @@
 ArrowFight
 ==========
 
-tiny web game where player fight which bow
+tiny web game where 2 teams ( green and blue ) fight which bow and arrow
 
-press 'a' to start the game
+controls:
+	press 'enter' to start the game
 
-press 'right' to walk on the right
-press 'left' to walk on the left
-press 'space' to jump
+	green team:
+		press 'up', 'left', 'down', 'right' to aim or walk
+		press 'p' to jump
+		press 'x' to draw the bow, realese it to throw an arrow
 
-
-press 'x' to draw the bow
-realese 'x' to throw an arrow
-
-during the draw, use arrows to aim
+	red team:
+			press 'z', 'q', 's', 'd' to aim or walk
+			press 'r' to jump
+			press 'f' to draw the bow, realese it to throw an arrow
