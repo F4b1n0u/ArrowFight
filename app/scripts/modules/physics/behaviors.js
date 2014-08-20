@@ -156,7 +156,7 @@ define(function (require) {
     var Behaviors = {
         borderWarp: Physics.behavior( 'border-warp-behaviour'),
         gravityArcher: Physics.behavior( 'gravity-archer', { acc: { x : 0, y: 0.002 } } ),
-        gravityArrow: Physics.behavior( 'gravity-arrow', { acc: { x : 0, y: 0.002 } } ),
+        gravityArrow: Physics.behavior( 'gravity-arrow', { acc: { x : 0, y: 0.004 } } ),
         touchDetection: Physics.behavior( 'touch-detection' ),
         fallingJumpingDetection: Physics.behavior( 'falling-jumping-detection' ),
         bodyImpulseResponse:  Physics.behavior( 'body-impulse-response' ),

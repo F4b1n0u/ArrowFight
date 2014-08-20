@@ -16,14 +16,14 @@ define( function (require) {
         this.sandbox = new Events();
         this.virtualGamePad = new VirtualGamePad( this.sandbox );
 
-        var realesArrow = function( archer , angle) {
+        var realesArrow = function( archer ) {
             var element = new Elements.items.Arrow( {
                 x: archer.body.state.pos.x,
                 y: archer.body.state.pos.y,
-                angle: angle
+                angle: archer.model.aimVector.get().angle()
             } );
-            
-            element.launch( 0.9 );
+
+            element.launch( 0.45 );
 
             if ( element.hasOwnProperty( 'body' ) ) {
                 this.world.add( element.body );
@@ -92,10 +92,12 @@ define( function (require) {
         }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:fire', function(value) {
+            var archer = this.archers[ teams[0] ];
             if ( value.new ) {
-                this.archers[ teams[0] ].draw();
-            } else {
-                this.archers[ teams[0] ].releaseArrow();
+                archer.draw();
+            } else if ( archer.model.isDrawing.get() ){
+                realesArrow( archer );
+                archer.releaseArrow();
             }
         }.bind( this ) );
 

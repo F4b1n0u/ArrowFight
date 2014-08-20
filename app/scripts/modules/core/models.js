@@ -7,18 +7,24 @@ define(function (require) {
     var models = {
     	archers: {
             Archer: function( sandbox ) {
-                this.score = new Field( 0 );
-                this.quiver = new Field( {
-                    amount: 3,
+                this.quiver = {
+                    amount: 6,
                     isEmpty: function() {
-                        this.amount > 0;
+                        return this.amount <= 0;
                     },
                     pick: function() {
                         if ( !this.isEmpty() ) {
                             this.amount --;
+                            return true;
+                        } else {
+                            return false;
                         }
+                    },
+                    collect: function() {
+                        this.amount ++;
                     }
-                } );
+                };
+                this.score = new Field( 0 , sandbox, 'model:archer:score');
                 this.isDrawing = new Field( false, sandbox, 'model:archer:isDrawing');
                 this.aimVector = new Field( Physics.vector( 0, 0 ), sandbox, 'model:archer:aimVector' );
             }

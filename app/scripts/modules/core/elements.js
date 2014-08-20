@@ -145,9 +145,7 @@ define(function (require) {
                 this.draw = function() {
                     if ( !this.model.isDrawing.get()) {
                         this.stop();
-                        var quiver = this.model.quiver.get();
-                        if ( !quiver.isEmpty() ) {
-                            quiver.pick();
+                        if ( this.model.quiver.pick() ) {
                             this.model.isDrawing.set( true );
                         }
                     }
@@ -155,10 +153,9 @@ define(function (require) {
 
                 this.releaseArrow = function() {
                     if ( this.model.isDrawing) {
-                        
                         this.model.isDrawing.set( false );
                     }
-                };
+                }.bind( this );
 
                 this.sandbox.on( 'body:archer:isFalling', function( value ){
                     if ( value.new ) {
