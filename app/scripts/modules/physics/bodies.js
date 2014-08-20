@@ -1,7 +1,8 @@
 'use strict';
 
 define( function ( require ) {
-    var Physics =  require( 'physicsjs' );
+    var Physics =   require( 'physicsjs' );
+    var Field =     require( 'field' );
 
     Physics.body( 'archer', 'convex-polygon', function ( parent ) {
         return {
@@ -22,6 +23,7 @@ define( function ( require ) {
                         { x: centroidX - halfWidth, y: centroidY + halfHeigth}
                     ]
                 };
+
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             }
         }

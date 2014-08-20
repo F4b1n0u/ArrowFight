@@ -7,8 +7,9 @@ define(function (require) {
     var models = {
     	archers: {
             Archer: function( sandbox ) {
+                this.sandbox = sandbox;
                 this.quiver = {
-                    amount: 20,
+                    amount: 6,
                     isEmpty: function() {
                         return this.amount <= 0;
                     },
@@ -25,8 +26,8 @@ define(function (require) {
                     }
                 };
                 this.score = new Field( 0 , sandbox, 'model:archer:score');
-                this.isDrawing = new Field( false, sandbox, 'model:archer:isDrawing');
                 this.aimVector = new Field( Physics.vector( 0, 0 ), sandbox, 'model:archer:aimVector' );
+                this.mainDirection = new Field( Physics.vector( 1, 0 ), sandbox, 'model:archer:mainDirection' );
             }
         },
     	maps: {

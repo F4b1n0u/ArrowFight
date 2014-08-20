@@ -45,7 +45,7 @@ define( function (require) {
         }.bind( this );
 
         var _addArcher = function( team ) {
-            var element = new Elements.archers.Archer( team,
+            var element = new Elements.Archer( team,
             {
                 x: 480,
                 y: 360
@@ -54,10 +54,14 @@ define( function (require) {
         }.bind( this );
 
         var _releaseArrow = function( archer ) {
-            var element = new Elements.items.Arrow( {
+            var angle =
+                ( archer.model.aimVector.get().x === 0 && archer.model.aimVector.get().y === 0 )
+                ?
+                archer.model.mainDirection.get().angle() : archer.model.aimVector.get().angle();
+            var element = new Elements.Arrow( {
                 x: archer.body.state.pos.x,
                 y: archer.body.state.pos.y,
-                angle: archer.model.aimVector.get().angle()
+                angle: angle
             } );
             element.launch( 0.45 );
             _addElement( element , this.items );
@@ -75,6 +79,9 @@ define( function (require) {
             var aimVector = aimVectorField.get().clone();
             aimVector.x = value.new;
             aimVectorField.set( aimVector );
+            if ( aimVector.x ) {
+                this.archers.green.model.mainDirection.get().x = aimVector.x;
+            }
         }.bind( this ) );
 
         this.sandbox.on( 'virtualGamePad:button:jump', function(value) {
@@ -85,7 +92,7 @@ define( function (require) {
             var archer = this.archers.green;
             if ( value.new ) {
                 archer.draw();
-            } else if ( archer.model.isDrawing.get() ){
+            } else if ( archer.body.isDrawing.get() ){
                 _releaseArrow( archer );
                 archer.releaseArrow();
             }

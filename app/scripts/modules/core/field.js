@@ -20,6 +20,10 @@ define(function (require) {
 	            } );
 	    	}
         };
+
+        this.trigger = function () {
+        	sandbox.emit( channel );
+        }
 	};
 	return Field;
 } );

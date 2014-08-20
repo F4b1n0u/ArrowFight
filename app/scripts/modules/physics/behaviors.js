@@ -126,6 +126,37 @@ define(function (require) {
         }
     });
 
+
+    Physics.behavior( 'collect-detection', 'body-collision-detection', function ( parent ) {
+        return {
+            init: function( options ) {
+                var defaults = {};
+                parent.init.call( this, $.extend( {}, defaults, options ) );
+            },
+            
+            connect: function( world ){
+                world.on( 'collisions:detected', this.checkGroundCollision, this );
+            },
+    
+            disconnect: function( world ) {
+                world.off( 'collisions:detected', this.checkGroundCollision );
+            },
+
+            checkGroundCollision: function( data ){
+                var body = null;
+                data.collisions.forEach( function( collision ) {
+                    var bodieNames = [];
+                    if ( collision.bodyA.name === 'arrow' && collision.bodyB.name === 'archer' ) {
+                        if ( ! collision.bodyB.isDrawing.get() ) {
+                            collision.bodyB.collect.trigger();
+                            collision.bodyA.collected.trigger();
+                        }
+                    }
+                } );
+            }
+        }
+    });
+
     Physics.behavior( 'falling-jumping-detection', function ( parent ) {
         return {
             init: function( options ) {
@@ -161,6 +192,7 @@ define(function (require) {
         gravityArrow: Physics.behavior( 'gravity-arrow', { acc: { x : 0, y: 0.004 } } ),
         touchDetection: Physics.behavior( 'touch-detection' ),
         fallingJumpingDetection: Physics.behavior( 'falling-jumping-detection' ),
+        collectDetection: Physics.behavior( 'collect-detection' ),
         bodyImpulseResponse:  Physics.behavior( 'body-impulse-response' ),
         bodyCollisionDetection: Physics.behavior( 'body-collision-detection' ),
         sweepPrune: Physics.behavior('sweep-prune')
