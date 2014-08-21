@@ -1,36 +1,37 @@
 ArrowFight
 ==========
 
-description:
+description
+-----------
 
 	tiny web game where 2 teams ( green and blue ) fight which bow and arrow
 
-how to run:
+how to run
+----------
 
-- add:
+### add app dependencies
+run commands in the root folder of the solution ( ArrowFight/ )
 
-	if ( styles.hasOwnProperty( 'alpha' ) ) {
-        graphics.alpha = styles.alpha;
-    }
-
-	In the PixiRenderer createPolygon function of the physicsJS library. (search "PixiRenderer#createPolygon" in the lib) Because the pixi renderer doesn't deal with the alpha yet, ( it's will comming soon I guess :D )
-
-- add app dependencies
-	run the command in the root folder of the solution ( ArrowFight/ )
-
+* add solution dependencies
 	bower install
 
-- add node dependencies,
-	run the command in the root folder of the solution ( ArrowFight/ )
-
+* add node dependencies,
 	npm install
 
-- launch with:
-	run the command in the root folder of the solution ( ArrowFight/ )
-
+* launch with:
 	grunt serve
 
-how to play:
+### tips:
+	improve the PIXI renderer of PhysicsJS
+	add
+	`if ( styles.hasOwnProperty( 'alpha' ) )
+	{
+		graphics.alpha = styles.alpha;
+	}`
+	In the PixiRenderer createPolygon function of the physicsJS library. (search "PixiRenderer#createPolygon" in the lib) Because the pixi renderer doesn't deal with the alpha yet, ( it's will comming soon I guess :D ).
+
+how to play
+-----------
 
 	press 'enter' to start the game
 	green team:
