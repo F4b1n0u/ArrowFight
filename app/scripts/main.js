@@ -54,8 +54,6 @@ require.config({
     }
 });
 
-var amountOfArrows = 7;
-
 define(function(require) {
     require("jquery");
     require("underscore");
@@ -71,14 +69,11 @@ define(function(require) {
     var loadGame = function() {
         var game = new Game( mapId );
 
-        var team = 'green';
-        var virtualGamePadGreen = new VirtualGamePad( game, team );
-        var keyboardMapperGreen = new KeyboardMapper( virtualGamePadGreen , KeyboardMappings[ team ]);
-
-        var team = 'red';
-        var virtualGamePadGreen = new VirtualGamePad( game, team );
-        var keyboardMapperGreen = new KeyboardMapper( virtualGamePadGreen , KeyboardMappings[ team ]);
-    } 
+        var teams = [ 'green' , 'red' ];
+        teams.forEach( function( team ) {
+            new KeyboardMapper( new VirtualGamePad( game, team ) , KeyboardMappings[ team ]);
+        } );
+    };
 
     SpriteCache( loadGame );
-});
+} );

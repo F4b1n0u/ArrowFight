@@ -1,6 +1,6 @@
 define(function (require) {
-    PIXI = require("pixi");
-    var Physics = require("physicsjs");
+    PIXI =          require( 'pixi' );
+    var Physics =   require( 'physicsjs' );
 
     var Renderers = {
         pixi: Physics.renderer( 'pixi', {

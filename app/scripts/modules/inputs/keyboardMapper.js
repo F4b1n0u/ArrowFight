@@ -5,7 +5,7 @@ define(function (require) {
 
     var keyboardMapper = function ( virtualGamePad, mapping) {
         this.virtualGamePad = virtualGamePad;
-        this.mapping = mapping
+        this.mapping = mapping;
 
         if ( this.mapping.hasOwnProperty( 'button' ) ) {
             this.mapping.button.forEach( function( mapping ) {

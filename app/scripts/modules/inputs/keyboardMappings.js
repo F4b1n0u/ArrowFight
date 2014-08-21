@@ -1,6 +1,6 @@
 'use strict';
 
-define(function (require) {
+define(function () {
 
     var keyboardMappings = {
         red: {
@@ -99,7 +99,7 @@ define(function (require) {
                 }
             ]
         }
-    }
+    };
 
     return keyboardMappings;
 } );

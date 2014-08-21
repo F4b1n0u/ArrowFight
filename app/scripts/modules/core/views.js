@@ -2,6 +2,7 @@
 'use strict';
 
 define(function (require) {
+    var $ =         require( 'jquery' );
     var Renderers = require( 'renderers' );
     
     var defaults = {
@@ -9,7 +10,7 @@ define(function (require) {
             x: 0.5,
             y: 0.5
         }
-    }
+    };
 
     var Views = {
         items: {
@@ -17,7 +18,7 @@ define(function (require) {
                 var arrowDefault = {
                     texture: './images/items/arrow.png',
                 };
-                var params = $.extend( {}, defaults, arrowDefault, options )
+                var params = $.extend( {}, defaults, arrowDefault, options );
 
                 var view = Renderers.pixi.createDisplay( 'sprite', params );
 
@@ -28,8 +29,8 @@ define(function (require) {
             Archer: function( team, options ){
                 var arrowDefault = {
                     texture: './images/blank.png'
-                }
-                var params = $.extend( {}, defaults, arrowDefault, options )
+                };
+                var params = $.extend( {}, defaults, arrowDefault, options );
 
                 var view = Renderers.pixi.createDisplay( 'sprite', params );
                 
@@ -45,7 +46,7 @@ define(function (require) {
                         y: 0
                     }
                 }
-                var params = $.extend( {}, defaults, mapDefault, options )
+                var params = $.extend( {}, defaults, mapDefault, options );
 
                 var view = Renderers.pixi.createDisplay( 'sprite', params );
                 

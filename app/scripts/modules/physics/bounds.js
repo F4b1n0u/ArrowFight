@@ -6,8 +6,8 @@ define(function (require) {
 
     var x = 0;
     var y = 0;
-    var width = width | Renderers.pixi.el.width;
-    var height = height | Renderers.pixi.el.height;
+    var width = Renderers.pixi.el.width;
+    var height = Renderers.pixi.el.height;
 
     var Bounds = {
         frame: Physics.aabb(x, y, width, height)

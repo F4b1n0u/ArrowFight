@@ -4,11 +4,8 @@ define(function (require) {
     var Physics = require('physicsjs');
     var Renderers = require('renderers');
 
-    var amountOfArrows = 6;
-    var initalArrowAngle = - 1 / 2 * Math.PI;
-
     var worldHelper = {
-        init: function( elements ) {
+        init: function() {
             var world = Physics.world( {
                 timestep: 1000.0 / 300,
                 maxIPF: 30,
@@ -20,7 +17,7 @@ define(function (require) {
                     world.render();
                 } );
 
-                Physics.util.ticker.on(function( time, dt ){
+                Physics.util.ticker.on(function( time ){
                     world.step( time );
                 } );
             } );

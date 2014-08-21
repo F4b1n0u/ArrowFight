@@ -1,6 +1,8 @@
 'use strict';
 
 define(function (require) {
+    var $ =         require( 'jquery' );
+    var PIXI =      require( 'pixi' );
     var Physics =   require( 'physicsjs' );
     var Renderers = require( 'renderers' );
     var Behaviors = require( 'behaviors' );
@@ -10,18 +12,10 @@ define(function (require) {
     var Events =    require( 'minivents' );
     var Bodies =    require( 'bodies' );
 
-    var defaults = {
-        x: 0,
-        y: 0,
-        angle: 0,
-        vx: 0,
-        vy: 0
-    }
-
     var _remove = function( element ){
         element.body._world.remove( element.body );
         Renderers.pixi.stage.removeChild( element.view );
-    }
+    };
 
     var _updateBehaviors = function( behaviors, target ) {
         behaviors.forEach( function( behavior ) {
@@ -33,16 +27,17 @@ define(function (require) {
 
     var _changeView = function ( elementTarget, params ) {
         var oldView = elementTarget.view;
+        var newView = null;
         switch( params.type ) {
             case 'sprite':
                 if ( elementTarget.view instanceof PIXI.Sprite ) {
                     var texture = PIXI.Texture.fromFrame( params.textureIds[0] );
                     elementTarget.view.setTexture( texture );
                 } else if ( elementTarget.view instanceof PIXI.MovieClip ) {
-                    var newView = PIXI.Sprite.fromFrame( textureId );
+                    newView = PIXI.Sprite.fromFrame( params.textureIds[0] );
                     elementTarget.view.stop();
                     
-                    element.view = newView;
+                    elementTarget.view = newView;
                     _reshape( elementTarget );
 
                     Renderers.pixi.stage.removeChild( oldView );
@@ -54,17 +49,17 @@ define(function (require) {
                     elementTarget.view.stop();
                     elementTarget.view.setTextures( textureIds );
                 } else if ( elementTarget.view instanceof PIXI.Sprite ) {
-                    var newView = PIXI.MovieClip( params.textureIds );
+                    newView = PIXI.MovieClip( params.textureIds[0] );
                     
-                    element.view = newView;
+                    elementTarget.view = newView;
                     Renderers.pixi.stage.removeChild( oldView );
                     Renderers.pixi.stage.addChild( newView );
                 }
-                targetedView.animationSpeed = params.animationSpeed;
-                targetedView.play();
+                elementTarget.view.animationSpeed = params.animationSpeed;
+                elementTarget.view.play();
                 break;
         }
-    }
+    };
 
     var _reshape = function( elementTarget ) {
         var bodyWidth = elementTarget.body.width;
@@ -72,13 +67,13 @@ define(function (require) {
         var viewWidth = elementTarget.view.width;
         var viewHeight = elementTarget.view.height;
 
-        if ( bodyWidth != viewWidth ) {
-            elementTarget.body.width = viewWidth
+        if ( bodyWidth !== viewWidth ) {
+            elementTarget.body.width = viewWidth;
         }
-        if ( bodyHeight != viewHeight ) {
-            elementTarget.body.height = viewHeight
+        if ( bodyHeight !== viewHeight ) {
+            elementTarget.body.height = viewHeight;
         }
-    }
+    };
 
     var Elements = {
         Archer: function( team, options, sandbox ) {
@@ -236,7 +231,7 @@ define(function (require) {
                         textureIds: [ 'archer_' + this.team + '_no_drawing' ]
                     } );
                 }
-                if (value.new.x != 0 ) {
+                if (value.new.x !== 0 ) {
                     this.view.scale.x = value.new.x;
                 }
             }, this );
@@ -273,7 +268,7 @@ define(function (require) {
                 isPlant: new Field( null , this.sandbox, 'model:arrow:isPlant'),
 
                 isMortal: new Field( false , this.sandbox, 'model:arrow:isMortal')
-            }
+            };
             params = $.extend({}, params, options);
             this.body = new Bodies.Arrow( params );
 
@@ -317,7 +312,7 @@ define(function (require) {
             
             this.model = new Models[ mapId ]();
 
-            this.model.parts.forEach( _.bind( function( part ){
+            this.model.parts.forEach( function( part ){
                 var params = {
                     x: part.x,
                     y: part.y,
@@ -326,7 +321,7 @@ define(function (require) {
                     unitBlockSize: 30
                 };
                 this.bodies.push( new Bodies.MapPart( params ) );
-            } , this ) );
+            }.bind( this ) );
 
             this.view = new Views.maps.TwilightSpire();
 

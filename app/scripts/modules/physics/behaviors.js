@@ -16,7 +16,7 @@ define(function (require) {
                     cof: 1
                 };
 
-              parent.init.call( this, $.extend( {}, defaults, options ) );
+                parent.init.call( this, $.extend( {}, defaults, options ) );
             },
 
             connect: function (world){
@@ -44,7 +44,7 @@ define(function (require) {
                     }
                 });
             }
-        }
+        };
     });
 
     Physics.behavior( 'limited-gravity', function ( parent ) {
@@ -61,7 +61,7 @@ define(function (require) {
                     }
                 }, this );
             }
-        }
+        };
     });
 
     Physics.behavior( 'gravity-arrow', 'constant-acceleration', function ( parent ) {
@@ -70,7 +70,7 @@ define(function (require) {
                 var defaults = {};
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             },
-            behave: function( data ) {
+            behave: function() {
                 // parent.behave.call( this, data );
                 // this.getTargets().forEach( function( body ){
                 //     var movedCentroid = body.movedCentroid();
@@ -81,7 +81,7 @@ define(function (require) {
                 //     }
                 // }, this );
             }
-        }
+        };
     });
 
     Physics.behavior( 'gravity-archer', 'constant-acceleration', function ( parent ) {
@@ -92,7 +92,7 @@ define(function (require) {
                     body.state.angular.pos = 0;
                 } );
             }
-        }
+        };
     });
 
     Physics.behavior( 'touch-detection', 'body-collision-detection', function ( parent ) {
@@ -123,7 +123,7 @@ define(function (require) {
                     }
                 } );
             }
-        }
+        };
     });
 
     Physics.behavior( 'collect-detection', 'body-collision-detection', function ( parent ) {
@@ -142,9 +142,7 @@ define(function (require) {
             },
 
             checkGroundCollision: function( data ){
-                var body = null;
                 data.collisions.forEach( function( collision ) {
-                    var bodieNames = [];
                     if ( collision.bodyA.name === 'arrow' && collision.bodyB.name === 'archer' ) {
                         if ( ! collision.bodyB.isDrawing.get() ) {
                             collision.bodyB.collect.trigger();
@@ -158,7 +156,7 @@ define(function (require) {
                     }
                 } );
             }
-        }
+        };
     });
 
     Physics.behavior( 'hit-detection', 'body-collision-detection', function ( parent ) {
@@ -179,7 +177,6 @@ define(function (require) {
             checkGroundCollision: function( data ){
                 var body = null;
                 data.collisions.forEach( function( collision ) {
-                    var bodieNames = [];
                     if ( collision.bodyA.name === 'arrow' && collision.bodyB.name === 'archer' ) {
                         if ( collision.bodyA.isMortal.get() && ! collision.bodyB.isDrawing.get() ) {
                             collision.bodyB.isHit.trigger();
@@ -193,7 +190,7 @@ define(function (require) {
                     }
                 } );
             }
-        }
+        };
     });
 
     Physics.behavior( 'mortal-detection', function ( parent ) {
@@ -203,8 +200,7 @@ define(function (require) {
                 parent.init.call( this, $.extend( {}, defaults, options ) );
             },
             
-            behave: function( data ){
-                var body = null;
+            behave: function(){
                 this.getTargets().forEach( function( body ) {
                     if ( body.state.vel.norm() > 1 ) {
                         body.isMortal.set( true );
@@ -213,7 +209,7 @@ define(function (require) {
                     }
                 } );
             }
-        }
+        };
     });
 
     Physics.behavior( 'falling-jumping-detection', function ( parent ) {
@@ -241,7 +237,7 @@ define(function (require) {
                     } 
                 } );
             }
-        }
+        };
     });
 
     var Behaviors = {

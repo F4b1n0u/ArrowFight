@@ -1,8 +1,16 @@
 'use strict';
 
 define( function ( require ) {
+    var $ =         require( 'jquery' );
     var Physics =   require( 'physicsjs' );
-    var Field =     require( 'field' );
+    
+    var defaults = {
+        x: 0,
+        y: 0,
+        angle: 0,
+        vx: 0,
+        vy: 0
+    };
 
     Physics.body( 'archer', 'convex-polygon', function ( parent ) {
         return {
@@ -11,7 +19,7 @@ define( function ( require ) {
                 var halfWidth = options.width / 2;
                 var centroidX = options.x + halfWidth;
                 var centroidY = options.y + halfHeigth;
-                var defaults = {
+                var archerDefaults = {
                     restitution: 0,
                     cof: 0,
                     mass: 10, 
@@ -24,9 +32,9 @@ define( function ( require ) {
                     ]
                 };
 
-                parent.init.call( this, $.extend( {}, defaults, options ) );
+                parent.init.call( this, $.extend( {}, defaults, archerDefaults, options ) );
             }
-        }
+        };
     });
 
     Physics.body( 'arrow', 'convex-polygon', function ( parent ) {
@@ -53,7 +61,7 @@ define( function ( require ) {
             movedCentroid: function() {
                 return new Physics.vector( this.width / 2, 0 ).rotate( - this.state.angular.pos );
             }
-        }
+        };
     });
 
     Physics.body( 'map-part', 'convex-polygon', function ( parent ) {
@@ -83,13 +91,19 @@ define( function ( require ) {
                 };
                 parent.init.call( this, $.extend( {}, params ) );
             },
-        }
-    });
+        };
+    } );
 
     var Bodies = {
-        Archer: function( params ) { return Physics.body( 'archer', params) },
-        Arrow: function( params ) { return Physics.body( 'arrow', params ) },
-        MapPart: function( params ) { return Physics.body( 'map-part', params ) }
+        Archer: function( params ) {
+            return Physics.body( 'archer', params);
+        },
+        Arrow: function( params ) {
+            return Physics.body( 'arrow', params );
+        },
+        MapPart: function( params ) {
+            return Physics.body( 'map-part', params );
+        }
     };
 
     return Bodies;

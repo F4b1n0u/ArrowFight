@@ -14,7 +14,7 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-htmlmin": "~0.2.0",
     "grunt-bower-install": "~1.4.0",
-    "grunt-contrib-imagemin": "~0.6.0",
+    "grunt-contrib-imagemin": "git://github.com/gruntjs/grunt-contrib-imagemin",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-rev": "~0.1.0",
     "grunt-autoprefixer": "~0.7.2",
@@ -26,7 +26,8 @@
     "grunt-concurrent": "~0.5.0",
     "load-grunt-tasks": "~0.4.0",
     "time-grunt": "~0.3.1",
-    "jshint-stylish": "~0.4.0"
+    "jshint-stylish": "~0.4.0",
+    "optipng-bin": "~1.0.0"
   },
   "engines": {
     "node": ">=0.10.0"

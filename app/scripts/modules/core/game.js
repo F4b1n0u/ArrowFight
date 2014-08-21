@@ -52,9 +52,7 @@ define( function (require) {
 
         var _releaseArrow = function( archer ) {
             var angle =
-                ( archer.model.aimVector.get().x === 0 && archer.model.aimVector.get().y === 0 )
-                ?
-                archer.model.mainDirection.get().angle() : archer.model.aimVector.get().angle();
+                ( archer.model.aimVector.get().x === 0 && archer.model.aimVector.get().y === 0 ) ? archer.model.mainDirection.get().angle() : archer.model.aimVector.get().angle();
             var element = new Elements.Arrow( {
                 x: archer.body.state.pos.x,
                 y: archer.body.state.pos.y,
@@ -70,15 +68,15 @@ define( function (require) {
 
             var archer = _addArcher( team, this.sandbox );
 
-            this.sandbox.on( baseChannel + 'joystick:vertical', function(value) {
-                var aimVectorField = this.model.aimVector
+            this.sandbox.on( baseChannel + 'joystick:vertical', function( value ) {
+                var aimVectorField = this.model.aimVector;
                 var aimVector = aimVectorField.get().clone();
                 aimVector.y = value.new;
                 aimVectorField.set( aimVector );
             }.bind( archer ) );
 
-            this.sandbox.on( baseChannel + 'joystick:horizontal', function(value) {
-                var aimVectorField = this.model.aimVector
+            this.sandbox.on( baseChannel + 'joystick:horizontal', function( value ) {
+                var aimVectorField = this.model.aimVector;
                 var aimVector = aimVectorField.get().clone();
                 aimVector.x = value.new;
                 aimVectorField.set( aimVector );
@@ -87,11 +85,11 @@ define( function (require) {
                 }
             }.bind( archer ) );
 
-            this.sandbox.on( baseChannel + 'button:jump', function(value) {
+            this.sandbox.on( baseChannel + 'button:jump', function() {
                 this.jump();
             }.bind( archer ) );
 
-            this.sandbox.on( baseChannel + 'button:fire', function(value) {
+            this.sandbox.on( baseChannel + 'button:fire', function( value ) {
                 if ( value.new ) {
                     this.draw();
                 } else if ( this.body.isDrawing.get() ){

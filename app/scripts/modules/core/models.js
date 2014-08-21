@@ -87,7 +87,7 @@ define(function (require) {
                 {x: 18, y: 15, width: 1, height: 1},
             ];
         }
-    }
+    };
 
     return  models;
 } );
