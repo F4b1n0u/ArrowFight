@@ -12,17 +12,22 @@ how to run
 ### add app dependencies
 run commands in the root folder of the solution ( ArrowFight/ )
 
-* add solution dependencies
-	bower install
+* add solution dependencies:
 
-* add node dependencies,
-	npm install
+bower install
+
+* add node dependencies:
+
+npm install
 
 * launch with:
-	grunt serve
+
+grunt serve
 
 ### tips - PhysicsJS's PIXI renderer improving
+
 * add
+
 `if ( styles.hasOwnProperty( 'alpha' ) )
 {
 	graphics.alpha = styles.alpha;
