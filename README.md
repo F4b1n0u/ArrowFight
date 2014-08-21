@@ -1,6 +1,8 @@
 ArrowFight
 ==========
 
+![Alt preview of ArrowFight](https://raw.githubusercontent.com/F4b1n0u/ArrowFight/master/ArrowFight_preview.png)
+
 description
 -----------
 
