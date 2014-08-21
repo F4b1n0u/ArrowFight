@@ -33,6 +33,17 @@ define(function (require) {
             this.mainDirection = new Field( Physics.vector( 1, 0 ), sandbox, 'model:archer:mainDirection' );
         },
         TwilightSpire: function() {
+            this.respawns = {
+                green: {
+                    x: 7,
+                    y: 8
+                },
+                red: { 
+                    x: 25,
+                    y: 8
+                }
+            };
+
             this.parts = [
                 {x: 0,  y: 1, width: 2, height: 2},
                 {x: 2,  y: 1, width: 2, height: 1},
