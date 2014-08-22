@@ -1,112 +1,123 @@
-'use strict';
+define(function (require) {
+  'use strict';
 
-define( function (require) {
-    var Physics =           require( 'physicsjs' );
-    var WorldHelper =       require( 'worldHelper' );
-    var Renderers =         require( 'renderers' );
-    var Elements =          require( 'elements' );
-    var Events =            require( 'minivents' );    
+  var Physics = require('physicsjs');
+  var WorldHelper = require('worldHelper');
+  var Events = require('minivents');
 
-    var Game = function ( mapId ) {
-        this.world = WorldHelper.init();
-        this.sandbox = new Events();        
+  var ArcherElement = require('archerElement');
+  var ArrowElement = require('arrowElement');
+  var MapElement = require('mapElement');
 
-        var _addElement = function( element ) {
-            if ( element.hasOwnProperty( 'body' ) ) {
-                this.world.add( element.body );
-            }
-            if ( element.hasOwnProperty( 'bodies' ) ) {
-                this.world.add( element.bodies );
-            }
-            if ( element.hasOwnProperty( 'behaviors' ) ) {
-                this.world.add( element.behaviors );
-            }
-            if ( element.view ) {
-                Renderers.pixi.stage.addChild( element.view);
-            }
-        }.bind( this );
+  var utils = require('utils');
 
-        var _addMap = function( id ) {
-            var element = new Elements.Map( id );
-            _addElement( element );
-        }.bind( this );
+  /**
+   * [Game constructor of game object]
+   * @param {string} mapId id use for the map, exemple: "TwilightSpire"
+   */
+  var Game = function (mapId) {
+    this.world = WorldHelper.init();
+    this.sandbox = new Events();
 
-        var _addArcher = function( team, sandbox ) {
-            var element = new Elements.Archer( team,
-            {
-                x: 480,
-                y: 360
-            }, sandbox );
-            _addElement( element );
+    /**
+     * [_addMap add an element map to the game in function of an id]
+     * @param {string} mapId id use for the map, exemple: "TwilightSpire"
+     */
+    var _addMap = function (mapId) {
+      var element = new MapElement(mapId);
+      utils.add(this.world, element);
+    }.bind(this);
 
-            this.sandbox.on( 'round:finish:looser', function( looser ) {
-                looser.reset( {
-                    x: 480,
-                    y: 360
-                } );
-                _addElement( looser );
-            } );
+    /**
+     * [_addArcher add an element archer to the game in function of an id]
+     * @param {String} team could be 'green' or 'red'
+     * @param {Event} sandbox
+     */
+    var _addArcher = function (team, sandbox) {
+      var element = new ArcherElement(team, {
+        x: 480,
+        y: 360
+      }, sandbox);
+      utils.add(this.world, element);
 
-            return element;
-        }.bind( this );
+      this.sandbox.on('round:finish:looser', function (looser) {
+        looser.reset({
+          x: 480,
+          y: 360
+        });
+        utils.add(this, looser);
+      }.bind(this.world));
 
-        var _releaseArrow = function( archer ) {
-            var angle =
-                ( archer.model.aimVector.get().x === 0 && archer.model.aimVector.get().y === 0 ) ? archer.model.mainDirection.get().angle() : archer.model.aimVector.get().angle();
-            var element = new Elements.Arrow( {
-                x: archer.body.state.pos.x,
-                y: archer.body.state.pos.y,
-                angle: angle
-            } );
-            element.launch( 0.45 );
-            _addElement( element );
-        }.bind( this );
+      return element;
+    }.bind(this);
 
-        this.plugVirtualGamePad = function( virtualGamePad ) {
-            var team = virtualGamePad.team;
-            var baseChannel = team + ':virtualGamePad:';
+    /**
+     * [_releaseArrow add and launch an arrow from an archer]
+     * @param  {Element} archer
+     * @return {[type]}
+     */
+    var _releaseArrow = function (archer) {
+      var angle =
+        (archer.model.aimVector.get().x === 0 && archer.model.aimVector.get().y === 0) ? archer.model.mainDirection.get().angle() : archer.model.aimVector.get().angle();
+      var element = new ArrowElement({
+        x: archer.body.state.pos.x,
+        y: archer.body.state.pos.y,
+        angle: angle
+      });
+      element.launch(0.45);
+      utils.add(this.world, element);
+    }.bind(this);
 
-            var archer = _addArcher( team, this.sandbox );
+    /**
+     * [plugVirtualGamePad plug an virtual gamepad dedicated to an specific team, it's add the player to the game]
+     * @param  {VirtualGamePad} virtualGamePad
+     * @return {no return}
+     */
+    this.plugVirtualGamePad = function (virtualGamePad) {
+      var team = virtualGamePad.team;
+      var baseChannel = team + ':virtualGamePad:';
 
-            this.sandbox.on( baseChannel + 'joystick:vertical', function( value ) {
-                var aimVectorField = this.model.aimVector;
-                var aimVector = aimVectorField.get().clone();
-                aimVector.y = value.new;
-                aimVectorField.set( aimVector );
-            }.bind( archer ) );
+      var archer = _addArcher(team, this.sandbox);
 
-            this.sandbox.on( baseChannel + 'joystick:horizontal', function( value ) {
-                var aimVectorField = this.model.aimVector;
-                var aimVector = aimVectorField.get().clone();
-                aimVector.x = value.new;
-                aimVectorField.set( aimVector );
-                if ( aimVector.x ) {
-                    this.model.mainDirection.get().x = aimVector.x;
-                }
-            }.bind( archer ) );
+      this.sandbox.on(baseChannel + 'joystick:vertical', function (value) {
+        var aimVectorField = this.model.aimVector;
+        var aimVector = aimVectorField.get().clone();
+        aimVector.y = value.new;
+        aimVectorField.set(aimVector);
+      }.bind(archer));
 
-            this.sandbox.on( baseChannel + 'button:jump', function() {
-                this.jump();
-            }.bind( archer ) );
+      this.sandbox.on(baseChannel + 'joystick:horizontal', function (value) {
+        var aimVectorField = this.model.aimVector;
+        var aimVector = aimVectorField.get().clone();
+        aimVector.x = value.new;
+        aimVectorField.set(aimVector);
+        if (aimVector.x) {
+          this.model.mainDirection.get().x = aimVector.x;
+        }
+      }.bind(archer));
 
-            this.sandbox.on( baseChannel + 'button:fire', function( value ) {
-                if ( value.new ) {
-                    this.draw();
-                } else if ( this.body.isDrawing.get() ){
-                    _releaseArrow( this );
-                    this.releaseArrow();
-                }
-            }.bind( archer ) );
+      this.sandbox.on(baseChannel + 'button:jump', function () {
+        this.jump();
+      }.bind(archer));
 
-            this.sandbox.on( baseChannel + 'button:start', function(value) {
-                if ( value.new && ! Physics.util.ticker.isActive()) {
-                    Physics.util.ticker.start();
-                }
-            }.bind( archer ) );
-        }.bind( this );
+      this.sandbox.on(baseChannel + 'button:fire', function (value) {
+        if (value.new) {
+          this.draw();
+        } else if (this.body.isDrawing.get()) {
+          _releaseArrow(this);
+          this.releaseArrow();
+        }
+      }.bind(archer));
 
-        _addMap( mapId );
-    };
+      this.sandbox.on(baseChannel + 'button:start', function (value) {
+        if (value.new && !Physics.util.ticker.isActive()) {
+          Physics.util.ticker.start();
+        }
+      }.bind(archer));
+    }.bind(this);
 
-    return Game;
-} );
+    _addMap(mapId);
+  };
+
+  return Game;
+});

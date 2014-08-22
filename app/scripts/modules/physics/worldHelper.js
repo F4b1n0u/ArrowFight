@@ -1,29 +1,29 @@
-'use strict';
-
 define(function (require) {
-    var Physics = require('physicsjs');
-    var Renderers = require('renderers');
+  'use strict';
 
-    var worldHelper = {
-        init: function() {
-            var world = Physics.world( {
-                timestep: 1000.0 / 300,
-                maxIPF: 30,
-                integrator: 'verlet'
-            },function( world ){
-                world.add( Renderers.pixi );
+  var Physics = require('physicsjs');
+  var Renderers = require('renderers');
 
-                world.on('step', function(){
-                    world.render();
-                } );
+  var worldHelper = {
+    init: function () {
+      var world = Physics.world({
+        timestep: 1000.0 / 300,
+        maxIPF: 30,
+        integrator: 'verlet'
+      }, function (world) {
+        world.add(Renderers.pixi);
 
-                Physics.util.ticker.on(function( time ){
-                    world.step( time );
-                } );
-            } );
+        world.on('step', function () {
+          world.render();
+        });
 
-            return world;
-        },
-    }
-    return worldHelper;
-} );
+        Physics.util.ticker.on(function (time) {
+          world.step(time);
+        });
+      });
+
+      return world;
+    },
+  };
+  return worldHelper;
+});

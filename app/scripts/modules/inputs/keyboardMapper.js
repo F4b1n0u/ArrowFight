@@ -1,38 +1,63 @@
-'use strict';
-
 define(function (require) {
-    var KeyboardJS = require( 'keyboard' );
+  'use strict';
 
-    var keyboardMapper = function ( virtualGamePad, mapping) {
-        this.virtualGamePad = virtualGamePad;
-        this.mapping = mapping;
+  var keyboardJS = require('keyboard');
 
-        if ( this.mapping.hasOwnProperty( 'button' ) ) {
-            this.mapping.button.forEach( function( mapping ) {
-                KeyboardJS.on( mapping.key,
-                    function(){
-                        virtualGamePad.button[ this.action ].set ( this.max );
-                    }.bind( mapping ),
-                    function(){
-                        virtualGamePad.button[ this.action ].set ( this.min );
-                    }.bind( mapping )
-                );
-            } );
-        }
+  /**
+   * [keyboardMapper helper to link keyboard event to a virtual game pad]
+   * @param  {[type]} virtualGamePad
+   * @param  {Object} mapping for each team, for a specific part of the game pad what keyboard key correspond and the range of use
+   * example:
+   *    {
+   *      {team}: {
+   *        button: [
+   *          {
+   *            action: {start|jump|fire},
+   *            key: {KeyboardJS key code},
+   *            max: {true|false},
+   *            min: {true|false},
+   *          },
+   *          ...
+   *        ],
+   *        joystick: [
+   *          {
+   *            axe: {horizontal|vertical},
+   *            key: {KeyboardJS key code},
+   *            max: {-1 to +1},
+   *            max: {-1 to +1},
+   *          },
+   *          ...
+   *        ]
+   *      },
+   *      ...
+   *    }
+   * @return {no return}
+   */
+  var keyboardMapper = function (virtualGamePad, mapping) {
+    if (mapping.hasOwnProperty('button')) {
+      mapping.button.forEach(function (mapping) {
+        keyboardJS.on(mapping.key,
+          function () {
+            virtualGamePad.button[this.action].set(this.max);
+          }.bind(mapping),
+          function () {
+            virtualGamePad.button[this.action].set(this.min);
+          }.bind(mapping));
+      });
+    }
 
-        if ( this.mapping.hasOwnProperty( 'joystick' ) ) {
-            this.mapping.joystick.forEach( function( mapping ) {
-                KeyboardJS.on( mapping.key,
-                    function(){
-                        virtualGamePad.joystick[ this.axe ].set ( this.max );
-                    }.bind( mapping ),
-                    function(){
-                        virtualGamePad.joystick[ this.axe ].set ( this.min );
-                    }.bind( mapping )
-                );
-            } );
-        }
-    };
+    if (mapping.hasOwnProperty('joystick')) {
+      mapping.joystick.forEach(function (mapping) {
+        keyboardJS.on(mapping.key,
+          function () {
+            virtualGamePad.joystick[this.axe].set(this.max);
+          }.bind(mapping),
+          function () {
+            virtualGamePad.joystick[this.axe].set(this.min);
+          }.bind(mapping));
+      });
+    }
+  };
 
-    return keyboardMapper;
-} );
+  return keyboardMapper;
+});

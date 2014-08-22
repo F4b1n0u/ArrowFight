@@ -1,17 +1,17 @@
-'use strict';
-
 define(function (require) {
-    var Physics = require( 'physicsjs' );
-    var Renderers = require( 'renderers' );
+  'use strict';
 
-    var x = 0;
-    var y = 0;
-    var width = Renderers.pixi.el.width;
-    var height = Renderers.pixi.el.height;
+  var Physics = require('physicsjs');
+  var Renderers = require('renderers');
 
-    var Bounds = {
-        frame: Physics.aabb(x, y, width, height)
-    };
+  var x = 0;
+  var y = 0;
+  var width = Renderers.pixi.el.width;
+  var height = Renderers.pixi.el.height;
 
-    return Bounds;
+  var Bounds = {
+    frame: Physics.aabb(x, y, width, height)
+  };
+
+  return Bounds;
 });

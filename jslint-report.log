@@ -1,0 +1,757 @@
+FAIL	./app/scripts/main.js (51)
+./app/scripts/main.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/main.js:4:3	Expected 'require' at column 5, not column 3.
+./app/scripts/main.js:5:5	Expected 'baseUrl' at column 9, not column 5.
+./app/scripts/main.js:7:5	Expected 'paths' at column 9, not column 5.
+./app/scripts/main.js:8:7	Expected 'jquery' at column 13, not column 7.
+./app/scripts/main.js:9:7	Expected 'underscore' at column 13, not column 7.
+./app/scripts/main.js:10:7	Expected 'pixi' at column 13, not column 7.
+./app/scripts/main.js:11:7	Expected 'keyboard' at column 13, not column 7.
+./app/scripts/main.js:13:7	Expected 'minivents' at column 13, not column 7.
+./app/scripts/main.js:15:7	Expected 'archerElement' at column 13, not column 7.
+./app/scripts/main.js:16:7	Expected 'arrowElement' at column 13, not column 7.
+./app/scripts/main.js:17:7	Expected 'mapElement' at column 13, not column 7.
+./app/scripts/main.js:19:7	Expected 'archerModels' at column 13, not column 7.
+./app/scripts/main.js:20:7	Expected 'twilightSpireMapModels' at column 13, not column 7.
+./app/scripts/main.js:22:7	Expected 'archerView' at column 13, not column 7.
+./app/scripts/main.js:23:7	Expected 'arrowView' at column 13, not column 7.
+./app/scripts/main.js:24:7	Expected 'twilightSpireMapView' at column 13, not column 7.
+./app/scripts/main.js:26:7	Expected 'utils' at column 13, not column 7.
+./app/scripts/main.js:27:7	Expected 'field' at column 13, not column 7.
+./app/scripts/main.js:28:7	Expected 'game' at column 13, not column 7.
+./app/scripts/main.js:29:7	Expected 'renderers' at column 13, not column 7.
+./app/scripts/main.js:31:7	Expected 'keyboardMapper' at column 13, not column 7.
+./app/scripts/main.js:32:7	Expected 'keyboardMappings' at column 13, not column 7.
+./app/scripts/main.js:33:7	Expected 'virtualGamePad' at column 13, not column 7.
+./app/scripts/main.js:35:7	Expected 'behaviors' at column 13, not column 7.
+./app/scripts/main.js:36:7	Expected 'bodies' at column 13, not column 7.
+./app/scripts/main.js:37:7	Expected 'bounds' at column 13, not column 7.
+./app/scripts/main.js:38:7	Expected 'worldHelper' at column 13, not column 7.
+./app/scripts/main.js:40:7	Expected 'spriteCache' at column 13, not column 7.
+./app/scripts/main.js:41:5	Expected '}' at column 9, not column 5.
+./app/scripts/main.js:43:5	Expected 'packages' at column 9, not column 5.
+./app/scripts/main.js:44:7	Expected 'name' at column 13, not column 7.
+./app/scripts/main.js:45:7	Expected 'location' at column 13, not column 7.
+./app/scripts/main.js:46:7	Expected 'main' at column 13, not column 7.
+./app/scripts/main.js:47:5	Expected '}' at column 9, not column 5.
+./app/scripts/main.js:49:5	Expected 'shim' at column 9, not column 5.
+./app/scripts/main.js:50:7	Expected 'jquery' at column 13, not column 7.
+./app/scripts/main.js:51:9	Expected 'exports' at column 17, not column 9.
+./app/scripts/main.js:52:7	Expected '}' at column 13, not column 7.
+./app/scripts/main.js:53:7	Expected 'underscore' at column 13, not column 7.
+./app/scripts/main.js:54:9	Expected 'exports' at column 17, not column 9.
+./app/scripts/main.js:55:7	Expected '}' at column 13, not column 7.
+./app/scripts/main.js:56:7	Expected 'pixi' at column 13, not column 7.
+./app/scripts/main.js:57:9	Expected 'exports' at column 17, not column 9.
+./app/scripts/main.js:58:7	Expected '}' at column 13, not column 7.
+./app/scripts/main.js:59:7	Expected 'minivents' at column 13, not column 7.
+./app/scripts/main.js:60:9	Expected 'exports' at column 17, not column 9.
+./app/scripts/main.js:61:7	Expected '}' at column 13, not column 7.
+./app/scripts/main.js:62:5	Expected '}' at column 9, not column 5.
+./app/scripts/main.js:63:3	Expected '}' at column 5, not column 3.
+./app/scripts/main.js:63:3	Too many errors. (67% scanned).
+FAIL	./app/scripts/modules/core/elements/Archer.js (51)
+./app/scripts/modules/core/elements/Archer.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:6:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:6:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:8:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:8:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:9:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:9:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:10:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:10:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:11:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:11:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:12:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:12:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:20:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Archer.js:20:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:21:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:22:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:23:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:25:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:26:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:26:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:28:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:28:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Archer.js:29:7	Expected 'height' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:30:7	Expected 'width' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:32:7	Expected 'collect' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:33:7	Expected 'isHit' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:35:7	Expected 'isInTheAir' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:36:7	Expected 'isFalling' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:37:7	Expected 'isJumping' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:38:7	Expected 'isDrawing' at column 21, not column 7.
+./app/scripts/modules/core/elements/Archer.js:39:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/elements/Archer.js:40:5	Expected 'params' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:41:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:43:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:45:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:47:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:48:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Archer.js:49:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:50:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:51:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:52:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:53:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:54:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:55:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Archer.js:55:7	Too many errors. (24% scanned).
+FAIL	./app/scripts/modules/core/elements/Arrow.js (51)
+./app/scripts/modules/core/elements/Arrow.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:6:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:6:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:8:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:8:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:9:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:9:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:10:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:10:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:11:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:11:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:17:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Arrow.js:17:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Arrow.js:18:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:20:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:21:7	Expected 'width' at column 21, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:22:7	Expected 'height' at column 21, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:24:7	Expected 'collected' at column 21, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:25:7	Expected 'isPlant' at column 21, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:27:7	Expected 'isMortal' at column 21, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:28:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:29:5	Expected 'params' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:30:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:32:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:34:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:36:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:38:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:41:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:42:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:43:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:44:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:45:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:46:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:47:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:48:5	Expected ')' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:50:5	Expected 'utils' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:57:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:58:7	Expected 'var' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:59:7	Expected 'launch' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:60:7	Expected 'this' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:61:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:63:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:64:7	Expected 'utils' at column 17, not column 7.
+./app/scripts/modules/core/elements/Arrow.js:65:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:68:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Arrow.js:68:5	Too many errors. (90% scanned).
+FAIL	./app/scripts/modules/core/elements/Map.js (38)
+./app/scripts/modules/core/elements/Map.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Map.js:6:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:6:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Map.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Map.js:8:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:8:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Map.js:14:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/elements/Map.js:14:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/elements/Map.js:15:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:16:5	Expected 'if' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:17:7	Expected 'this' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:18:7	Expected 'this' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:19:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:21:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:22:7	Expected 'var' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:23:9	Expected 'x' at column 25, not column 9.
+./app/scripts/modules/core/elements/Map.js:24:9	Expected 'y' at column 25, not column 9.
+./app/scripts/modules/core/elements/Map.js:25:9	Expected 'height' at column 25, not column 9.
+./app/scripts/modules/core/elements/Map.js:26:9	Expected 'width' at column 25, not column 9.
+./app/scripts/modules/core/elements/Map.js:27:9	Expected 'unitBlockSize' at column 25, not column 9.
+./app/scripts/modules/core/elements/Map.js:28:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/core/elements/Map.js:29:7	Expected 'this' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:30:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:34:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:35:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:36:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:37:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:38:7	Expected 'Behaviors' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:39:5	Expected ')' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:41:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:42:7	Expected 'utils' at column 17, not column 7.
+./app/scripts/modules/core/elements/Map.js:43:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/elements/Map.js:45:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/elements/Map.js:47:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/core/field.js (23)
+./app/scripts/modules/core/field.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/field.js:10:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/field.js:11:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/field.js:12:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/field.js:13:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/field.js:15:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/field.js:16:7	Expected 'return' at column 17, not column 7.
+./app/scripts/modules/core/field.js:17:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/field.js:19:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/field.js:20:7	Expected 'var' at column 17, not column 7.
+./app/scripts/modules/core/field.js:21:7	Expected 'if' at column 17, not column 7.
+./app/scripts/modules/core/field.js:22:9	Expected 'value' at column 21, not column 9.
+./app/scripts/modules/core/field.js:23:9	Expected 'this' at column 21, not column 9.
+./app/scripts/modules/core/field.js:24:11	Expected 'old' at column 25, not column 11.
+./app/scripts/modules/core/field.js:25:11	Expected 'new' at column 25, not column 11.
+./app/scripts/modules/core/field.js:26:9	Expected '}' at column 21, not column 9.
+./app/scripts/modules/core/field.js:27:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/field.js:28:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/field.js:34:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/field.js:35:7	Expected 'this' at column 17, not column 7.
+./app/scripts/modules/core/field.js:36:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/field.js:37:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/field.js:38:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/core/game.js (51)
+./app/scripts/modules/core/game.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/game.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:6:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:6:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:8:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:8:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:9:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:9:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:10:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:10:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:12:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:12:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:18:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/game.js:18:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:19:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/game.js:20:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/game.js:26:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/game.js:26:9	Unexpected dangling '_' in '_addMap'.
+./app/scripts/modules/core/game.js:27:7	Expected 'var' at column 21, not column 7.
+./app/scripts/modules/core/game.js:28:7	Expected 'utils' at column 21, not column 7.
+./app/scripts/modules/core/game.js:29:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/game.js:36:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/game.js:36:9	Unexpected dangling '_' in '_addArcher'.
+./app/scripts/modules/core/game.js:36:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:37:7	Expected 'var' at column 21, not column 7.
+./app/scripts/modules/core/game.js:38:9	Expected 'x' at column 29, not column 9.
+./app/scripts/modules/core/game.js:39:9	Expected 'y' at column 29, not column 9.
+./app/scripts/modules/core/game.js:40:7	Expected '}' at column 25, not column 7.
+./app/scripts/modules/core/game.js:41:7	Expected 'utils' at column 21, not column 7.
+./app/scripts/modules/core/game.js:43:7	Expected 'this' at column 21, not column 7.
+./app/scripts/modules/core/game.js:44:9	Expected 'looser' at column 25, not column 9.
+./app/scripts/modules/core/game.js:45:11	Expected 'x' at column 29, not column 11.
+./app/scripts/modules/core/game.js:46:11	Expected 'y' at column 29, not column 11.
+./app/scripts/modules/core/game.js:47:9	Expected '}' at column 25, not column 9.
+./app/scripts/modules/core/game.js:48:9	Expected 'utils' at column 25, not column 9.
+./app/scripts/modules/core/game.js:49:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/core/game.js:51:7	Expected 'return' at column 21, not column 7.
+./app/scripts/modules/core/game.js:52:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/game.js:59:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/game.js:59:9	Unexpected dangling '_' in '_releaseArrow'.
+./app/scripts/modules/core/game.js:59:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:60:7	Expected 'var' at column 21, not column 7.
+./app/scripts/modules/core/game.js:61:9	Expected '(' at column 29, not column 9.
+./app/scripts/modules/core/game.js:62:7	Expected 'var' at column 21, not column 7.
+./app/scripts/modules/core/game.js:62:11	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/game.js:63:9	Expected 'x' at column 29, not column 9.
+./app/scripts/modules/core/game.js:64:9	Expected 'y' at column 29, not column 9.
+./app/scripts/modules/core/game.js:65:9	Expected 'angle' at column 29, not column 9.
+./app/scripts/modules/core/game.js:65:9	Too many errors. (52% scanned).
+FAIL	./app/scripts/modules/core/models/Archer.js (34)
+./app/scripts/modules/core/models/Archer.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/models/Archer.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/models/Archer.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/models/Archer.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/models/Archer.js:11:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/models/Archer.js:11:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/models/Archer.js:12:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:13:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:14:7	Expected 'amount' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:15:7	Expected 'isEmpty' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:16:9	Expected 'return' at column 21, not column 9.
+./app/scripts/modules/core/models/Archer.js:17:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:18:7	Expected 'pick' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:19:9	Expected 'if' at column 21, not column 9.
+./app/scripts/modules/core/models/Archer.js:20:11	Expected 'this' at column 25, not column 11.
+./app/scripts/modules/core/models/Archer.js:20:22	Unexpected '--'.
+./app/scripts/modules/core/models/Archer.js:21:11	Expected 'return' at column 25, not column 11.
+./app/scripts/modules/core/models/Archer.js:22:9	Expected '}' at column 21, not column 9.
+./app/scripts/modules/core/models/Archer.js:23:9	Expected 'return' at column 21, not column 9.
+./app/scripts/modules/core/models/Archer.js:24:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:25:7	Expected 'collect' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:26:9	Expected 'this' at column 21, not column 9.
+./app/scripts/modules/core/models/Archer.js:26:20	Unexpected '++'.
+./app/scripts/modules/core/models/Archer.js:27:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:28:7	Expected 'full' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:29:9	Expected 'this' at column 21, not column 9.
+./app/scripts/modules/core/models/Archer.js:30:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/models/Archer.js:31:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:32:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:33:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:34:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:39:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/Archer.js:40:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/models/Archer.js:42:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/core/renderers.js (19)
+./app/scripts/modules/core/renderers.js:2:2	Unexpected character '(space)'.
+./app/scripts/modules/core/renderers.js:3:3	Missing 'use strict' statement.
+./app/scripts/modules/core/renderers.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/renderers.js:10:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/renderers.js:10:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/renderers.js:11:5	Expected 'pixi' at column 13, not column 5.
+./app/scripts/modules/core/renderers.js:12:7	Expected 'el' at column 17, not column 7.
+./app/scripts/modules/core/renderers.js:13:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/renderers.js:14:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/renderers.js:15:7	Expected 'meta' at column 17, not column 7.
+./app/scripts/modules/core/renderers.js:16:7	Expected 'styles' at column 17, not column 7.
+./app/scripts/modules/core/renderers.js:17:9	Expected 'convex-polygon' at column 21, not column 9.
+./app/scripts/modules/core/renderers.js:18:11	Expected 'lineWidth' at column 25, not column 11.
+./app/scripts/modules/core/renderers.js:19:11	Expected 'alpha' at column 25, not column 11.
+./app/scripts/modules/core/renderers.js:20:9	Expected '}' at column 21, not column 9.
+./app/scripts/modules/core/renderers.js:21:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/renderers.js:22:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/renderers.js:23:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/renderers.js:25:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/core/models/maps/TwilightSpire.js (51)
+./app/scripts/modules/core/models/maps/TwilightSpire.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:8:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:9:7	Expected 'green' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:10:9	Expected 'x' at column 21, not column 9.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:11:9	Expected 'y' at column 21, not column 9.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:12:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:13:7	Expected 'red' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:14:9	Expected 'x' at column 21, not column 9.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:15:9	Expected 'y' at column 21, not column 9.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:16:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:17:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:19:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:20:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:21:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:22:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:23:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:24:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:25:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:26:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:27:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:28:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:29:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:30:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:31:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:32:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:33:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:34:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:35:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:36:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:37:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:38:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:39:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:40:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:41:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:42:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:43:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:44:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:45:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:46:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:47:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:48:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:49:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:50:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:51:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:52:7	Expected 'width' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:53:7	Expected 'height' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:54:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:55:7	Expected 'x' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:56:7	Expected 'y' at column 17, not column 7.
+./app/scripts/modules/core/models/maps/TwilightSpire.js:56:7	Too many errors. (25% scanned).
+FAIL	./app/scripts/modules/core/views/archer.js (20)
+./app/scripts/modules/core/views/archer.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/views/archer.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/archer.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/archer.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/archer.js:12:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/archer.js:12:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/archer.js:13:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/archer.js:14:7	Expected 'texture' at column 21, not column 7.
+./app/scripts/modules/core/views/archer.js:15:7	Expected 'anchor' at column 21, not column 7.
+./app/scripts/modules/core/views/archer.js:16:9	Expected 'x' at column 25, not column 9.
+./app/scripts/modules/core/views/archer.js:17:9	Expected 'y' at column 25, not column 9.
+./app/scripts/modules/core/views/archer.js:18:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/core/views/archer.js:19:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/views/archer.js:20:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/archer.js:20:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/archer.js:22:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/archer.js:22:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/archer.js:24:5	Expected 'return' at column 13, not column 5.
+./app/scripts/modules/core/views/archer.js:25:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/views/archer.js:27:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/core/utils.js (51)
+./app/scripts/modules/core/utils.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/utils.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/utils.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/utils.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/utils.js:11:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/utils.js:11:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/utils.js:16:5	Expected 'add' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:17:7	Expected 'if' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:18:9	Expected 'world' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:19:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:20:7	Expected 'if' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:21:9	Expected 'world' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:22:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:23:7	Expected 'if' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:24:9	Expected 'world' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:25:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:26:7	Expected 'if' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:27:9	Expected 'renderers' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:28:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:29:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:36:5	Expected 'remove' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:37:7	Expected 'element' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:37:20	Unexpected dangling '_' in '_world'.
+./app/scripts/modules/core/utils.js:38:7	Expected 'renderers' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:39:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:47:5	Expected 'updateBehaviors' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:48:7	Expected 'behaviors' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:49:9	Expected 'var' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:49:33	Unexpected dangling '_' in '_targets'.
+./app/scripts/modules/core/utils.js:49:71	Unexpected dangling '_' in '_targets'.
+./app/scripts/modules/core/utils.js:50:9	Expected 'targets' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:51:9	Expected 'behavior' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:52:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:53:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:67:5	Expected 'changeView' at column 13, not column 5.
+./app/scripts/modules/core/utils.js:68:7	Expected 'var' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:69:7	Expected 'var' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:69:11	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/utils.js:70:7	Expected 'switch' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:71:7	Expected 'case' at column 17, not column 7.
+./app/scripts/modules/core/utils.js:72:9	Expected 'if' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:73:11	Expected 'var' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:73:15	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/utils.js:74:11	Expected 'elementTarget' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:75:9	Expected '}' at column 21, not column 9.
+./app/scripts/modules/core/utils.js:76:11	Expected 'newView' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:77:11	Expected 'elementTarget' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:79:11	Expected 'elementTarget' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:81:11	Expected 'renderers' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:82:11	Expected 'renderers' at column 25, not column 11.
+./app/scripts/modules/core/utils.js:82:11	Too many errors. (78% scanned).
+FAIL	./app/scripts/modules/core/views/arrow.js (20)
+./app/scripts/modules/core/views/arrow.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/views/arrow.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/arrow.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/arrow.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/arrow.js:12:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/arrow.js:12:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/arrow.js:13:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/arrow.js:14:7	Expected 'texture' at column 21, not column 7.
+./app/scripts/modules/core/views/arrow.js:15:7	Expected 'anchor' at column 21, not column 7.
+./app/scripts/modules/core/views/arrow.js:16:9	Expected 'x' at column 25, not column 9.
+./app/scripts/modules/core/views/arrow.js:17:9	Expected 'y' at column 25, not column 9.
+./app/scripts/modules/core/views/arrow.js:18:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/core/views/arrow.js:19:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/views/arrow.js:21:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/arrow.js:21:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/arrow.js:23:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/arrow.js:23:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/arrow.js:25:5	Expected 'return' at column 13, not column 5.
+./app/scripts/modules/core/views/arrow.js:26:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/views/arrow.js:28:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/core/views/maps/twilightSpire.js (20)
+./app/scripts/modules/core/views/maps/twilightSpire.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/core/views/maps/twilightSpire.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/maps/twilightSpire.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/maps/twilightSpire.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/maps/twilightSpire.js:12:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/core/views/maps/twilightSpire.js:12:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/maps/twilightSpire.js:13:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/maps/twilightSpire.js:14:7	Expected 'texture' at column 21, not column 7.
+./app/scripts/modules/core/views/maps/twilightSpire.js:15:7	Expected 'anchor' at column 21, not column 7.
+./app/scripts/modules/core/views/maps/twilightSpire.js:16:9	Expected 'x' at column 25, not column 9.
+./app/scripts/modules/core/views/maps/twilightSpire.js:17:9	Expected 'y' at column 25, not column 9.
+./app/scripts/modules/core/views/maps/twilightSpire.js:18:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/core/views/maps/twilightSpire.js:19:5	Expected '}' at column 17, not column 5.
+./app/scripts/modules/core/views/maps/twilightSpire.js:20:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/maps/twilightSpire.js:20:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/maps/twilightSpire.js:22:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/core/views/maps/twilightSpire.js:22:9	Combine this with the previous 'var' statement.
+./app/scripts/modules/core/views/maps/twilightSpire.js:24:5	Expected 'return' at column 13, not column 5.
+./app/scripts/modules/core/views/maps/twilightSpire.js:25:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/core/views/maps/twilightSpire.js:27:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/inputs/keyboardMappings.js (51)
+./app/scripts/modules/inputs/keyboardMappings.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/inputs/keyboardMappings.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/inputs/keyboardMappings.js:5:5	Expected 'red' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMappings.js:6:7	Expected 'button' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:7:9	Expected 'action' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:8:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:9:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:10:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:11:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:12:9	Expected 'action' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:13:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:14:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:15:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:16:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:17:9	Expected 'action' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:18:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:19:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:20:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:21:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:21:8	Unexpected ','.
+./app/scripts/modules/inputs/keyboardMappings.js:22:7	Expected 'joystick' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:23:9	Expected 'axe' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:24:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:25:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:26:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:27:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:28:9	Expected 'axe' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:29:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:30:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:31:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:32:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:33:9	Expected 'axe' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:34:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:35:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:36:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:37:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:38:9	Expected 'axe' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:39:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:40:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:41:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:42:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:43:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMappings.js:44:5	Expected 'green' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMappings.js:45:7	Expected 'button' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:46:9	Expected 'action' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:47:9	Expected 'key' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:48:9	Expected 'max' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:49:9	Expected 'min' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:50:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMappings.js:51:9	Expected 'action' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMappings.js:51:9	Too many errors. (58% scanned).
+FAIL	./app/scripts/modules/inputs/keyboardMapper.js (28)
+./app/scripts/modules/inputs/keyboardMapper.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/inputs/keyboardMapper.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/inputs/keyboardMapper.js:36:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/inputs/keyboardMapper.js:36:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/inputs/keyboardMapper.js:37:5	Expected 'if' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMapper.js:38:7	Expected 'mapping' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMapper.js:39:9	Expected 'keyboardJS' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMapper.js:40:11	Expected 'function' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:41:13	Expected 'virtualGamePad' at column 29, not column 13.
+./app/scripts/modules/inputs/keyboardMapper.js:42:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:43:11	Expected 'function' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:44:13	Expected 'virtualGamePad' at column 29, not column 13.
+./app/scripts/modules/inputs/keyboardMapper.js:45:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:46:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMapper.js:47:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMapper.js:49:5	Expected 'if' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMapper.js:50:7	Expected 'mapping' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMapper.js:51:9	Expected 'keyboardJS' at column 21, not column 9.
+./app/scripts/modules/inputs/keyboardMapper.js:52:11	Expected 'function' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:53:13	Expected 'virtualGamePad' at column 29, not column 13.
+./app/scripts/modules/inputs/keyboardMapper.js:54:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:55:11	Expected 'function' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:56:13	Expected 'virtualGamePad' at column 29, not column 13.
+./app/scripts/modules/inputs/keyboardMapper.js:57:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/inputs/keyboardMapper.js:58:7	Expected '}' at column 17, not column 7.
+./app/scripts/modules/inputs/keyboardMapper.js:59:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/inputs/keyboardMapper.js:60:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/inputs/keyboardMapper.js:62:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/inputs/virtualGamePad.js (19)
+./app/scripts/modules/inputs/virtualGamePad.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/inputs/virtualGamePad.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/inputs/virtualGamePad.js:11:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/inputs/virtualGamePad.js:11:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/inputs/virtualGamePad.js:12:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:13:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:15:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:17:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:18:7	Expected 'horizontal' at column 17, not column 7.
+./app/scripts/modules/inputs/virtualGamePad.js:19:7	Expected 'vertical' at column 17, not column 7.
+./app/scripts/modules/inputs/virtualGamePad.js:20:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:22:5	Expected 'this' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:23:7	Expected 'jump' at column 17, not column 7.
+./app/scripts/modules/inputs/virtualGamePad.js:24:7	Expected 'fire' at column 17, not column 7.
+./app/scripts/modules/inputs/virtualGamePad.js:25:7	Expected 'start' at column 17, not column 7.
+./app/scripts/modules/inputs/virtualGamePad.js:26:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:28:5	Expected 'game' at column 13, not column 5.
+./app/scripts/modules/inputs/virtualGamePad.js:29:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/inputs/virtualGamePad.js:31:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/physics/worldHelper.js (25)
+./app/scripts/modules/physics/worldHelper.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/physics/worldHelper.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/worldHelper.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/worldHelper.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/worldHelper.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/worldHelper.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/worldHelper.js:8:5	Expected 'init' at column 13, not column 5.
+./app/scripts/modules/physics/worldHelper.js:9:7	Expected 'var' at column 17, not column 7.
+./app/scripts/modules/physics/worldHelper.js:10:9	Expected 'timestep' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:11:9	Expected 'maxIPF' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:12:9	Expected 'integrator' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:13:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/physics/worldHelper.js:14:9	Expected 'world' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:16:9	Expected 'world' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:17:11	Expected 'world' at column 29, not column 11.
+./app/scripts/modules/physics/worldHelper.js:18:9	Expected '}' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:20:9	Expected 'Physics' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:21:11	Expected 'world' at column 29, not column 11.
+./app/scripts/modules/physics/worldHelper.js:22:9	Expected '}' at column 25, not column 9.
+./app/scripts/modules/physics/worldHelper.js:23:7	Expected '}' at column 21, not column 7.
+./app/scripts/modules/physics/worldHelper.js:25:7	Expected 'return' at column 17, not column 7.
+./app/scripts/modules/physics/worldHelper.js:26:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/physics/worldHelper.js:26:6	Unexpected ','.
+./app/scripts/modules/physics/worldHelper.js:27:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/physics/worldHelper.js:28:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/physics/behaviors.js (51)
+./app/scripts/modules/physics/behaviors.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/behaviors.js:6:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:6:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/behaviors.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/behaviors.js:9:3	Expected 'Physics' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:10:5	Expected 'return' at column 9, not column 5.
+./app/scripts/modules/physics/behaviors.js:11:7	Expected 'init' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:12:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:13:11	Expected 'aabb' at column 25, not column 11.
+./app/scripts/modules/physics/behaviors.js:14:11	Expected 'channel' at column 25, not column 11.
+./app/scripts/modules/physics/behaviors.js:15:11	Expected 'restitution' at column 25, not column 11.
+./app/scripts/modules/physics/behaviors.js:16:11	Expected 'cof' at column 25, not column 11.
+./app/scripts/modules/physics/behaviors.js:17:9	Expected '}' at column 21, not column 9.
+./app/scripts/modules/physics/behaviors.js:19:9	Expected 'parent' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:20:7	Expected '}' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:22:7	Expected 'connect' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:23:9	Expected 'world' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:24:9	Expected 'world' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:25:7	Expected '}' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:27:7	Expected 'disconnect' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:28:9	Expected 'world' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:29:9	Expected 'world' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:30:7	Expected '}' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:32:7	Expected 'checkCollisions' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:33:9	Expected 'data' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:34:11	Expected 'var' at column 21, not column 11.
+./app/scripts/modules/physics/behaviors.js:36:11	Expected 'if' at column 21, not column 11.
+./app/scripts/modules/physics/behaviors.js:37:13	Expected 'var' at column 25, not column 13.
+./app/scripts/modules/physics/behaviors.js:37:17	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/behaviors.js:38:13	Expected 'elementMoving' at column 25, not column 13.
+./app/scripts/modules/physics/behaviors.js:39:11	Expected '}' at column 21, not column 11.
+./app/scripts/modules/physics/behaviors.js:41:11	Expected 'if' at column 21, not column 11.
+./app/scripts/modules/physics/behaviors.js:42:13	Expected 'var' at column 25, not column 13.
+./app/scripts/modules/physics/behaviors.js:42:17	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/behaviors.js:43:13	Expected 'elementMoving' at column 25, not column 13.
+./app/scripts/modules/physics/behaviors.js:44:11	Expected '}' at column 21, not column 11.
+./app/scripts/modules/physics/behaviors.js:45:9	Expected '}' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:46:7	Expected '}' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:47:5	Expected '}' at column 9, not column 5.
+./app/scripts/modules/physics/behaviors.js:48:3	Expected '}' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:50:3	Expected 'Physics' at column 5, not column 3.
+./app/scripts/modules/physics/behaviors.js:51:5	Expected 'return' at column 9, not column 5.
+./app/scripts/modules/physics/behaviors.js:52:7	Expected 'init' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:53:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:54:9	Expected 'parent' at column 17, not column 9.
+./app/scripts/modules/physics/behaviors.js:55:7	Expected '}' at column 13, not column 7.
+./app/scripts/modules/physics/behaviors.js:55:7	Too many errors. (19% scanned).
+FAIL	./app/scripts/modules/physics/bodies.js (51)
+./app/scripts/modules/physics/bodies.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bodies.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bodies.js:8:5	Expected 'x' at column 13, not column 5.
+./app/scripts/modules/physics/bodies.js:9:5	Expected 'y' at column 13, not column 5.
+./app/scripts/modules/physics/bodies.js:10:5	Expected 'angle' at column 13, not column 5.
+./app/scripts/modules/physics/bodies.js:11:5	Expected 'vx' at column 13, not column 5.
+./app/scripts/modules/physics/bodies.js:12:5	Expected 'vy' at column 13, not column 5.
+./app/scripts/modules/physics/bodies.js:13:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/physics/bodies.js:15:3	Expected 'Physics' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:16:5	Expected 'return' at column 9, not column 5.
+./app/scripts/modules/physics/bodies.js:17:7	Expected 'init' at column 13, not column 7.
+./app/scripts/modules/physics/bodies.js:18:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:19:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:19:13	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bodies.js:20:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:20:13	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bodies.js:21:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:21:13	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bodies.js:22:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:22:13	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bodies.js:23:11	Expected 'restitution' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:24:11	Expected 'cof' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:25:11	Expected 'mass' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:26:11	Expected 'treatment' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:27:11	Expected 'vertices' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:28:13	Expected 'x' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:29:13	Expected 'y' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:30:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:31:13	Expected 'x' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:32:13	Expected 'y' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:33:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:34:13	Expected 'x' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:35:13	Expected 'y' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:36:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:37:13	Expected 'x' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:38:13	Expected 'y' at column 29, not column 13.
+./app/scripts/modules/physics/bodies.js:39:11	Expected '}' at column 25, not column 11.
+./app/scripts/modules/physics/bodies.js:40:9	Expected '}' at column 21, not column 9.
+./app/scripts/modules/physics/bodies.js:42:9	Expected 'parent' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:43:7	Expected '}' at column 13, not column 7.
+./app/scripts/modules/physics/bodies.js:44:5	Expected '}' at column 9, not column 5.
+./app/scripts/modules/physics/bodies.js:45:3	Expected '}' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:47:3	Expected 'Physics' at column 5, not column 3.
+./app/scripts/modules/physics/bodies.js:48:5	Expected 'return' at column 9, not column 5.
+./app/scripts/modules/physics/bodies.js:49:7	Expected 'init' at column 13, not column 7.
+./app/scripts/modules/physics/bodies.js:50:9	Expected 'var' at column 17, not column 9.
+./app/scripts/modules/physics/bodies.js:50:9	Too many errors. (37% scanned).
+FAIL	./app/scripts/modules/physics/bounds.js (17)
+./app/scripts/modules/physics/bounds.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bounds.js:7:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:7:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bounds.js:8:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:8:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bounds.js:9:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:9:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bounds.js:10:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:10:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bounds.js:12:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/physics/bounds.js:12:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/physics/bounds.js:13:5	Expected 'frame' at column 13, not column 5.
+./app/scripts/modules/physics/bounds.js:14:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/physics/bounds.js:16:3	Expected 'return' at column 5, not column 3.
+FAIL	./app/scripts/modules/pixi/spriteCache.js (12)
+./app/scripts/modules/pixi/spriteCache.js:2:3	Expected 'use strict' at column 5, not column 3.
+./app/scripts/modules/pixi/spriteCache.js:4:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/pixi/spriteCache.js:5:3	Expected 'var' at column 5, not column 3.
+./app/scripts/modules/pixi/spriteCache.js:5:7	Combine this with the previous 'var' statement.
+./app/scripts/modules/pixi/spriteCache.js:7:5	Expected 'var' at column 13, not column 5.
+./app/scripts/modules/pixi/spriteCache.js:9:5	Expected 'assetLoader' at column 13, not column 5.
+./app/scripts/modules/pixi/spriteCache.js:10:7	Expected 'console' at column 17, not column 7.
+./app/scripts/modules/pixi/spriteCache.js:11:5	Expected '}' at column 13, not column 5.
+./app/scripts/modules/pixi/spriteCache.js:13:5	Expected 'assetLoader' at column 13, not column 5.
+./app/scripts/modules/pixi/spriteCache.js:14:5	Expected 'assetLoader' at column 13, not column 5.
+./app/scripts/modules/pixi/spriteCache.js:15:3	Expected '}' at column 9, not column 3.
+./app/scripts/modules/pixi/spriteCache.js:16:3	Expected 'return' at column 5, not column 3.
+
+# JSLint failed, 734 violations in 21.  21 files scanned.

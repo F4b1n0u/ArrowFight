@@ -1,18 +1,17 @@
-'use strict';
+define(function (require) {
+  'use strict';
 
-define( function(require) {
-	var PIXI = require( 'pixi' );
-	var SpriteCache = function( callback ) {
-		var spriteSheetLoader = new PIXI.SpriteSheetLoader( 'images/archers/archer_green.json' );
-		spriteSheetLoader.on( 'loaded', function() {
-			var spriteSheetLoader = new PIXI.SpriteSheetLoader( 'images/archers/archer_red.json' );
-			spriteSheetLoader.on( 'loaded', callback );
-			spriteSheetLoader.load();
-		} );
-		spriteSheetLoader.load();
-	};
+  var PIXI = require('pixi');
+  var spriteCache = function (callback) {
 
-	return SpriteCache;
-} );
+    var assetLoader = new PIXI.AssetLoader(['images/archers/archer_green.json', 'images/archers/archer_red.json']);
 
-	
+    assetLoader.on('onProgress', function () {
+      console.log('loading ...');
+    });
+
+    assetLoader.on('onComplete', callback);
+    assetLoader.load();
+  };
+  return spriteCache;
+});
