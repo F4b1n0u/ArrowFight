@@ -5,18 +5,18 @@
     baseUrl: './',
 
     paths: {
-      jquery: '../bower_components/jquery/dist/jquery',
-      underscore: '../bower_components/underscore/underscore',
-      pixi: '../bower_components/pixi.js/bin/pixi.dev',
-      keyboard: '../bower_components/KeyboardJS/keyboard',
+      jquery: './components/jquery/dist/jquery',
+      underscore: './components/underscore/underscore',
+      pixi: './components/pixi.js/bin/pixi.dev',
+      keyboard: './components/KeyboardJS/keyboard',
 
       minivents: './libs/allouis-minivents/minivents',
 
-      archerElement: './scripts/modules/core/elements/Archer',
-      arrowElement: './scripts/modules/core/elements/Arrow',
-      mapElement: './scripts/modules/core/elements/Map',
+      archerElement: './scripts/modules/core/elements/archer',
+      arrowElement: './scripts/modules/core/elements/arrow',
+      mapElement: './scripts/modules/core/elements/map',
 
-      archerModels: './scripts/modules/core/models/Archer',
+      archerModels: './scripts/modules/core/models/archer',
       twilightSpireMapModels: './scripts/modules/core/models/maps/twilightSpire',
 
       archerView: './scripts/modules/core/views/archer',
@@ -42,7 +42,7 @@
 
     packages: [{
       name: 'physicsjs',
-      location: '../bower_components/PhysicsJS/dist/',
+      location: './components/PhysicsJS/dist/',
       main: 'physicsjs-full-0.6.0'
     }],
 
@@ -78,7 +78,7 @@ define(function (require) {
 
   var mapId = 'TwilightSpire';
 
-  var loadGame = function () {
+  function loadGame() {
     var game = new Game(mapId);
 
     var teams = ['green', 'red'];
@@ -86,7 +86,7 @@ define(function (require) {
       var virtualGamePad = new VirtualGamePad(game, team);
       keyboardMapper(virtualGamePad, KeyboardMappings[team]);
     });
-  };
+  }
 
   spriteCache(loadGame);
 });

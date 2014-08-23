@@ -28,7 +28,8 @@
     "time-grunt": "~0.3.1",
     "jshint-stylish": "~0.4.0",
     "optipng-bin": "~1.0.0",
-    "grunt-jslint": "~1.1.12"
+    "grunt-jslint": "~1.1.12",
+    "grunt-requirejs": "~0.4.2"
   },
   "engines": {
     "node": ">=0.10.0"

@@ -23,7 +23,7 @@ define(function (require) {
       });
 
       return world;
-    },
+    }
   };
   return worldHelper;
 });

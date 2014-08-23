@@ -1,5 +1,5 @@
 define(function (require) {
-  
+
   PIXI = require('pixi');
   var Physics = require('physicsjs');
 

@@ -113,7 +113,7 @@ define(function (require) {
         if (value.new && !Physics.util.ticker.isActive()) {
           Physics.util.ticker.start();
         }
-      }.bind(archer));
+      });
     }.bind(this);
 
     _addMap(mapId);

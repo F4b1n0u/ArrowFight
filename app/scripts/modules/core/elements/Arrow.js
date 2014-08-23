@@ -1,3 +1,4 @@
+
 (define(function (require) {
   'use strict';
 
@@ -62,11 +63,6 @@
 
     this.sandbox.on('body:arrow:collected', function () {
       utils.remove(this);
-    }, this);
-
-
-    this.sandbox.on('body:arrow:isPlant', function () {
-      // TODO stop the arrow
     }, this);
   };
 

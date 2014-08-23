@@ -18,7 +18,7 @@ define(function () {
         key: 'f',
         max: true,
         min: false
-      }, ],
+      }],
       joystick: [{
         axe: 'vertical',
         key: 'z',
@@ -57,7 +57,7 @@ define(function () {
         key: 'm',
         max: true,
         min: false
-      }, ],
+      }],
       joystick: [{
         axe: 'vertical',
         key: 'up',

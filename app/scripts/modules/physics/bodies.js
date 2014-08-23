@@ -111,7 +111,7 @@ define(function (require) {
           }]
         };
         parent.init.call(this, $.extend({}, params));
-      },
+      }
     };
   });
 

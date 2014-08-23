@@ -9,13 +9,15 @@
 
 module.exports = function (grunt) {
 
-  grunt.loadNpmTasks('grunt-jslint');
-
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+
+  grunt.loadNpmTasks('grunt-jslint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-requirejs');
 
   // Configurable paths
   var config = {
@@ -76,19 +78,20 @@ module.exports = function (grunt) {
         open: true,
         livereload: 35729,
         // Change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+        hostname: '0.0.0.0'
       },
       livereload: {
         options: {
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
-              connect().use('/bower_components', connect.static('./bower_components')),
+              connect().use('/components', connect.static('./components')),
               connect.static(config.app)
             ];
           }
         }
       },
+
       test: {
         options: {
           open: false,
@@ -97,7 +100,7 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect.static('test'),
-              connect().use('/bower_components', connect.static('./bower_components')),
+              connect().use('/components', connect.static('./components')),
               connect.static(config.app)
             ];
           }
@@ -126,27 +129,31 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    jslint: { // configure the task
-      // lint your project's client code
+    jslint: {
       client: {
         src: [
           './app/scripts/**/*.js'
         ],
         exclude: [
-          './app/scripts/libs/**/*.js'
+          './app/scripts/libs/**/*.js',
+          './app/scripts/components/**/*.js'
         ],
         directives: {
           browser: true,
-          strict: true,
-          predef: {
+          strict: false,
+          globals: {
             'define': false,
-            'require': false
-          }
+            'require': false,
+            'PIXI': true
+          },
+          indent: 2,
+          vars: true,
+          nomen: true,
+          devel: true,
+          jquery: true,
         },
         options: {
           log: './logs/jslint-report.log',
-          indent: 2,
-          vars: true
         }
       }
     },
@@ -165,7 +172,7 @@ module.exports = function (grunt) {
     sass: {
       options: {
         includePaths: [
-          'bower_components'
+          'components'
         ]
       },
       dist: {
@@ -207,7 +214,7 @@ module.exports = function (grunt) {
     bowerInstall: {
       app: {
         src: ['<%= config.app %>/index.html'],
-        exclude: ['bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js']
+        exclude: ['components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js']
       },
       sass: {
         src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}']
@@ -219,9 +226,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= config.dist %>/scripts/{,*/}*.js',
+            '<%= config.dist %>/scripts/**/*.js',
             '<%= config.dist %>/styles/{,*/}*.css',
-            '<%= config.dist %>/images/{,*/}*.*',
+            '<%= config.dist %>/images/**/*.*',
             '<%= config.dist %>/styles/fonts/{,*/}*.*',
             '<%= config.dist %>/*.{ico,png}'
           ]
@@ -253,7 +260,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/images',
+          cwd: '<%= config.app %>/images/**/*.*',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
           dest: '<%= config.dist %>/images'
         }]
@@ -264,7 +271,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/images',
+          cwd: '<%= config.app %>/images/**/*.*',
           src: '{,*/}*.svg',
           dest: '<%= config.dist %>/images'
         }]
@@ -295,28 +302,54 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //     dist: {
-    //         files: {
-    //             '<%= config.dist %>/styles/main.css': [
-    //                 '.tmp/styles/{,*/}*.css',
-    //                 '<%= config.app %>/styles/{,*/}*.css'
-    //             ]
-    //         }
-    //     }
-    // },
-    // uglify: {
-    //     dist: {
-    //         files: {
-    //             '<%= config.dist %>/scripts/scripts.js': [
-    //                 '<%= config.dist %>/scripts/scripts.js'
-    //             ]
-    //         }
-    //     }
-    // },
-    // concat: {
-    //     dist: {}
-    // },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= config.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css',
+            '<%= config.app %>/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+
+    uglify: {
+      dist: {
+        files: {
+          '<%= config.dist %>/scripts/app.min.js': [
+            '<%= config.app %>/components/jquery/dist/jquery.js',
+            '<%= config.app %>/components/underscore/underscore.js',
+            '<%= config.app %>/components/pixi.js/bin/pixi.dev.js',
+            '<%= config.app %>/components/KeyboardJS/keyboard.js',
+            '<%= config.app %>/libs/allouis-minivents/minivents.js',
+            '<%= config.app %>/scripts/modules/core/elements/archer.js',
+            '<%= config.app %>/scripts/modules/core/elements/arrow.js',
+            '<%= config.app %>/scripts/modules/core/elements/map.js',
+            '<%= config.app %>/scripts/modules/core/models/archer.js',
+            '<%= config.app %>/scripts/modules/core/models/maps/twilightSpire.js',
+            '<%= config.app %>/scripts/modules/core/views/archer.js',
+            '<%= config.app %>/scripts/modules/core/views/arrow.js',
+            '<%= config.app %>/scripts/modules/core/views/maps/twilightSpire.js',
+            '<%= config.app %>/scripts/modules/core/utils.js',
+            '<%= config.app %>/scripts/modules/core/field.js',
+            '<%= config.app %>/scripts/modules/core/game.js',
+            '<%= config.app %>/scripts/modules/core/renderers.js',
+            '<%= config.app %>/scripts/modules/inputs/keyboardMapper.js',
+            '<%= config.app %>/scripts/modules/inputs/keyboardMappings.js',
+            '<%= config.app %>/scripts/modules/inputs/virtualGamePad.js',
+            '<%= config.app %>/scripts/modules/physics/behaviors.js',
+            '<%= config.app %>/scripts/modules/physics/bodies.js',
+            '<%= config.app %>/scripts/modules/physics/bounds.js',
+            '<%= config.app %>/scripts/modules/physics/worldHelper.js',
+            '<%= config.app %>/scripts/modules/pixi/spriteCache.js'
+          ]
+        }
+      }
+    },
+
+    concat: {
+      dist: {}
+    },
 
     // Copies remaining files to places other tasks can use
     copy: {

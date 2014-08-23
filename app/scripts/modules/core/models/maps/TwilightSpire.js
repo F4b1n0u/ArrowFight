@@ -216,7 +216,7 @@
       y: 15,
       width: 1,
       height: 1
-    }, ];
+    }];
   };
 
   return TwilightSpire;

@@ -17,16 +17,16 @@
       },
       pick: function () {
         if (!this.isEmpty()) {
-          this.amount--;
+          this.amount -= 1;
           return true;
         }
         return false;
       },
       collect: function () {
-        this.amount++;
+        this.amount += 1;
       },
       full: function () {
-        this.amount = 3;
+        this.amount = 30;
       }
     };
     this.quiver.full();
