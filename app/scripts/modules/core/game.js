@@ -57,8 +57,8 @@ define(function (require) {
      * @return {[type]}
      */
     var _releaseArrow = function (archer) {
-      var angle =
-        (archer.model.aimVector.get().x === 0 && archer.model.aimVector.get().y === 0) ? archer.model.mainDirection.get().angle() : archer.model.aimVector.get().angle();
+      var aimVectorAngle = archer.body.aimVector.get().angle();
+      var angle = isNaN(aimVectorAngle) ? archer.body.mainDirection.get().angle() : aimVectorAngle;
       var element = new ArrowElement({
         x: archer.body.state.pos.x,
         y: archer.body.state.pos.y,
@@ -80,19 +80,19 @@ define(function (require) {
       var archer = _addArcher(team, this.sandbox);
 
       this.sandbox.on(baseChannel + 'joystick:vertical', function (value) {
-        var aimVectorField = this.model.aimVector;
+        var aimVectorField = this.body.aimVector;
         var aimVector = aimVectorField.get().clone();
         aimVector.y = value.new;
         aimVectorField.set(aimVector);
       }.bind(archer));
 
       this.sandbox.on(baseChannel + 'joystick:horizontal', function (value) {
-        var aimVectorField = this.model.aimVector;
+        var aimVectorField = this.body.aimVector;
         var aimVector = aimVectorField.get().clone();
         aimVector.x = value.new;
         aimVectorField.set(aimVector);
         if (aimVector.x) {
-          this.model.mainDirection.get().x = aimVector.x;
+          this.body.mainDirection.get().x = aimVector.x;
         }
       }.bind(archer));
 

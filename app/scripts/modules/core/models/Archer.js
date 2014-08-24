@@ -26,17 +26,11 @@
         this.amount += 1;
       },
       full: function () {
-        this.amount = 30;
+        this.amount = 4;
       }
     };
     this.quiver.full();
     this.score = new Field(0, sandbox, 'model:archer:score');
-    this.aimVector = new Field(Physics.vector(0, 0), sandbox, 'model:archer:aimVector');
-    /**
-     * [mainDirection use to know in witch direction we should launch an arrow if the user don't design any aime direction {x: 0, y: 0}]
-     * @type {Field}
-     */
-    this.mainDirection = new Field(Physics.vector(1, 0), sandbox, 'model:archer:mainDirection');
   };
 
   return Archer;

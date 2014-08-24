@@ -29,13 +29,18 @@
       height: height,
       width: width,
 
-      collect: new Field(null, this.sandbox, 'body:archer:collect'),
-      isHit: new Field(null, this.sandbox, 'body:archer:isHit'),
+      collect: new Field(null, this.sandbox, 'archer:collect'),
+      isHit: new Field(null, this.sandbox, 'archer:isHit'),
 
-      isInTheAir: new Field(false, this.sandbox, 'body:archer:isInTheAir'),
-      isFalling: new Field(false, this.sandbox, 'body:archer:isFalling'),
-      isJumping: new Field(false, this.sandbox, 'body:archer:isJumping'),
-      isDrawing: new Field(false, this.sandbox, 'body:archer:isDrawing')
+      isInTheAir: new Field(false, this.sandbox, 'archer:isInTheAir'),
+      isFalling: new Field(false, this.sandbox, 'archer:isFalling'),
+      isJumping: new Field(false, this.sandbox, 'archer:isJumping'),
+      isDrawing: new Field(false, this.sandbox, 'archer:isDrawing'),
+      isWalking: new Field(false, this.sandbox, 'archer:isWalking'),
+      isClinging: new Field(false, this.sandbox, 'archer:isClinging'),
+
+      aimVector: new Field(Physics.vector(0, 0), this.sandbox, 'archer:aimVector'),
+      mainDirection: new Field(Physics.vector(1, 0), this.sandbox, 'archer:mainDirection')
     };
     params = $.extend({}, params, options);
     this.body = new Bodies.Archer(params);
@@ -46,6 +51,7 @@
 
     this.behaviors = [];
     this.behaviors.push(
+      Behaviors.walkingMovement,
       Behaviors.touchDetection,
       Behaviors.fallingJumpingDetection,
       Behaviors.collectDetection,
@@ -64,8 +70,7 @@
      */
     this.move = function () {
       if (!this.body.isDrawing.get()) {
-        var direction = this.model.aimVector.get()
-          .x;
+        var direction = this.body.aimVector.get().x;
         this.body.state.vel.x = 0.3 * direction;
       }
     };
@@ -83,22 +88,12 @@
     };
 
     /**
-     * [stop to stop the horizontal movement]
-     * @return {no return}
-     */
-    this.stop = function () {
-      if (!this.body.isInTheAir.get()) {
-        this.body.state.vel.x = 0;
-      }
-    };
-
-    /**
      * [draw to draw the bow]
      * @return {no return}
      */
     this.draw = function () {
       if (!this.body.isDrawing.get()) {
-        this.stop();
+        this.body.isWalking.set(false);
         if (this.model.quiver.pick()) {
           this.body.isDrawing.set(true);
         }
@@ -128,7 +123,7 @@
       this.model.quiver.full();
     };
 
-    this.sandbox.on('body:archer:isFalling', function (value) {
+    this.sandbox.on('archer:isFalling', function (value) {
       if (value.new) {
         utils.changeView(this, {
           type: 'sprite',
@@ -142,13 +137,10 @@
       }
     }, this);
 
-    this.sandbox.on('body:archer:isDrawing', function (value) {
+    this.sandbox.on('archer:isDrawing', function (value) {
       if (value.new) {
-        this.stop();
-        this.sandbox.emit('model:archer:aimVector', {
-          old: this.model.aimVector.get(),
-          new: this.model.aimVector.get()
-        });
+        this.body.isWalking.set(false);
+        this.body.aimVector.trigger();
       } else {
         utils.changeView(this, {
           type: 'sprite',
@@ -157,9 +149,9 @@
       }
     }, this);
 
-    this.sandbox.on('model:archer:aimVector', function (value) {
+    this.sandbox.on('archer:aimVector', function (value) {
       if (this.body.isDrawing.get()) {
-        var aimVector = this.model.aimVector.get();
+        var aimVector = this.body.aimVector.get();
 
         if (aimVector.y === 0) {
           utils.changeView(this, {
@@ -192,18 +184,18 @@
           }
         }
       } else {
-        this.move();
+        this.body.isWalking.set(true);
         utils.changeView(this, {
           type: 'sprite',
           textureIds: ['archer_' + this.team + '_no_drawing']
         });
       }
-      if (value.new.x !== 0) {
+      if (value && value.new.x !== 0) {
         this.view.scale.x = value.new.x;
       }
     }, this);
 
-    this.sandbox.on('body:archer:isJumping', function (value) {
+    this.sandbox.on('archer:isJumping', function (value) {
       if (value.new) {
         utils.changeView(this, {
           type: 'sprite',
@@ -212,11 +204,20 @@
       }
     }, this);
 
-    this.sandbox.on('body:archer:collect', function () {
+    this.sandbox.on('archer:isClinging', function (value) {
+      if (value.new) {
+        utils.changeView(this, {
+          type: 'sprite',
+          textureIds: ['archer_' + this.team + '_cling']
+        });
+      }
+    }, this);
+
+    this.sandbox.on('archer:collect', function () {
       this.model.quiver.collect();
     }, this);
 
-    this.sandbox.on('body:archer:isHit', function () {
+    this.sandbox.on('archer:isHit', function () {
       utils.removeElement(this);
       sandbox.emit('round:finish:looser', this);
     }, this);

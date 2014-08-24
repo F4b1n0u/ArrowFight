@@ -49,12 +49,12 @@ define(function () {
         min: false
       }, {
         action: 'jump',
-        key: 'p',
+        key: 'c',
         max: true,
         min: false
       }, {
         action: 'fire',
-        key: 'm',
+        key: 'x',
         max: true,
         min: false
       }],

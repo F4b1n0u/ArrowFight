@@ -239,9 +239,27 @@ define(function (require) {
     };
   });
 
+
+  Physics.behavior('walking-movement', function (parent) {
+    return {
+      init: function (options) {
+        var defaults = {};
+        parent.init.call(this, $.extend({}, defaults, options));
+      },
+
+      behave: function () {
+        this.getTargets().forEach(function (body) {
+          if (body.isWalking.get()) {
+            var direction = body.aimVector.get().x;
+            body.state.vel.x = 0.3 * direction;
+          }
+        });
+      }
+    };
+  });
+
   var Behaviors = {
     borderWarp: Physics.behavior('border-warp-behaviour'),
-
     gravity: Physics.behavior('constant-acceleration', {
       acc: {
         x: 0,
@@ -254,18 +272,13 @@ define(function (require) {
         y: 0.002
       }
     }),
-    // gravityArrow: Physics.behavior('gravity-arrow', {
-    //   acc: {
-    //     x: 0,
-    //     y: 0.004
-    //   }
-    // }),
-
     touchDetection: Physics.behavior('touch-detection'),
     fallingJumpingDetection: Physics.behavior('falling-jumping-detection'),
     collectDetection: Physics.behavior('collect-detection'),
     mortalDetection: Physics.behavior('mortal-detection'),
     hitDetection: Physics.behavior('hit-detection'),
+
+    walkingMovement: Physics.behavior('walking-movement'),
 
     bodyImpulseResponse: Physics.behavior('body-impulse-response'),
     bodyCollisionDetection: Physics.behavior('body-collision-detection'),

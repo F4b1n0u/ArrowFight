@@ -1,148 +1,391 @@
 {
-	"frames": {
-		"archer_green_drawing_down": {
-			"filename": "archer_green_drawing_down.png",
-			"frame": {"x":2,"y":2,"w":37,"h":131},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":37,"h":131},
-			"sourceSize": {"w":37,"h":131},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_drawing_down_diag": {
-			"filename": "archer_green_drawing_down_diag.png",
-			"frame": {"x":2,"y":253,"w":90,"h":99},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":90,"h":99},
-			"sourceSize": {"w":90,"h":99},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_drawing_front": {
-			"filename": "archer_green_drawing_front.png",
-			"frame": {"x":2,"y":448,"w":113,"h":57},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":113,"h":57},
-			"sourceSize": {"w":113,"h":57},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_drawing_up": {
-			"filename": "archer_green_drawing_up.png",
-			"frame": {"x":2,"y":135,"w":40,"h":116},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":40,"h":116},
-			"sourceSize": {"w":40,"h":116},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_drawing_up_diag": {
-			"filename": "archer_green_drawing_up_diag.png",
-			"frame": {"x":2,"y":354,"w":90,"h":92},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":90,"h":92},
-			"sourceSize": {"w":90,"h":92},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_climb": {
-			"filename": "archer_green_climb.png",
-			"frame": {"x":56,"y":621,"w":40,"h":55},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":40,"h":55},
-			"sourceSize": {"w":40,"h":55},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		 "archer_green_fall_1": {
-			"filename": "archer_green_fall_1.png",
-			"frame": {"x":44,"y":189,"w":52,"h":58},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":58},
-			"sourceSize": {"w":52,"h":58},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_fall_2": {
-			"filename": "archer_green_fall_2.png",
-			"frame": {"x":41,"y":74,"w":55,"h":48},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":55,"h":48},
-			"sourceSize": {"w":55,"h":48},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_fall_3": {
-			"filename": "archer_green_fall_3.png",
-			"frame": {"x":56,"y":507,"w":52,"h":55},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":55},
-			"sourceSize": {"w":52,"h":55},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_jump_1": {
-			"filename": "archer_green_jump_1.png",
-			"frame": {"x":2,"y":625,"w":51,"h":54},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":51,"h":54},
-			"sourceSize": {"w":51,"h":54},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_jump_2": {
-			"filename": "archer_green_jump_2.png",
-			"frame": {"x":41,"y":2,"w":46,"h":70},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":46,"h":70},
-			"sourceSize": {"w":46,"h":70},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_jump_3": {
-			"filename": "archer_green_jump_3.png",
-			"frame": {"x":44,"y":124,"w":49,"h":63},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":49,"h":63},
-			"sourceSize": {"w":49,"h":63},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_no_drawing": {
-			"filename": "archer_green_no_drawing.png",
-			"frame": {"x":2,"y":507,"w":52,"h":57},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":57},
-			"sourceSize": {"w":52,"h":57},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_walk_1": {
-			"filename": "archer_green_walk_1.png",
-			"frame": {"x":2,"y":566,"w":52,"h":57},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":57},
-			"sourceSize": {"w":52,"h":57},
-			"pivot": {"x":0.5,"y":0.5}
-		},
-		"archer_green_walk_2": {
-			"filename": "archer_green_walk_2.png",
-			"frame": {"x":56,"y":564,"w":52,"h":55},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {"x":0,"y":0,"w":52,"h":55},
-			"sourceSize": {"w":52,"h":55},
-			"pivot": {"x":0.5,"y":0.5}
-		}
-	},
-"meta": {
-	"app": "http://www.codeandweb.com/texturepacker",
-	"version": "1.0",
-	"image": "archer_green.png",
-	"format": "RGBA8888",
-	"size": {"w":117,"h":681},
-	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:09effe239f07dcc2ce85b47b91506a46:2102583f5a6d0a969a544b08349d9e07:e491e07e0e31229514ece22b358ee30a$"
-}
+  "frames": {
+    "archer_green_drawing_down": {
+      "filename": "archer_green_drawing_down.png",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 37,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 37,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 37,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_drawing_down_diag": {
+      "filename": "archer_green_drawing_down_diag.png",
+      "frame": {
+        "x": 2,
+        "y": 253,
+        "w": 90,
+        "h": 99
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 99
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 99
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_drawing_front": {
+      "filename": "archer_green_drawing_front.png",
+      "frame": {
+        "x": 2,
+        "y": 448,
+        "w": 113,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 113,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 113,
+        "h": 57
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_drawing_up": {
+      "filename": "archer_green_drawing_up.png",
+      "frame": {
+        "x": 2,
+        "y": 135,
+        "w": 40,
+        "h": 116
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 116
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_drawing_up_diag": {
+      "filename": "archer_green_drawing_up_diag.png",
+      "frame": {
+        "x": 2,
+        "y": 354,
+        "w": 90,
+        "h": 92
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 92
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_cling": {
+      "filename": "archer_green_cling.png",
+      "frame": {
+        "x": 56,
+        "y": 621,
+        "w": 40,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 55
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_fall_1": {
+      "filename": "archer_green_fall_1.png",
+      "frame": {
+        "x": 44,
+        "y": 189,
+        "w": 52,
+        "h": 58
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 58
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_fall_2": {
+      "filename": "archer_green_fall_2.png",
+      "frame": {
+        "x": 41,
+        "y": 74,
+        "w": 55,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_fall_3": {
+      "filename": "archer_green_fall_3.png",
+      "frame": {
+        "x": 56,
+        "y": 507,
+        "w": 52,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 55
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_jump_1": {
+      "filename": "archer_green_jump_1.png",
+      "frame": {
+        "x": 2,
+        "y": 625,
+        "w": 51,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 54
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_jump_2": {
+      "filename": "archer_green_jump_2.png",
+      "frame": {
+        "x": 41,
+        "y": 2,
+        "w": 46,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 70
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_jump_3": {
+      "filename": "archer_green_jump_3.png",
+      "frame": {
+        "x": 44,
+        "y": 124,
+        "w": 49,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 63
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_no_drawing": {
+      "filename": "archer_green_no_drawing.png",
+      "frame": {
+        "x": 2,
+        "y": 507,
+        "w": 52,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 57
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_walk_1": {
+      "filename": "archer_green_walk_1.png",
+      "frame": {
+        "x": 2,
+        "y": 566,
+        "w": 52,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 57
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "archer_green_walk_2": {
+      "filename": "archer_green_walk_2.png",
+      "frame": {
+        "x": 56,
+        "y": 564,
+        "w": 52,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 55
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "archer_green.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 117,
+      "h": 681
+    },
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:09effe239f07dcc2ce85b47b91506a46:2102583f5a6d0a969a544b08349d9e07:e491e07e0e31229514ece22b358ee30a$"
+  }
 }
