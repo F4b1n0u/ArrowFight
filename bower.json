@@ -10,7 +10,7 @@
     "pixi.js": "~1.6.1",
     "underscore": null,
     "KeyboardJS": null,
-    "phantomjs": null
+    "minivents": "git://github.com/allouis/minivents"
   },
   "devDependencies": {}
 }

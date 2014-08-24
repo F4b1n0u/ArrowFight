@@ -217,7 +217,7 @@
     }, this);
 
     this.sandbox.on('body:archer:isHit', function () {
-      utils.remove(this);
+      utils.removeElement(this);
       sandbox.emit('round:finish:looser', this);
     }, this);
   };

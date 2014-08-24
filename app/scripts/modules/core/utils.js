@@ -13,7 +13,7 @@
      * [add add an element to the game (body and view in the world)]
      * @param {[Element} element
      */
-    add: function (world, element) {
+    addElement: function (world, element) {
       if (element.hasOwnProperty('body')) {
         world.add(element.body);
       }
@@ -33,7 +33,7 @@
      * @param  {Element} element
      * @return {no return}
      */
-    remove: function (element) {
+    removeElement: function (element) {
       element.body._world.remove(element.body);
       renderers.pixi.stage.removeChild(element.view);
     },
@@ -72,6 +72,9 @@
         if (elementTarget.view instanceof PIXI.Sprite) {
           var texture = PIXI.Texture.fromFrame(params.textureIds[0]);
           elementTarget.view.setTexture(texture);
+          if (params.anchor) {
+            elementTarget.view.anchor = params.anchor;
+          }
         } else if (elementTarget.view instanceof PIXI.MovieClip) {
           newView = PIXI.Sprite.fromFrame(params.textureIds[0]);
           elementTarget.view.stop();

@@ -85,7 +85,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
-              connect().use('/components', connect.static('./components')),
+              connect().use('/libs', connect.static('./libs')),
               connect.static(config.app)
             ];
           }
@@ -100,7 +100,7 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect.static('test'),
-              connect().use('/components', connect.static('./components')),
+              connect().use('/libs', connect.static('./libs')),
               connect.static(config.app)
             ];
           }
@@ -136,7 +136,7 @@ module.exports = function (grunt) {
         ],
         exclude: [
           './app/scripts/libs/**/*.js',
-          './app/scripts/components/**/*.js'
+          './app/scripts/libs/**/*.js'
         ],
         directives: {
           browser: true,
@@ -172,7 +172,7 @@ module.exports = function (grunt) {
     sass: {
       options: {
         includePaths: [
-          'components'
+          'libs'
         ]
       },
       dist: {
@@ -195,7 +195,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Add vendor prefixed styles
+    // // Add vendor prefixed styles
     autoprefixer: {
       options: {
         browsers: ['last 1 version']
@@ -210,11 +210,11 @@ module.exports = function (grunt) {
       }
     },
 
-    // Automatically inject Bower components into the HTML file
+    // Automatically inject Bower libs into the HTML file
     bowerInstall: {
       app: {
         src: ['<%= config.app %>/index.html'],
-        exclude: ['components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js']
+        exclude: ['libs/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js']
       },
       sass: {
         src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}']
@@ -317,10 +317,10 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= config.dist %>/scripts/app.min.js': [
-            '<%= config.app %>/components/jquery/dist/jquery.js',
-            '<%= config.app %>/components/underscore/underscore.js',
-            '<%= config.app %>/components/pixi.js/bin/pixi.dev.js',
-            '<%= config.app %>/components/KeyboardJS/keyboard.js',
+            '<%= config.app %>/libs/jquery/dist/jquery.js',
+            '<%= config.app %>/libs/underscore/underscore.js',
+            '<%= config.app %>/libs/pixi.js/bin/pixi.dev.js',
+            '<%= config.app %>/libs/KeyboardJS/keyboard.js',
             '<%= config.app %>/libs/allouis-minivents/minivents.js',
             '<%= config.app %>/scripts/modules/core/elements/archer.js',
             '<%= config.app %>/scripts/modules/core/elements/arrow.js',
@@ -366,12 +366,6 @@ module.exports = function (grunt) {
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
           ]
-        }, {
-          expand: true,
-          dot: true,
-          cwd: '.',
-          src: ['bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*.*'],
-          dest: '<%= config.dist %>'
         }]
       },
       styles: {
@@ -380,23 +374,6 @@ module.exports = function (grunt) {
         cwd: '<%= config.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      }
-    },
-
-    // Generates a custom Modernizr build that includes only the tests you
-    // reference in your app
-    modernizr: {
-      dist: {
-        devFile: 'bower_components/modernizr/modernizr.js',
-        outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
-        files: {
-          src: [
-            '<%= config.dist %>/scripts/{,*/}*.js',
-            '<%= config.dist %>/styles/{,*/}*.css',
-            '!<%= config.dist %>/scripts/vendor/*'
-          ]
-        },
-        uglify: true
       }
     },
 
@@ -463,7 +440,6 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'copy:dist',
-    'modernizr',
     'rev',
     'usemin',
     'htmlmin'
@@ -471,7 +447,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jslint',
-    'test',
     'build'
   ]);
 };

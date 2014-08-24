@@ -25,7 +25,7 @@ define(function (require) {
      */
     var _addMap = function (mapId) {
       var element = new MapElement(mapId);
-      utils.add(this.world, element);
+      utils.addElement(this.world, element);
     }.bind(this);
 
     /**
@@ -38,14 +38,14 @@ define(function (require) {
         x: 480,
         y: 360
       }, sandbox);
-      utils.add(this.world, element);
+      utils.addElement(this.world, element);
 
       this.sandbox.on('round:finish:looser', function (looser) {
         looser.reset({
           x: 480,
           y: 360
         });
-        utils.add(this, looser);
+        utils.addElement(this, looser);
       }.bind(this.world));
 
       return element;
@@ -65,7 +65,7 @@ define(function (require) {
         angle: angle
       });
       element.launch(0.45);
-      utils.add(this.world, element);
+      utils.addElement(this.world, element);
     }.bind(this);
 
     /**
@@ -96,8 +96,10 @@ define(function (require) {
         }
       }.bind(archer));
 
-      this.sandbox.on(baseChannel + 'button:jump', function () {
-        this.jump();
+      this.sandbox.on(baseChannel + 'button:jump', function (value) {
+        if (value.new && !this.body.isJumping.get()) {
+          this.jump();
+        }
       }.bind(archer));
 
       this.sandbox.on(baseChannel + 'button:fire', function (value) {

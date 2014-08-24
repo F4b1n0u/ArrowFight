@@ -5,12 +5,12 @@
     baseUrl: './',
 
     paths: {
-      jquery: './components/jquery/dist/jquery',
-      underscore: './components/underscore/underscore',
-      pixi: './components/pixi.js/bin/pixi.dev',
-      keyboard: './components/KeyboardJS/keyboard',
+      jquery: './scripts/libs/jquery/dist/jquery',
+      underscore: './scripts/libs/underscore/underscore',
+      pixi: './scripts/libs/pixi.js/bin/pixi.dev',
+      keyboard: './scripts/libs/KeyboardJS/keyboard',
 
-      minivents: './libs/allouis-minivents/minivents',
+      minivents: './scripts/libs/allouis-minivents/minivents',
 
       archerElement: './scripts/modules/core/elements/archer',
       arrowElement: './scripts/modules/core/elements/arrow',
@@ -42,7 +42,7 @@
 
     packages: [{
       name: 'physicsjs',
-      location: './components/PhysicsJS/dist/',
+      location: './scripts/libs/PhysicsJS/dist/',
       main: 'physicsjs-full-0.6.0'
     }],
 

@@ -62,7 +62,7 @@
     };
 
     this.sandbox.on('body:arrow:collected', function () {
-      utils.remove(this);
+      utils.removeElement(this);
     }, this);
   };
 
