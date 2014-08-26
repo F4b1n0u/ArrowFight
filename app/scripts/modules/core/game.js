@@ -17,15 +17,16 @@ define(function (require) {
    */
   var Game = function (mapId) {
     this.world = WorldHelper.init();
-    this.sandbox = new Events();
+    this.map =
+      this.sandbox = new Events();
 
     /**
-     * [_addMap add an element map to the game in function of an id]
+     * [_initMap initialize an element map to the game in function of an id]
      * @param {string} mapId id use for the map, exemple: "TwilightSpire"
      */
-    var _addMap = function (mapId) {
-      var element = new MapElement(mapId);
-      utils.addElement(this.world, element);
+    var _initMap = function (mapId) {
+      this.map = new MapElement(mapId);
+      utils.addElement(this.world, this.map);
     }.bind(this);
 
     /**
@@ -34,17 +35,12 @@ define(function (require) {
      * @param {Event} sandbox
      */
     var _addArcher = function (team) {
-      var element = new ArcherElement(team, this.sandbox, {
-        x: 480,
-        y: 360
-      });
+      var respawn = this.map.getRespawnLocation(team);
+      var element = new ArcherElement(team, this.sandbox, respawn);
       utils.addElement(this.world, element);
 
       this.sandbox.on('round:finish:looser', function (looser) {
-        looser.reset({
-          x: 480,
-          y: 360
-        });
+        looser.reset(respawn);
         utils.addElement(this, looser);
       }.bind(this.world));
 
@@ -118,7 +114,7 @@ define(function (require) {
       });
     }.bind(this);
 
-    _addMap(mapId);
+    _initMap(mapId);
   };
 
   return Game;

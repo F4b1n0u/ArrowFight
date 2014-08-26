@@ -12,6 +12,8 @@
    * @param {string} mapId id use for the map, exemple: "TwilightSpire"
    */
   var Map = function (mapId) {
+    var unitBlockSize = 30;
+
     this.bodies = [];
     if (mapId === "TwilightSpire") {
       this.model = new TwilightSpireMapModels();
@@ -24,12 +26,10 @@
         y: part.y,
         height: part.height,
         width: part.width,
-        unitBlockSize: 30
+        unitBlockSize: unitBlockSize
       };
       this.bodies.push(new Bodies.MapPart(params));
     }.bind(this));
-
-
 
     this.behaviors = [];
     this.behaviors.push(
@@ -41,6 +41,13 @@
     this.bodies.forEach(function (body) {
       utils.updateBehaviors(this.behaviors, body);
     }, this);
+
+    this.getRespawnLocation = function (team) {
+      return {
+        x: this.model.respawns[team].x * unitBlockSize,
+        y: this.model.respawns[team].y * unitBlockSize,
+      };
+    };
 
   };
 
