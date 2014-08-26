@@ -24,7 +24,7 @@
         world.add(element.behaviors);
       }
       if (element.view) {
-        renderers.pixi.stage.addChild(element.view);
+        renderers.pixi.stage.addChild(element.view.sprite);
       }
     },
 
@@ -35,7 +35,7 @@
      */
     removeElement: function (element) {
       element.body._world.remove(element.body);
-      renderers.pixi.stage.removeChild(element.view);
+      renderers.pixi.stage.removeChild(element.view.sprite);
     },
 
     /**
@@ -65,40 +65,40 @@
      * @return {no return}
      */
     changeView: function (elementTarget, params) {
-      var oldView = elementTarget.view;
-      var newView = null;
+      var oldSprite = elementTarget.view.sprite;
+      var newSprite = null;
       switch (params.type) {
       case 'sprite':
-        if (elementTarget.view instanceof PIXI.Sprite) {
+        if (oldSprite instanceof PIXI.Sprite) {
           var texture = PIXI.Texture.fromFrame(params.textureIds[0]);
-          elementTarget.view.setTexture(texture);
+          oldSprite.setTexture(texture);
           if (params.anchor) {
-            elementTarget.view.anchor = params.anchor;
+            oldSprite.anchor = params.anchor;
           }
-        } else if (elementTarget.view instanceof PIXI.MovieClip) {
-          newView = PIXI.Sprite.fromFrame(params.textureIds[0]);
-          elementTarget.view.stop();
+        } else if (oldSprite instanceof PIXI.MovieClip) {
+          oldSprite.stop();
+          newSprite = PIXI.Sprite.fromFrame(params.textureIds[0]);
 
-          elementTarget.view = newView;
+          elementTarget.view.sprite = newSprite;
 
-          renderers.pixi.stage.removeChild(oldView);
-          renderers.pixi.stage.addChild(newView);
+          renderers.pixi.stage.removeChild(oldSprite);
+          renderers.pixi.stage.awddChild(newSprite);
         }
         break;
-      case 'movieclip':
-        if (elementTarget.view instanceof PIXI.MovieClip) {
-          elementTarget.view.stop();
-          elementTarget.view.setTextures(params.textureIds[0]);
-        } else if (elementTarget.view instanceof PIXI.Sprite) {
-          newView = PIXI.MovieClip(params.textureIds[0]);
+        // case 'movieclip':
+        //   if (oldView instanceof PIXI.MovieClip) {
+        //     oldView.stop();
+        //     oldView.setTextures(params.textureIds[0]);
+        //   } else if (elementTarget.view instanceof PIXI.Sprite) {
+        //     newView = PIXI.MovieClip(params.textureIds[0]);
 
-          elementTarget.view = newView;
-          renderers.pixi.stage.removeChild(oldView);
-          renderers.pixi.stage.addChild(newView);
-        }
-        elementTarget.view.animationSpeed = params.animationSpeed;
-        elementTarget.view.play();
-        break;
+        //     elementTarget.view = newView;
+        //     renderers.pixi.stage.removeChild(oldView);
+        //     renderers.pixi.stage.addChild(newView);
+        //   }
+        //   elementTarget.view.animationSpeed = params.animationSpeed;
+        //   elementTarget.view.play();
+        //   break;
       }
     }
   };

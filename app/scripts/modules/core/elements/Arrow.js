@@ -1,11 +1,10 @@
-
 (define(function (require) {
   'use strict';
 
   var $ = require('jquery');
   var Physics = require('physicsjs');
   var Behaviors = require('behaviors');
-  var arrowView = require('arrowView');
+  var ArrowView = require('arrowView');
   var Field = require('field');
   var Events = require('minivents');
   var Bodies = require('bodies');
@@ -30,16 +29,11 @@
     params = $.extend({}, params, options);
     this.body = new Bodies.Arrow(params);
 
-    this.body.view = arrowView();
-
-    this.view = this.body.view;
+    this.view = new ArrowView();
+    this.body.view = this.view.sprite;
 
     this.behaviors = [];
-
     this.behaviors.push(
-      // Behaviors.borderWarp,
-      // Behaviors.gravityArrow,
-      Behaviors.mortalDetection,
       Behaviors.mortalDetection,
       Behaviors.hitDetection,
       Behaviors.gravity,

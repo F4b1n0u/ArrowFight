@@ -17,7 +17,6 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-jslint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-requirejs');
 
   // Configurable paths
   var config = {
@@ -317,11 +316,6 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= config.dist %>/scripts/app.min.js': [
-            '<%= config.app %>/libs/jquery/dist/jquery.js',
-            '<%= config.app %>/libs/underscore/underscore.js',
-            '<%= config.app %>/libs/pixi.js/bin/pixi.dev.js',
-            '<%= config.app %>/libs/KeyboardJS/keyboard.js',
-            '<%= config.app %>/libs/allouis-minivents/minivents.js',
             '<%= config.app %>/scripts/modules/core/elements/archer.js',
             '<%= config.app %>/scripts/modules/core/elements/arrow.js',
             '<%= config.app %>/scripts/modules/core/elements/map.js',

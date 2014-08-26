@@ -33,11 +33,11 @@ define(function (require) {
      * @param {String} team could be 'green' or 'red'
      * @param {Event} sandbox
      */
-    var _addArcher = function (team, sandbox) {
-      var element = new ArcherElement(team, {
+    var _addArcher = function (team) {
+      var element = new ArcherElement(team, this.sandbox, {
         x: 480,
         y: 360
-      }, sandbox);
+      });
       utils.addElement(this.world, element);
 
       this.sandbox.on('round:finish:looser', function (looser) {

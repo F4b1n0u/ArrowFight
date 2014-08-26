@@ -67,7 +67,6 @@ define(function (require) {
   'use strict';
   require("jquery");
   require("underscore");
-  require('pixi');
 
   var Game = require('game');
   var KeyboardMappings = require('keyboardMappings');

@@ -95,37 +95,6 @@ define(function (require) {
     };
   });
 
-  Physics.behavior('touch-detection', 'body-collision-detection', function (parent) {
-    return {
-      init: function (options) {
-        var defaults = {};
-        parent.init.call(this, $.extend({}, defaults, options));
-      },
-
-      connect: function (world) {
-        world.on('collisions:detected', this.checkGroundCollision, this);
-      },
-
-      disconnect: function (world) {
-        world.off('collisions:detected', this.checkGroundCollision);
-      },
-
-      checkGroundCollision: function (data) {
-        var body = null;
-        data.collisions.forEach(function (collision) {
-          if (collision.bodyA.name === 'archer' || collision.bodyB.name === 'archer') {
-            if (collision.bodyA.name === 'archer') {
-              body = collision.bodyA;
-            } else {
-              body = collision.bodyB;
-            }
-            body.isInTheAir.set(false);
-          }
-        });
-      }
-    };
-  });
-
   Physics.behavior('collect-detection', 'body-collision-detection', function (parent) {
     return {
       init: function (options) {
@@ -158,6 +127,40 @@ define(function (require) {
       }
     };
   });
+
+  Physics.behavior('cling-detection', 'body-collision-detection', function (parent) {
+    return {
+      init: function (options) {
+        var defaults = {};
+        parent.init.call(this, $.extend({}, defaults, options));
+      },
+
+      connect: function (world) {
+        world.on('collisions:detected', this.checkGroundCollision, this);
+      },
+
+      disconnect: function (world) {
+        world.off('collisions:detected', this.checkGroundCollision);
+      },
+
+      checkGroundCollision: function (data) {
+        data.collisions.forEach(function (collision) {
+          if (collision.norm.x === 1) {
+            if (collision.bodyA.name === 'map-part' && collision.bodyB.name === 'archer') {
+              if (collision.bodyB.isInTheAir.get()) {
+                collision.bodyB.isClinging.set(true);
+              }
+            } else if (collision.bodyA.name === 'archer' && collision.bodyB.name === 'map-part') {
+              if (collision.bodyA.isInTheAir.get()) {
+                collision.bodyA.isClinging.set(true);
+              }
+            }
+          }
+        });
+      }
+    };
+  });
+
 
   Physics.behavior('hit-detection', 'body-collision-detection', function (parent) {
     return {
@@ -224,14 +227,18 @@ define(function (require) {
           if (body.state.vel.y > 0) {
             if (body.state.vel.y > threshold) {
               body.isFalling.set(true);
+              body.isInTheAir.set(true);
             } else {
               body.isFalling.set(false);
+              body.isInTheAir.set(false);
             }
           } else {
             if (body.state.vel.y < -threshold) {
               body.isJumping.set(true);
+              body.isInTheAir.set(true);
             } else {
               body.isJumping.set(false);
+              body.isInTheAir.set(false);
             }
           }
         });
@@ -272,12 +279,11 @@ define(function (require) {
         y: 0.002
       }
     }),
-    touchDetection: Physics.behavior('touch-detection'),
     fallingJumpingDetection: Physics.behavior('falling-jumping-detection'),
     collectDetection: Physics.behavior('collect-detection'),
     mortalDetection: Physics.behavior('mortal-detection'),
     hitDetection: Physics.behavior('hit-detection'),
-
+    clingDetection: Physics.behavior('cling-detection'),
     walkingMovement: Physics.behavior('walking-movement'),
 
     bodyImpulseResponse: Physics.behavior('body-impulse-response'),

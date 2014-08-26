@@ -5,7 +5,7 @@
   var Physics = require('physicsjs');
   var Behaviors = require('behaviors');
   var ArcherModel = require('archerModels');
-  var archerView = require('archerView');
+  var ArcherView = require('archerView');
   var Field = require('field');
   var Events = require('minivents');
   var Bodies = require('bodies');
@@ -17,7 +17,7 @@
    * @param {Array} options wrapper to customise the archer, mainly use to set the coordinate of the body
    * @param {Event} sandbox events container
    */
-  var Archer = function (team, options, sandbox) {
+  var Archer = function (team, sandbox, options) {
     this.team = team;
     this.sandbox = new Events();
     this.model = new ArcherModel(this.sandbox);
@@ -45,14 +45,12 @@
     params = $.extend({}, params, options);
     this.body = new Bodies.Archer(params);
 
-    this.body.view = archerView(this.team);
-
-    this.view = this.body.view;
+    this.view = new ArcherView(this);
+    this.body.view = this.view.sprite;
 
     this.behaviors = [];
     this.behaviors.push(
       Behaviors.walkingMovement,
-      Behaviors.touchDetection,
       Behaviors.fallingJumpingDetection,
       Behaviors.collectDetection,
       Behaviors.hitDetection,
@@ -122,96 +120,6 @@
       this.body.state.pos.y = coordinate.y;
       this.model.quiver.full();
     };
-
-    this.sandbox.on('archer:isFalling', function (value) {
-      if (value.new) {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_fall_1']
-        });
-      } else {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_no_drawing']
-        });
-      }
-    }, this);
-
-    this.sandbox.on('archer:isDrawing', function (value) {
-      if (value.new) {
-        this.body.isWalking.set(false);
-        this.body.aimVector.trigger();
-      } else {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_no_drawing']
-        });
-      }
-    }, this);
-
-    this.sandbox.on('archer:aimVector', function (value) {
-      if (this.body.isDrawing.get()) {
-        var aimVector = this.body.aimVector.get();
-
-        if (aimVector.y === 0) {
-          utils.changeView(this, {
-            type: 'sprite',
-            textureIds: ['archer_' + this.team + '_drawing_front']
-          });
-        } else if (aimVector.y < 0) {
-          if (aimVector.x === 0) {
-            utils.changeView(this, {
-              type: 'sprite',
-              textureIds: ['archer_' + this.team + '_drawing_up']
-            });
-          } else {
-            utils.changeView(this, {
-              type: 'sprite',
-              textureIds: ['archer_' + this.team + '_drawing_up_diag']
-            });
-          }
-        } else if (aimVector.y > 0) {
-          if (aimVector.x === 0) {
-            utils.changeView(this, {
-              type: 'sprite',
-              textureIds: ['archer_' + this.team + '_drawing_down']
-            });
-          } else {
-            utils.changeView(this, {
-              type: 'sprite',
-              textureIds: ['archer_' + this.team + '_drawing_down_diag']
-            });
-          }
-        }
-      } else {
-        this.body.isWalking.set(true);
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_no_drawing']
-        });
-      }
-      if (value && value.new.x !== 0) {
-        this.view.scale.x = value.new.x;
-      }
-    }, this);
-
-    this.sandbox.on('archer:isJumping', function (value) {
-      if (value.new) {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_jump_1']
-        });
-      }
-    }, this);
-
-    this.sandbox.on('archer:isClinging', function (value) {
-      if (value.new) {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_cling']
-        });
-      }
-    }, this);
 
     this.sandbox.on('archer:collect', function () {
       this.model.quiver.collect();

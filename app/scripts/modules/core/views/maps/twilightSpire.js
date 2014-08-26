@@ -9,7 +9,7 @@ define(function (require) {
    * @param  {[type]} options wrapper to customise the object
    * @return {[type]}
    */
-  var twilightSpire = function (options) {
+  var TwilightSpire = function (options) {
     var defaults = {
       texture: './images/maps/twilightSpire.png',
       anchor: {
@@ -19,10 +19,8 @@ define(function (require) {
     };
     var params = $.extend({}, defaults, options);
 
-    var view = Renderers.pixi.createDisplay('sprite', params);
-
-    return view;
+    this.sprite = Renderers.pixi.createDisplay('sprite', params);
   };
 
-  return twilightSpire;
+  return TwilightSpire;
 });

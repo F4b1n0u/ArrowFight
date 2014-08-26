@@ -3,7 +3,7 @@
 
   var Behaviors = require('behaviors');
   var TwilightSpireMapModels = require('twilightSpireMapModels');
-  var twilightSpireMapView = require('twilightSpireMapView');
+  var TwilightSpireMapView = require('twilightSpireMapView');
   var Bodies = require('bodies');
   var utils = require('utils');
 
@@ -15,7 +15,7 @@
     this.bodies = [];
     if (mapId === "TwilightSpire") {
       this.model = new TwilightSpireMapModels();
-      this.view = twilightSpireMapView();
+      this.view = new TwilightSpireMapView();
     }
 
     this.model.parts.forEach(function (part) {

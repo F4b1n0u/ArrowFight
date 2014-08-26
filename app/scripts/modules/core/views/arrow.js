@@ -9,7 +9,7 @@ define(function (require) {
    * @param  {[type]} options wrapper to customise the object
    * @return {[type]}
    */
-  var arrow = function (options) {
+  var Arrow = function (options) {
     var defaults = {
       texture: './images/items/arrow.png',
       anchor: {
@@ -20,10 +20,8 @@ define(function (require) {
 
     var params = $.extend({}, defaults, options);
 
-    var view = renderers.pixi.createDisplay('sprite', params);
-
-    return view;
+    this.sprite = renderers.pixi.createDisplay('sprite', params);
   };
 
-  return arrow;
+  return Arrow;
 });

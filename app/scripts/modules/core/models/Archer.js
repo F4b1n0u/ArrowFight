@@ -1,7 +1,6 @@
 (define(function (require) {
   'use strict';
 
-  var Physics = require("physicsjs");
   var Field = require("scripts/modules/core/field");
 
   /**
