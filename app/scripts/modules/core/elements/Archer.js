@@ -25,6 +25,8 @@
     var width = 52;
     var height = 57;
 
+    // this.arrowAttractor = Behaviors.arrowAttractor;
+
     var params = {
       height: height,
       width: width,
@@ -39,8 +41,8 @@
       isWalking: new Field(false, this.sandbox, 'archer:isWalking'),
       isClinging: new Field(false, this.sandbox, 'archer:isClinging'),
 
-      aimVector: new Field(Physics.vector(0, 0), this.sandbox, 'archer:aimVector'),
-      mainDirection: new Field(Physics.vector(1, 0), this.sandbox, 'archer:mainDirection')
+      aimVector: new Field(new Physics.vector(0, 0), this.sandbox, 'archer:aimVector'),
+      mainDirection: new Field(new Physics.vector(1, 0), this.sandbox, 'archer:mainDirection')
     };
     params = $.extend({}, params, options);
     this.body = new Bodies.Archer(params);

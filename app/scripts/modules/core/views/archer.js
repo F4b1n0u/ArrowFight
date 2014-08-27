@@ -23,16 +23,18 @@ define(function (require) {
     this.sprite = Renderers.pixi.createDisplay('sprite', params);
 
     element.sandbox.on('archer:isFalling', function (value) {
-      if (value.new) {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_fall_1']
-        });
-      } else {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_no_drawing']
-        });
+      if (!this.body.isDrawing.get()) {
+        if (value.new) {
+          utils.changeView(this, {
+            type: 'sprite',
+            textureIds: ['archer_' + this.team + '_fall_1']
+          });
+        } else {
+          utils.changeView(this, {
+            type: 'sprite',
+            textureIds: ['archer_' + this.team + '_no_drawing']
+          });
+        }
       }
     }, element);
 
@@ -120,10 +122,12 @@ define(function (require) {
 
     element.sandbox.on('archer:isJumping', function (value) {
       if (value.new) {
-        utils.changeView(this, {
-          type: 'sprite',
-          textureIds: ['archer_' + this.team + '_jump_1']
-        });
+        if (!this.body.isDrawing.get()) {
+          utils.changeView(this, {
+            type: 'sprite',
+            textureIds: ['archer_' + this.team + '_jump_1']
+          });
+        }
       }
     }, element);
 

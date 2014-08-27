@@ -21,7 +21,7 @@ define(function (require) {
         var centroidY = options.y + halfHeigth;
         var archerDefaults = {
           restitution: 0,
-          cof: 1,
+          cof: 0,
           mass: 10,
           treatment: 'dynamic',
           vertices: [{

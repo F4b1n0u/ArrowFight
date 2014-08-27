@@ -39,15 +39,23 @@
     },
 
     /**
-     * [_updateBehaviors add as arget a body to a behaviors]
-     * @param  {Behabior} behaviors
+     * [_updateBehaviors add or remove body from targets of behaviors]
+     * @param  {Array} behaviors
      * @param  {Body} target
      * @return {no return}
      */
-    updateBehaviors: function (behaviors, target) {
+    updateBehaviors: function (behaviors, target, add) {
+      add = (add === undefined) ? true : add;
       behaviors.forEach(function (behavior) {
         var targets = (behavior._targets instanceof Array) ? behavior._targets : [];
-        targets.push(this);
+        if (add) {
+          targets.push(this);
+        } else {
+          var index = targets.indexOf(target);
+          if (index > -1) {
+            targets.splice(index, 1);
+          }
+        }
         behavior.applyTo(targets);
       }, target);
     },

@@ -17,8 +17,7 @@ define(function (require) {
    */
   var Game = function (mapId) {
     this.world = WorldHelper.init();
-    this.map =
-      this.sandbox = new Events();
+    this.map = this.sandbox = new Events();
 
     /**
      * [_initMap initialize an element map to the game in function of an id]
@@ -60,7 +59,8 @@ define(function (require) {
         y: archer.body.state.pos.y,
         angle: angle
       });
-      element.launch(0.45);
+
+      element.launch(0.35);
       utils.addElement(this.world, element);
     }.bind(this);
 

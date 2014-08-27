@@ -64,25 +64,20 @@ define(function (require) {
     };
   });
 
-  // Physics.behavior('gravity-arrow', 'constant-acceleration', function (parent) {
-  //   return {
-  //     init: function (options) {
-  //       var defaults = {};
-  //       parent.init.call(this, $.extend({}, defaults, options));
-  //     },
-  //     behave: function () {
-  //       parent.behave.call( this, data );
-  //       this.getTargets().forEach( function( body ){
-  //           var movedCentroid = body.movedCentroid();
-  //           body.applyForce( this._acc, body.movedCentroid());
-  //           var tangent = new Physics.vector( body.state.old.pos.x - movedCentroid.x, body.state.old.pos.y - movedCentroid.y );
-  //           if ( tangent.norm() ) {
-  //               body.state.angular.pos = tangent.angle();
-  //           }
-  //       }, this );
-  //     }
-  //   };
-  // });
+  Physics.behavior('gravity-arrow', 'constant-acceleration', function () {
+    return {
+      behave: function () {
+        this.getTargets().forEach(function (body) {
+          if (body.state.vel.norm() < 1) {
+            body.accelerate(this._acc);
+          }
+          if (body.state.vel.norm() > 0.3) {
+            body.state.angular.pos = body.state.vel.angle();
+          }
+        }, this);
+      }
+    };
+  });
 
   Physics.behavior('gravity-archer', 'constant-acceleration', function (parent) {
     return {
@@ -90,6 +85,19 @@ define(function (require) {
         parent.behave.call(this, data);
         this.getTargets().forEach(function (body) {
           body.state.angular.pos = 0;
+        });
+      }
+    };
+  });
+
+  Physics.behavior('air_brake', function () {
+    return {
+      behave: function () {
+        this.getTargets().forEach(function (body) {
+          if (body.state.vel.norm() > 0.1) {
+            var brake = new Physics.vector(-0.00075, 0).rotate(body.state.angular.pos);
+            body.accelerate(brake);
+          }
         });
       }
     };
@@ -160,7 +168,6 @@ define(function (require) {
       }
     };
   });
-
 
   Physics.behavior('hit-detection', 'body-collision-detection', function (parent) {
     return {
@@ -246,7 +253,6 @@ define(function (require) {
     };
   });
 
-
   Physics.behavior('walking-movement', function (parent) {
     return {
       init: function (options) {
@@ -265,14 +271,49 @@ define(function (require) {
     };
   });
 
+
+  Physics.behavior('plant-detection', 'body-collision-detection', function (parent) {
+    return {
+      init: function (options) {
+        var defaults = {};
+        parent.init.call(this, $.extend({}, defaults, options));
+      },
+
+      connect: function (world) {
+        world.on('collisions:detected', this.checkMapCollision, this);
+      },
+
+      disconnect: function (world) {
+        world.off('collisions:detected', this.checkMapCollision);
+      },
+
+      checkMapCollision: function (data) {
+        data.collisions.forEach(function (collision) {
+          if (collision.bodyA.name === 'arrow' && collision.bodyB.name === 'map-part') {
+            collision.bodyA.isPlant.trigger();
+          } else if (collision.bodyA.name === 'map-part' && collision.bodyB.name === 'arrow') {
+            collision.bodyB.isPlant.trigger();
+          }
+        });
+      }
+    };
+  });
+
   var Behaviors = {
-    borderWarp: Physics.behavior('border-warp-behaviour'),
-    gravity: Physics.behavior('constant-acceleration', {
+
+
+    // ARROW
+    gravityArrow: Physics.behavior('gravity-arrow', {
       acc: {
         x: 0,
         y: 0.002
       }
     }),
+    mortalDetection: Physics.behavior('mortal-detection'),
+    airBrake: Physics.behavior('air_brake'),
+    plantDetection: Physics.behavior('plant-detection'),
+
+    // ARCHER
     gravityArcher: Physics.behavior('gravity-archer', {
       acc: {
         x: 0,
@@ -280,12 +321,13 @@ define(function (require) {
       }
     }),
     fallingJumpingDetection: Physics.behavior('falling-jumping-detection'),
-    collectDetection: Physics.behavior('collect-detection'),
-    mortalDetection: Physics.behavior('mortal-detection'),
-    hitDetection: Physics.behavior('hit-detection'),
-    clingDetection: Physics.behavior('cling-detection'),
     walkingMovement: Physics.behavior('walking-movement'),
+    clingDetection: Physics.behavior('cling-detection'),
 
+    // BOTH
+    collectDetection: Physics.behavior('collect-detection'),
+    hitDetection: Physics.behavior('hit-detection'),
+    borderWarp: Physics.behavior('border-warp-behaviour'),
     bodyImpulseResponse: Physics.behavior('body-impulse-response'),
     bodyCollisionDetection: Physics.behavior('body-collision-detection'),
     sweepPrune: Physics.behavior('sweep-prune')

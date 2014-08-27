@@ -21,10 +21,10 @@
       width: 43,
       height: 17,
 
-      collected: new Field(null, this.sandbox, 'body:arrow:collected'),
-      isPlant: new Field(null, this.sandbox, 'model:arrow:isPlant'),
+      collected: new Field(null, this.sandbox, 'arrow:collected'),
+      isPlant: new Field(null, this.sandbox, 'arrow:isPlant'),
 
-      isMortal: new Field(false, this.sandbox, 'model:arrow:isMortal')
+      isMortal: new Field(false, this.sandbox, 'arrow:isMortal')
     };
     params = $.extend({}, params, options);
     this.body = new Bodies.Arrow(params);
@@ -34,9 +34,11 @@
 
     this.behaviors = [];
     this.behaviors.push(
+      Behaviors.plantDetection,
       Behaviors.mortalDetection,
       Behaviors.hitDetection,
-      Behaviors.gravity,
+      Behaviors.gravityArrow,
+      Behaviors.airBrake,
       Behaviors.bodyImpulseResponse,
       Behaviors.bodyCollisionDetection,
       Behaviors.sweepPrune
@@ -55,8 +57,15 @@
       this.body.applyForce(launch, this.body.movedCentroid());
     };
 
-    this.sandbox.on('body:arrow:collected', function () {
+    this.sandbox.on('arrow:collected', function () {
       utils.removeElement(this);
+    }, this);
+
+    this.sandbox.on('arrow:isPlant', function () {
+      utils.updateBehaviors([
+        Behaviors.hitDetection,
+        Behaviors.airBrake
+      ], this.body, false);
     }, this);
   };
 
