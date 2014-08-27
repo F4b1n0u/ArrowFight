@@ -57,15 +57,26 @@
       this.body.applyForce(launch, this.body.movedCentroid());
     };
 
+    /**
+     * [stop stop the the body]
+     * @return {no return}
+     */
+    this.plant = function () {
+      this.body.state.vel.x = 0.0000000000001;
+      this.body.state.vel.y = 0.0000000000001;
+    };
+
     this.sandbox.on('arrow:collected', function () {
       utils.removeElement(this);
     }, this);
 
     this.sandbox.on('arrow:isPlant', function () {
+      //this.plant();
       utils.updateBehaviors([
         Behaviors.hitDetection,
         Behaviors.airBrake
       ], this.body, false);
+
     }, this);
   };
 

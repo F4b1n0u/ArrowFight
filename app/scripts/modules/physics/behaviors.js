@@ -211,7 +211,7 @@ define(function (require) {
 
       behave: function () {
         this.getTargets().forEach(function (body) {
-          if (body.state.vel.norm() > 1) {
+          if (body.state.vel.norm() > 0.5) {
             body.isMortal.set(true);
           } else {
             body.isMortal.set(false);

@@ -4,6 +4,7 @@ define(function (require) {
   var $ = require('jquery');
   var Renderers = require('renderers');
   var utils = require('utils');
+  var QuiverView = require('quiverView');
 
   var defaults = {
     texture: './images/blank.png',
@@ -21,6 +22,9 @@ define(function (require) {
   var Archer = function (element, options) {
     var params = $.extend({}, defaults, options);
     this.sprite = Renderers.pixi.createDisplay('sprite', params);
+
+    this.quiverView = new QuiverView(element);
+    this.sprite.addChild(this.quiverView.sprite);
 
     element.sandbox.on('archer:isFalling', function (value) {
       if (!this.body.isDrawing.get()) {

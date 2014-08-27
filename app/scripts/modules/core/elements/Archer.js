@@ -76,6 +76,15 @@
     };
 
     /**
+     * [stop stop the the body]
+     * @return {no return}
+     */
+    this.stop = function () {
+      this.body.state.vel.x = 0.0000000000001;
+      this.body.state.vel.y = 0.0000000000001;
+    };
+
+    /**
      * [jump to jump]
      * @return {no return}
      */
@@ -120,8 +129,15 @@
     this.reset = function (coordinate) {
       this.body.state.pos.x = coordinate.x;
       this.body.state.pos.y = coordinate.y;
-      this.model.quiver.full();
+      this.stop();
+      this.model.quiver.fill();
     };
+
+    this.sandbox.on('archer:isDrawing', function (value) {
+      if (value.new) {
+        this.stop();
+      }
+    }, this);
 
     this.sandbox.on('archer:collect', function () {
       this.model.quiver.collect();
@@ -131,6 +147,8 @@
       utils.removeElement(this);
       sandbox.emit('round:finish:looser', this);
     }, this);
+
+    this.model.quiver.fill();
   };
 
   return Archer;

@@ -16,9 +16,11 @@
       arrowElement: './scripts/modules/core/elements/arrow',
       mapElement: './scripts/modules/core/elements/map',
 
+      quiverModel: './scripts/modules/core/models/quiver',
       archerModels: './scripts/modules/core/models/archer',
       twilightSpireMapModels: './scripts/modules/core/models/maps/twilightSpire',
 
+      quiverView: './scripts/modules/core/views/quiver',
       archerView: './scripts/modules/core/views/archer',
       arrowView: './scripts/modules/core/views/arrow',
       twilightSpireMapView: './scripts/modules/core/views/maps/twilightSpire',
