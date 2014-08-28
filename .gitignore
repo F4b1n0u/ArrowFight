@@ -5,6 +5,6 @@ components
 .ftppass
 dist
 tools
-lib
+app/scripts/libs
 logs
 desktopApp

@@ -10,7 +10,7 @@
       pixi: './scripts/libs/pixi.js/bin/pixi.dev',
       keyboard: './scripts/libs/KeyboardJS/keyboard',
 
-      minivents: './scripts/libs/allouis-minivents/minivents',
+      minivents: './scripts/vendor/allouis-minivents/minivents',
 
       archerElement: './scripts/modules/core/elements/archer',
       arrowElement: './scripts/modules/core/elements/arrow',
