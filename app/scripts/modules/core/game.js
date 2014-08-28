@@ -1,7 +1,7 @@
 define(function (require) {
   'use strict';
 
-  var Physics = require('physicsjs');
+  var Physics = require('physicsjs/physicsjs-0.6.0');
   var WorldHelper = require('worldHelper');
   var Events = require('minivents');
 

@@ -6,7 +6,6 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.11.0",
     "requirejs": null,
-    "PhysicsJS": "~0.6.0",
     "pixi.js": "~1.6.1",
     "underscore": null,
     "KeyboardJS": null,

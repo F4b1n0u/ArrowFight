@@ -29,7 +29,7 @@ define(function (require) {
       }, this.sprite);
 
       var i, ammunition;
-      for (i = 0; i < value.new; i++) {
+      for (i = 0; i < value.new; i += 1) {
         ammunition = Renderers.pixi.createDisplay('sprite', params);
         ammunition.y = -40;
         ammunition.x = -10 + (i * 10);

@@ -3,8 +3,16 @@ define(function (require) {
 
   var $ = require('jquery');
   var Physics = require('physicsjs');
+  require('physicsjs/behaviors/edge-collision-detection');
+  require('physicsjs/behaviors/constant-acceleration');
+  require('physicsjs/behaviors/body-collision-detection');
+  require('physicsjs/behaviors/body-impulse-response');
+  require('physicsjs/behaviors/body-collision-detection');
+  require('physicsjs/behaviors/sweep-prune');
+
   var Renderers = require('renderers');
   var Bounds = require('bounds');
+
 
   Physics.behavior('border-warp-behaviour', 'edge-collision-detection', function (parent) {
     return {
@@ -328,6 +336,7 @@ define(function (require) {
     collectDetection: Physics.behavior('collect-detection'),
     hitDetection: Physics.behavior('hit-detection'),
     borderWarp: Physics.behavior('border-warp-behaviour'),
+
     bodyImpulseResponse: Physics.behavior('body-impulse-response'),
     bodyCollisionDetection: Physics.behavior('body-collision-detection'),
     sweepPrune: Physics.behavior('sweep-prune')

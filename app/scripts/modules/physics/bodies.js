@@ -3,6 +3,7 @@ define(function (require) {
 
   var $ = require('jquery');
   var Physics = require('physicsjs');
+  require('physicsjs/bodies/convex-polygon');
 
   var defaults = {
     x: 0,

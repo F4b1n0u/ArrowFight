@@ -1,7 +1,6 @@
 (define(function (require) {
   'use strict';
 
-  var Field = require('field');
   var QuiverModel = require('quiverModel');
 
   /**

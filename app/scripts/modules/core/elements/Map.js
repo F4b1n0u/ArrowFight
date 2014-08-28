@@ -45,7 +45,7 @@
     this.getRespawnLocation = function (team) {
       return {
         x: this.model.respawns[team].x * unitBlockSize,
-        y: this.model.respawns[team].y * unitBlockSize,
+        y: this.model.respawns[team].y * unitBlockSize
       };
     };
 

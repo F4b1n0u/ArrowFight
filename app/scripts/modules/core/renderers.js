@@ -1,6 +1,8 @@
 define(function (require) {
-  PIXI = require('pixi');
+  'use strict';
+
   var Physics = require('physicsjs');
+  require('physicsjs/renderers/pixi-renderer');
 
   /**
    * [Renderers wrapper of of the different renderer]

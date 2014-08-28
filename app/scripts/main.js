@@ -45,7 +45,7 @@
     packages: [{
       name: 'physicsjs',
       location: './scripts/vendor/PhysicsJS/dist/',
-      main: 'physicsjs-full-0.6.0'
+      main: 'physicsjs-0.6.0'
     }],
 
     shim: {

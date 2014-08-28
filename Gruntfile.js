@@ -135,7 +135,7 @@ module.exports = function (grunt) {
         ],
         exclude: [
           './app/scripts/libs/**/*.js',
-          './app/scripts/libs/**/*.js'
+          './app/scripts/vendor/**/*.js'
         ],
         directives: {
           browser: true,
