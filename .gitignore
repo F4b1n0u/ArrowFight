@@ -3,7 +3,6 @@ node_modules
 .sass-cache
 components
 .ftppass
-dist
 tools
 app/scripts/libs
 logs
