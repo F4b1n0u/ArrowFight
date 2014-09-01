@@ -20,13 +20,12 @@ define(function (require) {
   var Quiver = function (element, options) {
     var params = $.extend({}, defaults, options);
     this.sprite = Renderers.pixi.createDisplay('sprite', params);
-
     params.texture = './images/ammunition.png';
 
     element.sandbox.on('quiver:amount', function (value) {
-      this.sprite.children.forEach(function (child) {
-        this.removeChild(child);
-      }, this.sprite);
+      if (this.sprite.children.length) {
+        this.sprite.removeChildren();
+      }
 
       var i, ammunition;
       for (i = 0; i < value.new; i += 1) {

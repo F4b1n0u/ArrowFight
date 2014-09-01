@@ -17,6 +17,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-jslint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-requirejs');
 
   // Configurable paths
   var config = {
@@ -221,19 +222,19 @@ module.exports = function (grunt) {
     },
 
     // Renames files for browser caching purposes
-    rev: {
-      dist: {
-        files: {
-          src: [
-            '<%= config.dist %>/scripts/**/*.js',
-            '<%= config.dist %>/styles/{,*/}*.css',
-            '<%= config.dist %>/images/**/*.*',
-            '<%= config.dist %>/styles/fonts/{,*/}*.*',
-            '<%= config.dist %>/*.{ico,png}'
-          ]
-        }
-      }
-    },
+    // rev: {
+    //   dist: {
+    //     files: {
+    //       src: [
+    //         '<%= config.dist %>/scripts/{,*/!(require)}*.js',
+    //         '<%= config.dist %>/styles/{,*/}*.css',
+    //         '<%= config.dist %>/images/**/*.*',
+    //         '<%= config.dist %>/styles/fonts/{,*/}*.*',
+    //         '<%= config.dist %>/*.{ico,png}'
+    //       ]
+    //     }
+    //   }
+    // },
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
@@ -315,7 +316,7 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          '<%= config.dist %>/scripts/app.min.js': [
+          '<%= config.dist %>/scripts/main.js': [
             '<%= config.app %>/scripts/modules/core/elements/archer.js',
             '<%= config.app %>/scripts/modules/core/elements/arrow.js',
             '<%= config.app %>/scripts/modules/core/elements/map.js',
@@ -349,7 +350,7 @@ module.exports = function (grunt) {
     copy: {
       dist: {
         files: [{
-          expand: true,
+          expand: false,
           dot: true,
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
@@ -358,8 +359,14 @@ module.exports = function (grunt) {
             '.htaccess',
             'images/{,*/}*.webp',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/**.*',
+            'scripts/**.*'
           ]
+        }, {
+          expand: false,
+          cwd: '<%= config.app %>/scripts/libs/requirejs/',
+          dest: '<%= config.dist %>/scripts/libs/requirejs/',
+          src: ['require.js']
         }]
       },
       styles: {
@@ -386,6 +393,61 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+    requirejs: {
+      dist: {
+        options: {
+          wrap: true,
+          // *insert almond in all your modules
+          almond: false,
+          optimize : 'uglify2',
+          // *replace require script calls, with the almond modules
+          // in the following files
+          replaceRequireScript: [{
+            files: ['<%= config.dist %>/index.html'],
+            module: 'main',
+            modulePath: '/scripts/app.min'
+          }],
+          // "normal" require config
+          // *create at least a 'main' module
+          // thats necessary for using the almond auto insertion
+          modules: [{
+            name: 'main'
+          }],
+          dir: 'dist',
+          appDir: '<%= config.app %>/scripts',
+          baseUrl: './',
+          paths: {
+            jquery: './scripts/libs/jquery/dist/jquery',
+            underscore: './scripts/libs/underscore/underscore',
+            pixi: './scripts/libs/pixi.js/bin/pixi.dev',
+            keyboard: './scripts/libs/KeyboardJS/keyboard',
+            minivents: './scripts/vendor/allouis-minivents/minivents',
+            archerElement: './scripts/modules/core/elements/archer',
+            arrowElement: './scripts/modules/core/elements/arrow',
+            mapElement: './scripts/modules/core/elements/map',
+            quiverModel: './scripts/modules/core/models/quiver',
+            archerModels: './scripts/modules/core/models/archer',
+            twilightSpireMapModels: './scripts/modules/core/models/maps/twilightSpire',
+            quiverView: './scripts/modules/core/views/quiver',
+            archerView: './scripts/modules/core/views/archer',
+            arrowView: './scripts/modules/core/views/arrow',
+            twilightSpireMapView: './scripts/modules/core/views/maps/twilightSpire',
+            utils: './scripts/modules/core/utils',
+            field: './scripts/modules/core/field',
+            game: 'scripts/modules/core/game',
+            renderers: './scripts/modules/core/renderers',
+            keyboardMapper: 'scripts/modules/inputs/keyboardMapper',
+            keyboardMappings: 'scripts/modules/inputs/keyboardMappings',
+            virtualGamePad: './scripts/modules/inputs/virtualGamePad',
+            behaviors: './scripts/modules/physics/behaviors',
+            bodies: './scripts/modules/physics/bodies',
+            bounds: './scripts/modules/physics/bounds',
+            worldHelper: './scripts/modules/physics/worldHelper',
+            spriteCache: 'scripts/modules/pixi/spriteCache'
+          }
+        }
+      }
     }
   });
 
@@ -430,11 +492,10 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
+    // 'concat',
     'cssmin',
-    'uglify',
     'copy:dist',
-    'rev',
+    'requirejs',
     'usemin',
     'htmlmin'
   ]);

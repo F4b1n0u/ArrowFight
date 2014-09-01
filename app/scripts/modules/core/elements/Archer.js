@@ -114,7 +114,7 @@
      * @return {no return}
      */
     this.releaseArrow = function () {
-      if (this.body.isDrawing) {
+      if (this.body.isDrawing.get()) {
         window.setTimeout(function () {
           this.body.isDrawing.set(false);
         }.bind(this), 50);

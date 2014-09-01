@@ -298,9 +298,9 @@ define(function (require) {
       checkMapCollision: function (data) {
         data.collisions.forEach(function (collision) {
           if (collision.bodyA.name === 'arrow' && collision.bodyB.name === 'map-part') {
-            collision.bodyA.isPlant.trigger();
+            collision.bodyA.isPlant.set('true');
           } else if (collision.bodyA.name === 'map-part' && collision.bodyB.name === 'arrow') {
-            collision.bodyB.isPlant.trigger();
+            collision.bodyB.isPlant.set('true');
           }
         });
       }
