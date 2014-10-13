@@ -34,11 +34,10 @@
 
     this.behaviors = [];
     this.behaviors.push(
-      Behaviors.plantDetection,
-      Behaviors.mortalDetection,
-      Behaviors.hitDetection,
+      Behaviors.commonArrow,
+      Behaviors.collisionArrow,
       Behaviors.gravityArrow,
-      Behaviors.airBrake,
+      
       Behaviors.bodyImpulseResponse,
       Behaviors.bodyCollisionDetection,
       Behaviors.sweepPrune
@@ -71,11 +70,10 @@
     }, this);
 
     this.sandbox.on('arrow:isPlant', function () {
-      //this.plant();
-      utils.updateBehaviors([
-        Behaviors.hitDetection,
-        Behaviors.airBrake
-      ], this.body, false);
+      // utils.updateBehaviors([
+      //   Behaviors.hitDetection,
+      //   Behaviors.airBrake
+      // ], this.body, false);
 
     }, this);
   };

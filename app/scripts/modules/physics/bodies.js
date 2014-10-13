@@ -18,9 +18,11 @@ define(function (require) {
       init: function (options) {
         var halfHeigth = options.height / 2;
         var halfWidth = options.width / 2;
-        var centroidX = options.x + halfWidth;
-        var centroidY = options.y + halfHeigth;
+        var centroidX = options.respawn.x + halfWidth;
+        var centroidY = options.respawn.y + halfHeigth;
         var archerDefaults = {
+          x: centroidX,
+          y: centroidY,
           restitution: 0,
           cof: 0,
           mass: 10,

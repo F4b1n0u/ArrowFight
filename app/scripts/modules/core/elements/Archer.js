@@ -45,6 +45,7 @@
       mainDirection: new Field(new Physics.vector(1, 0), this.sandbox, 'archer:mainDirection')
     };
     params = $.extend({}, params, options);
+
     this.body = new Bodies.Archer(params);
 
     this.view = new ArcherView(this);
@@ -52,11 +53,10 @@
 
     this.behaviors = [];
     this.behaviors.push(
-      Behaviors.walkingMovement,
-      Behaviors.fallingJumpingDetection,
-      Behaviors.collectDetection,
-      Behaviors.hitDetection,
+      Behaviors.commonArcher,
+      Behaviors.collisionArcher,
       Behaviors.gravityArcher,
+
       Behaviors.bodyImpulseResponse,
       Behaviors.bodyCollisionDetection,
       Behaviors.sweepPrune
@@ -126,9 +126,9 @@
      * @param  {[type]} coordinate
      * @return {[type]}
      */
-    this.reset = function (coordinate) {
-      this.body.state.pos.x = coordinate.x;
-      this.body.state.pos.y = coordinate.y;
+    this.reset = function () {
+      this.body.state.pos.x = this.body.respawn.x;
+      this.body.state.pos.y = this.body.respawn.y;
       this.stop();
       this.model.quiver.fill();
     };

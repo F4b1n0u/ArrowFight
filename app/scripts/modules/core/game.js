@@ -35,11 +35,11 @@ define(function (require) {
      */
     var _addArcher = function (team) {
       var respawn = this.map.getRespawnLocation(team);
-      var element = new ArcherElement(team, this.sandbox, respawn);
+      var element = new ArcherElement(team, this.sandbox, {respawn: respawn});
       utils.addElement(this.world, element);
 
       this.sandbox.on('round:finish:looser', function (looser) {
-        looser.reset(respawn);
+        looser.reset();
         utils.addElement(this, looser);
       }.bind(this.world));
 

@@ -7,3 +7,5 @@ tools
 app/scripts/libs
 logs
 desktopApp
+
+app/scripts/modules/core/renderers.js
